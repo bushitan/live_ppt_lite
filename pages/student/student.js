@@ -14,18 +14,15 @@ Page({
      * 页面的初始数据
      */
     data: {
-        isConnectSuccess: false,
-        // isConnectSuccess: true,
+        // isConnectSuccess: false,
+        isConnectSuccess: true,
         showTool: true,
         // showTool: false,
 
         teacherName: null,  //教师名字
         studentName: null,  //学生名字
-    },
-    menuSwitch() {
-        GP.setData({
-            showTool: !GP.data.showTool,
-        })
+
+        playerTab:["退出"],
     },
     //点击背景图，打开菜单
     stageClose() {
@@ -143,9 +140,17 @@ Page({
         if (body.text == "expire") {  //token过期
             Scripte.expire()
         }
-        if (body.text == "stage") { //切换场景
+        if (body.text == "ppt") { //切换场景
             console.log(body)
-            Scripte.getStageChange(body.stage)
+            Scripte.getPPT(body.url)
+        }
+        if (body.text == "draw") { //绘画完成
+            console.log(body)
+            Scripte.getDraw(body.path)
+        }
+        if (body.text == "clear") { //清除屏幕
+            console.log(body)
+            Scripte.getClear(body.path)
         }
         if (body.text == "on") {  //连接成功
             wx.hideLoading()
@@ -168,46 +173,3 @@ Page({
 })
 
 
-
-
-    // //加入房间成功，初始化IM
-    // onInitIMStudent(user_name, token) {
-    //     var user_info = wx.getStorageSync(KEY.USER_INFO)
-    //     var studentName = "live_pvp_user_" + user_info.user_id
-    //     var passWord = "123"
-    //     //浜村账号密码
-    //     GP.setData({
-    //         studentName: studentName,
-    //         passWord: passWord,
-    //     })
-    //     JMessage.init("", studentName, passWord, GP.IMSuccess)
-    // },
-
-    //登陆IM成功
-
-    // onUnload() {
-    //     JMessage.JIM.loginOut();
-    // },
-
-
-
-
-    // //加入房间成功，初始化IM
-    // joinSuccess() {
-    //     var user_info = wx.getStorageSync(KEY.USER_INFO)
-    //     var userName = "live_pvp_user_" + user_info.user_id
-    //     var passWord = "123"
-    //     if (APP.globalData.JMessage == null) //IM 不存在，初始化
-    //         APP.onInitIMStudent(userName, passWord, 'live_pvp_user_6')
-    // },
-
-    // joinFail(){
-    //     wx.showModal({
-    //         title: '温馨提示',
-    //         content: '房间已经过期，您可以选择任意一个故事，重新邀请好友',
-    //     })
-    // },
-
-    /**
-     * 用户点击右上角分享
-     */

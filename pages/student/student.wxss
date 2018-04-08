@@ -11,85 +11,18 @@
     padding: 10px 20px;
 }
 
-.player{
-    position: fixed;
-    top:80px;
-    left:100px;
-}
 
-.pusher{
-    
-    position: fixed;
-    top:260px;
-    left:200px;
-}
-
-
-.stage{
-    position: relative;
-}
-
-.stage image{
-    position:absolute;
+.live{
+    display: flex;
+    justify-content: space-around;
+    margin-top:15px; 
 }
 
 .default{
     display: flex;
     justify-content: space-around;
 }
-.player_default{
-    position:absolute;
-    /* position: fixed;
-    top:80px;
-    left:100px; */
-}
 
-.pusher_default{
-    position:absolute;
-    
-    /* position: fixed;
-    top:260px;
-    left:200px; */
-}
-
-
-.preview{
-     padding-left:15px;  
-}
-
-.tool{
-    z-index: 999;
-
-}
-.cancel{
-    position: fixed;
-    width: 48px;
-    height: 48px;
-    background-color: rgba(136, 136, 136, 0.6);
-    border-radius: 50%;
-    right: 10px;
-    bottom: 10px;
-}
-.cancel image{   
-    width: 36px;
-    height: 36px;
-    margin: 6px;
-}
-.cancel_shu{
-    position: fixed;
-    width: 48px;
-    height: 48px;
-    background-color: rgba(136, 136, 136, 0.6);
-    border-radius: 50%;
-    left: 10px;
-    top: 30px;
-}
-.cancel_shu image{
-    width: 36px;
-    height: 36px;
-    margin: 6px;
-}
-/* .pay{ background-color: #fff;} */
 
 .to_index{
     width: 630rpx; 

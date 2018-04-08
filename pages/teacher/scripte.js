@@ -39,7 +39,7 @@ module.exports = new (function () {
                 // liveConfig: liveConfig,
             })
             this.sendStudentOnline()
-            this.sendStage()
+            // this.sendStage()
         }
         else{ //分享过期
             var s_say = {
@@ -52,15 +52,31 @@ module.exports = new (function () {
 
     }
 
-    this.sendStage = function(){
+    //发送绘画
+    this.sendPPT = function (url) {
         var t_call = {
-            text: "stage",
-            stage: GP.data.stage
+            text: "ppt",
+            url: url
+        }
+        JMessage.sendSingleCustom(GP.data.studentName, t_call)
+    }
+    //发送绘画
+    this.sendDraw = function (path) {
+        var t_call = {
+            text: "draw",
+            path: path
+        }
+        JMessage.sendSingleCustom(GP.data.studentName, t_call)
+    }
+    //清除
+    this.sendClear = function (path) {
+        var t_call = {
+            text: "clear",
+            path: path
         }
         JMessage.sendSingleCustom(GP.data.studentName, t_call)
     }
     this.sendStudentOnline = function () {
-        console.log
         var t_call = {
             text: "on",
             liveConfig: GP.data.liveConfig

@@ -25,18 +25,35 @@ module.exports = new (function () {
     }
 
     //1改变场景
-    this.getStageChange = function(stage){
-        var custom = stage
-        console.log(custom)
+    this.getPPT = function(url){
+        // var custom = stage
+        // console.log(custom)
         wx.showToast({
-            title: '设置主题成功',
+            title: '更换PPT成功',
             icon: "success",
         })
         GP.setData({
-            stage: custom
+            bgImageUrl: url,
         })
-        console.log(GP)
+        // console.log(GP)
     }
+
+    //1改变场景
+    this.getDraw = function (path) {
+        GP.setData({
+            drawLine: path
+        })
+
+    }
+
+    //1改变场景
+    this.getClear = function (path) {
+        GP.setData({
+            drawLine: path
+        })
+    }
+
+
 
     //房主下线
     this.getTeacherOffline = function(){
