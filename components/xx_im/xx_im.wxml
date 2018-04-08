@@ -1,0 +1,61 @@
+
+    
+    <scroll-view class="chat-container" scroll-y id="scroll" scroll-into-view="{{lastMessageId}}"
+    scroll-top="0" scroll-y="true" style='height:calc( {{height}} - 39px)' >
+        <view wx:for="{{message}}" wx:for-item="item" wx:key="id" id="{{item.id}}"  class="message {{item.style}}">
+            <view wx:if="{{item.is_teacher==1}}" class="user-message {{item.is_teacher ? 'other' : 'me'}}">
+                <image class="avatar" src="{{item.avatar_url}}" mode="aspectFill"></image>
+                <view class="text">
+                    <view class="nickname">{{item.nick_name}}</view>
+                    <view class="content">{{item.content}}</view>
+                </view>
+            </view>
+            <!-- scroll-into-view="{{lastMessageId}}"  -->
+            <!--  -->
+            <!-- <view wx:if="{{item.style == 'system'}}" class="system-message">
+                {{item.content}}
+            </view> -->
+
+        </view>
+        <view style='height:10px'></view>
+    </scroll-view>
+
+
+    <view class='board' wx:if="{{showBoard}}"  >
+        <scroll-view style='max-height:calc( {{height}} - 150px);' scroll-y>
+            <block  wx:for="{{message}}" wx:key="index">
+                <view class='node mp_15' wx:if="{{item.is_teacher==0}}">{{item.nick_name}}: {{item.content}}</view>
+            </block>
+        </scroll-view>
+        <view  class='board_close' catchtap='clickBoard' >关闭</view>
+    </view>
+    <view class='board_switch' wx:else catchtap='clickBoard' >打开</view>
+
+  <!--提交框-->
+    <view  class="footer" >
+         <!-- <view  class="btn btn_scroll "  catchtap='openScroll'wx:if="{{pusher}}" >模式</view>  -->
+         
+        <!-- <view  class="btn btn_left"  catchtap='setAudioMode' >
+          <label wx:if="{{isAudioMode}}">键盘</label>
+          <label wx:else>语音</label>        
+        </view>  -->
+
+        <button class="footinput"  wx:if="{{isAudioMode}}" 
+            bindtouchstart='audioStart'
+            bindtouchmove="audioMove"
+            bindtouchend="audioEnd"
+          >长按</button>
+        <view  class="footinput" wx:else>
+                <input bindinput="inputValue"  value="{{inputValue}}" type="text" />
+        </view>
+        <!-- <view  class="footinput"> -->
+        <!-- </view> -->
+
+        <view  class="btn btn_send" hover-class='send_hover' catchtap='send' wx:if="{{inputValue != ''}}">发送</view> 
+        <block wx:else>
+         <view  class="btn btn_right" catchtap='closeScroll' wx:if="{{isScroll}}">滚动</view> 
+         <view  class="btn btn_right no_scroll"  catchtap='openScroll' wx:else>滚动</view> 
+        </block>
+         <!-- <view  class="btn btn_send" hover-class='send_hover' catchtap='send'>发送</view>  -->
+    </view> 
+ 

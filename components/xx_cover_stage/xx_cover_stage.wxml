@@ -1,0 +1,36 @@
+
+
+
+
+<!-- <scroll-view scroll-x="true"  class='scroll_box'>
+    <view  class='cover_node ' >
+        <block wx:for="{{list}}" wx:key="index">
+            <view class='tab' catchtap='click' data-col="{{index}}" > 
+                <image src='{{item.stage_cover}}' class='cover_image' ></image>
+ 
+            </view>
+        </block> 
+    </view>
+</scroll-view> -->
+
+<swiper 
+    indicator-dots="{{indicatorDots}}"
+    autoplay=true
+    interval='5000'
+    duration="500"
+    indicator-dots=true
+    indicator-color=rgba(0, 0, 0, .1)
+    indicator-active-color=rgba(0, 0, 0, .4)
+  >
+  <block wx:for="{{list}}" wx:key="index">
+    <swiper-item>
+      <image 
+        src="{{item.stage_cover}}" 
+        class="slide-image" 
+        catchtap='click' 
+        data-col="{{index}}" 
+        mode='scaleToFill'
+        />
+    </swiper-item>
+  </block>
+</swiper>

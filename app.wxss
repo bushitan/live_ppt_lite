@@ -1,0 +1,65 @@
+page{
+     /* background-color: #f7f7f7;  */
+       background-color: #eeeeee;   
+      /* background-color: #888;  */
+    /* background-color: #fff;   */
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif,Microsoft YaHei;
+    font-family : "Microsoft YaHei";
+    /* letter-spacing:1px; */
+}
+.page__p_15{    padding: 0 15px;}
+
+.page__line_gray{
+    content: "";
+    border-bottom: 1rpx #f0f0f0 solid;
+}
+
+.page__space_4{    height: 4px;}
+.page__space_6{    height: 6px;}
+.page__space_8{    height: 8px;}
+.page__space_10{    height: 10px;}
+
+
+.page__font_9_gray{
+    font-size: 9pt;
+    color: #8d8d8d; 
+}
+
+
+
+.bg_white{
+    background-color: #fff;
+}
+
+.cover{
+    padding:  60rpx 60rpx 0;
+    /* box-shadow: 0 1px 3px rgba(0,0,0,.3); */
+}
+.cover .box{
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.cover .title{
+    padding: 7px 15px;
+    font-size: 13pt;
+    font-weight: bold;
+
+
+}
+.cover .summary{
+    padding: 15px;
+    font-size: 11pt;
+    color: #999;
+    border-top: 1px solid #F2F2F2;
+    background: #fff;
+    position: relative;   
+}
+.cover .like{    
+    font-size: 8pt;
+    padding: 8px 15px;
+    color: #999;
+    border-top: 1px solid #F2F2F2;
+    background: #FAFAFA;
+    position: relative;  
+    text-align: right;
+}

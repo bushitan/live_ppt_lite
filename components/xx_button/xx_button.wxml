@@ -1,0 +1,5 @@
+
+
+<view class="xx_button__hx mp" hover-class='xx_button__hx_press' catchtap="click">
+    <slot></slot >
+</view>

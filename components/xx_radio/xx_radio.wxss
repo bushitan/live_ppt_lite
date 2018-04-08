@@ -1,0 +1,46 @@
+
+
+.xx_input {
+  background-color: #FFFFFF;
+  font-size: 10pt;
+  padding: 0 15px;
+}
+
+
+.xx_input__node {
+  padding: 0;
+  display: flex;
+  justify-content: space-between
+}
+.xx_input__name {
+    /* width:75px; */
+    font-size:11pt;
+    margin:10pt 5px 10pt 0;
+    display:flex;
+    align-items:center;
+}
+.xx_input__line {
+    display:flex;
+    align-items:center;
+}
+
+
+/*栏目分割线  */
+.xx_line__gray{
+    content: "";
+    border-bottom: 1rpx #f0f0f0 solid;
+}
+
+
+.total_name {
+    color: #888;
+    font-size:10pt;
+    margin:10pt 5px 10pt 0;
+    display:flex;
+    align-items:center;
+}
+
+.total_num{
+
+    font-size:15pt;
+}

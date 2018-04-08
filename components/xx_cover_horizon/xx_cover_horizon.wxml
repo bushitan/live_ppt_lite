@@ -1,0 +1,18 @@
+
+
+
+
+<scroll-view scroll-x="true"  class='scroll_box'>
+    <view  class='cover_node ' >
+        <block wx:for="{{list}}" wx:key="index">
+            <view class='tab' catchtap='click' data-col="{{index}}" > 
+                <image src='{{item.stage_cover}}' class='cover_image' ></image>
+                <!-- <view class='cover_title'>
+                    <button size='mini' catchtap='clickBtn' data-index="{{index}}">选择</button>
+                </view> -->
+            </view>
+            <!-- <view hidden='{{ index != list.length-1}}' style='margin-right:40px;'></view> -->
+        </block> 
+    </view>
+</scroll-view>
+

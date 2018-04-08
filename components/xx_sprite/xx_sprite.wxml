@@ -1,0 +1,5 @@
+
+<view  class='node' catchtap='onClick'  style='left:{{left}};top:{{top}} '>
+    <image src='{{image}}' style='opacity:{{opacity}} '
+    hidden='{{click}}'></image>
+</view>

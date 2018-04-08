@@ -1,0 +1,24 @@
+/**index.wxss**/
+.tab{
+    /* margin-top:20px;  */
+}
+.preview{
+     padding-left:15px;  
+}
+
+.member{
+
+}
+.member image{
+    width: 750rpx;
+}
+.member button{
+    margin: 0 30px 
+}
+
+.to_index{
+    width: 630rpx; 
+    margin: 60rpx;
+    position: fixed;
+    bottom: 30px;
+}

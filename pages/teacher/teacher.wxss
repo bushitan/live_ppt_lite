@@ -1,0 +1,230 @@
+
+.tab{
+    margin-top:20px; 
+}
+/* .painter{
+    position: fixed;
+    width: 100%;
+} */
+
+.painter{
+    padding: 10px 20px;
+}
+
+.player{
+    position: fixed;
+    top:80px;
+    left:100px;
+}
+
+.pusher{
+    
+    position: fixed;
+    top:260px;
+    left:200px;
+}
+
+.stage_box{
+    /* height: 100vh;
+    overflow: hidden; */
+}
+.stage{
+    position: relative;
+}
+
+.stage image{
+    position:absolute;
+}
+
+.default{
+    display: flex;
+    justify-content: space-around;
+}
+.player_default{
+    position:absolute;
+    /* position: fixed;
+    top:80px;
+    left:100px; */
+}
+
+.pusher_default{
+    position:absolute;
+    
+    /* position: fixed;
+    top:260px;
+    left:200px; */
+}
+
+
+/* .preview{
+     padding-left:15px;  
+}
+
+.new_heng{
+    position: fixed;
+    right: 10px;
+    bottom: 40px;
+} */
+
+
+/* 工具菜单 */
+.tool{    z-index: 999;}
+.share_heng ,.next_heng ,.back_heng ,.cancel ,.theme{
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(136, 136, 136, 0.6);
+    border-radius: 50%;
+}
+
+.share_heng image,.next_heng image ,.back_heng  image, .cancel image ,.theme image {
+    width: 36px;
+    height: 36px;
+}
+.cancel{
+    right: 10px;
+    bottom: 10px;
+}
+.theme{
+    right: 10px;
+    bottom: 70px;
+}
+.share_heng{
+    left: 10px;
+    top: 30px;
+}
+
+.next_heng{
+    left: 10px;
+    bottom: 10px;
+}
+.back_heng{
+    left: 10px;
+    bottom: 70px;
+}
+
+.share_heng image{    margin: 8px;}
+.theme image{    margin: 4px;}
+.next_heng image,.back_heng image , .cancel image{    margin: 6px;}
+
+
+
+/* 竖直的 */
+
+.share_shu ,.next_shu ,.back_shu ,.cancel_shu ,.theme_shu{
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(136, 136, 136, 0.6);
+    border-radius: 50%;
+}
+
+.share_shu image,.next_shu image ,.back_shu  image, .cancel_shu image ,.theme_shu image {
+    width: 36px;
+    height: 36px;
+}
+.cancel_shu{
+    left: 10px;
+    top: 30px;
+}
+.theme_shu{
+    left: 70px;
+    top: 30px;
+}
+.share_shu{
+    
+    left: 10px;
+    bottom: 10px;
+}
+.next_shu{
+    
+    right: 10px;
+    bottom: 10px;
+}
+.back_shu{
+    right: 70px;
+    bottom: 10px;
+}
+
+.share_shu image {    margin: 3px 7px;}
+.theme_shu image{    margin: 7px 3px 6px;}
+.next_shu image,.back_shu image , .cancel_shu image{    margin: 6px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 倒计时 */
+.time_heng{
+    position: fixed;
+    top: 30px;
+    width: 750rpx;
+    display: flex;
+    justify-content: center;
+}
+.time_heng label{
+    font-size: 11pt;
+    color: #fff;
+    padding: 3px 6px;
+    border-radius: 5px;
+    background-color: rgba(136, 136, 136, 0.6);
+}
+
+/* 主题关闭按钮 */
+.theme_cancel{
+    display: flex;
+    justify-content: center;
+    width: 750rpx; 
+    margin: auto;
+    position: fixed;
+    bottom: 20px;
+    z-index: 99999;
+}
+.theme_cancel .bg{
+    width: 48px;
+    height: 48px;
+    background-color: rgba(136, 136, 136, 0.6);
+    border-radius: 50%;
+}
+
+.theme_cancel image{
+    width: 36px;
+    height: 36px;
+    margin: 6px;
+}
+
+/* .pay{ background-color: #fff;} */
+
+button{
+    
+    /* width: 750rpx;
+    height: 213rpx; */
+    /* position:relative; */
+    display:block;
+    margin-left:auto;
+    margin-right:auto; 
+    padding-left:0px;
+    padding-right:0px; 
+    box-sizing:border-box;
+    font-size:18px;
+    text-align:center;
+    text-decoration:none;
+    line-height:2.55555556;
+    border-radius:0px; 
+    -webkit-tap-highlight-color:transparent;
+    overflow:hidden;
+    color:#000000;
+    background-color:#F8F8F8;
+    padding:0 !important;
+
+}

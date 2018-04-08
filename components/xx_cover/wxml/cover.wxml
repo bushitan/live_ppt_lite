@@ -1,0 +1,16 @@
+ <template name="mode_cover"> 
+    <view class='xx_list'>
+        <block wx:for="{{list}}" wx:key="item">
+            <view class='xx_list__node'  catchtap='click' data-index="{{index}}">
+                <view class='xx_list__cover'>
+                    <image src='{{item.cover_url}}'  mode='widthFix' ></image>
+                </view>
+                <view>
+                    <view class='xx_list__title xx_text__center'>{{item.title}}</view>
+                    <view class='xx_list__time xx_text__right'>{{item.issue_time}}</view>
+                </view>
+            </view>
+            <!-- <view class='xx_line__gray' hidden="{{index == list.length-1}}"></view> -->
+        </block>
+    </view> 
+ </template>

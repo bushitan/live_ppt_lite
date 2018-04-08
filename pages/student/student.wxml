@@ -1,0 +1,59 @@
+<!--pages/student/student.wxml-->
+
+
+ <view wx:if="{{isConnectSuccess}}"> 
+    <import src="../../template/template.wxml"/>
+
+    <view>
+        <!-- stage，包含背景、推流、播放视频 3个元素 -->
+        <!-- <template is="stage" 
+        data="{{stage ,playerSrc:liveConfig.teacherPlayer ,pusherSrc:liveConfig.studentPusher, clickBG:'menuSwitch'}}"></template> -->
+
+        <view class='stage'>
+            <!-- 背景 -->
+            <image src='{{stage.stage_background_image}}' style='width: {{stage.stage_width}};' mode='widthFix' catchtap='menuSwitch'></image>
+            <!-- 播放视频 -->
+            <view class='player_default' style='top: 10rpx;right: 10rpx ;'>
+                <xx-live-player 
+                    orientation="{{stage.stage_orientation}}"  
+                    src="{{liveConfig.teacherPlayer}}" 
+                    width="300rpx" 
+                    height="300rpx"  >
+                </xx-live-player> 
+            </view> 
+            <!-- 推流 -->
+            <view class='pusher_default' style='top: 10rpx;left: 10rpx ;' >
+                <xx-live-pusher 
+                    src="{{liveConfig.studentPusher}}" 
+                    orientation="{{stage.stage_orientation}}"  
+                    width="300rpx" 
+                    height="300rpx" 
+                    menu="{{false}}" >
+                </xx-live-pusher> 
+            </view>
+        </view>
+    </view>
+        <view style='height:350rpx;'></view>
+     <view class='painter'  >
+        <xx-painter height="calc(100vh - 400rpx - 75px)"
+ catchcomplete="sendDraw" catchclear="sendClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter> 
+    </view>
+
+    <view class='tool' hidden="{{!showTool}}">
+        <block wx:if="{{stage.stage_orientation == 'horizontal'}}">
+            <label class='cancel'>
+                <image src='../../images/cancel_shu.png'   catchtap='stageClose'></image>
+            </label>
+        </block>
+        <block wx:else>
+            <label class='cancel_shu'>
+                <image src='../../images/cancel_shu.png'   catchtap='stageClose'></image>
+            </label> 
+            <!-- <icon type='cancel' size="30"  class='cancel' catchtap='stageClose' ></icon> -->
+        </block>
+    </view>
+ </view> 
+ <view wx:else class='to_index'>
+    <button type='primary'  catchtap='toIndex'>等太久，去首页</button>
+    
+ </view>

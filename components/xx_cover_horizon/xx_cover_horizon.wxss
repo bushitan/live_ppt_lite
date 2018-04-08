@@ -1,0 +1,29 @@
+
+
+
+
+
+.scroll_box{    
+    width:750rpx;
+    white-space: nowrap;  
+    overflow:scroll;
+}
+
+.cover_node{
+    display: flex;
+}
+
+.tab .cover_title{
+    /* margin: 0 0 20px 10px;   */
+    line-height: 16pt;
+    font-size: 11pt;
+    text-align: center;
+}
+
+.cover_image{
+    width: 128px;
+    height: 96px;
+    margin: 0px 15px;
+    background-color: #8d8d8d;
+}
+

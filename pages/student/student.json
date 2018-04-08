@@ -1,0 +1,13 @@
+{
+    "usingComponents": {
+        "xx-live-player": "../../components/xx_live_player/xx_live_player",
+        "xx-live-pusher": "../../components/xx_live_pusher/xx_live_pusher",
+        "xx-painter": "../../components/xx_painter/xx_painter",
+        "xx-gallery": "../../components/xx_gallery/xx_gallery",
+        "xx-tab": "../../components/xx_tab/xx_tab",
+        "xx-mark": "../../components/xx_mark/xx_mark",
+        "xx-cover-horizon": "../../components/xx_cover_horizon/xx_cover_horizon",
+        "xx-radio": "../../components/xx_radio/xx_radio",
+        "xx-im": "../../components/xx_im/xx_im"
+    }
+}

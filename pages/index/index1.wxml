@@ -1,0 +1,88 @@
+
+<import src="../../template/template.wxml"/>
+
+<view  hidden='{{!show.stage}}'>
+    <!-- 在stage中更换主题 -->
+    <view wx:if="{{show.theme}}">
+        <scroll-view scroll-y style='height:100vh'>
+            <view class="theme_cancel" >
+                <icon type='cancel' size="30"  catchtap='themeClose'  ></icon>
+            </view>
+            <!-- <button size='mini' class='' catchtap="themeClose">关闭主题选择</button> -->
+            <template is="story_list" data="{{storyList,click:'clickStoryImage'}}" ></template>
+        </scroll-view>
+    </view>
+    <!-- stage，包含背景、推流、播放视频 3个元素 -->
+    <view class='stage'>
+        <!-- 背景 -->
+        <image src='{{stage.stage_background}}' style='width: {{stage.stage_width}};' mode='widthFix' catchtap='menuSwitch'></image>
+        <!-- 播放视频 -->
+        <view class='player_default' style='top: {{stage.player_x}};left: {{stage.player_y}};'>
+            <xx-live-player orientation="horizontal"  src="{{stage.pusher_image}}" width="{{stage.player_width}}" height="{{stage.player_height}}" >
+            </xx-live-player> 
+        </view> 
+        <!-- 推流 -->
+        <view class='pusher_default' style='top: {{stage.pusher_y}};right: {{stage.pusher_x}};' >
+            <xx-live-pusher src="{{stage.pusher_image}}" width="{{stage.pusher_width}}" height="{{stage.pusher_height}}" menu="{{false}}" ></xx-live-pusher> 
+        </view>
+    </view>
+</view>
+<!-- <button catchtap='testTheme'>换主题</button> -->
+
+<!-- <button catchtap='testTheme'>老师上线</button> -->
+
+
+<view class='tool' hidden='{{!show.menu}}'>
+    <block wx:if="{{isTeacher}}">
+        <icon type='cancel' size="30"  class='cancel' catchtap='stageClose' ></icon>
+        <button size='mini' class='new_heng' catchtap='themeOpen'>换主题</button>
+        <button size='mini' class='share_heng' open-type="share">邀请好友
+            <!-- <image src='../../images/pusher_logo.jpg' class='share_image' style='width:32px;height:32px'>
+            </image> -->
+        </button>
+        <image src='../../images/back_heng.png' class='back_heng' catchtap='back' hidden='{{col == 0}}'></image>
+        <image src='../../images/next_heng.png' class='next_heng' catchtap='next' hidden='{{ col >= storyList[rol].list.length - 1 }}'></image>
+
+        <!-- <button size='mini' class='back_heng' catchtap='back' hidden='{{col == 0}}'>上一页</button> -->
+        <label class='time_heng'>8:59</label>
+    </block>
+    <block wx:else>
+        <icon type='cancel' size="30"  class='cancel' catchtap='stageClose' ></icon>
+    </block>
+</view>
+
+
+<view >   
+    <scroll-view scroll-y style='height:100vh'>
+        <view class='tab'>
+            <xx-tab list="{{playerTab}}" bind:click="clickTab" 
+            colorunselect="#888" colorselect="#efa234" mode="scroll" />
+        </view>
+        <view wx:if='{{show.story}}'>
+            <template is="story_list" data="{{storyList,click:'clickStoryImage'}}"></template>
+        </view>   
+        <view wx:if='{{show.member}}'>
+            <template is="member_page"></template>
+        </view>
+    </scroll-view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <view class='page__p_15 pay'>
+    <xx-radio list="{{costList}}" pricename="费用合计" 
+    placeholder="请输入姓名" bindchange='selectChange' ></xx-radio>
+</view> -->

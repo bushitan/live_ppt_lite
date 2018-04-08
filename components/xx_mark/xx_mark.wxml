@@ -1,0 +1,7 @@
+<view class="xx_menu ">
+    <view  class="xx_menu__node " >
+        <view class="xx_menu__node_name xx_line__hx_left" style='border-left: 2px {{color}} solid;'>
+            <slot></slot>
+        </view>
+    </view>
+</view>

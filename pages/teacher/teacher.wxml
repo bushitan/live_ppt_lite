@@ -1,0 +1,118 @@
+
+<import src="../../template/template.wxml"/>
+
+<view  >
+    <!-- 在stage中更换主题 -->
+    <view wx:if="{{showTheme}}">
+        <scroll-view scroll-y style='height:100vh'>
+            <template is="story_list" data="{{storyList,click:'clickStoryImage'}}" ></template>
+            <view class="theme_cancel" >
+                <view class='bg'>
+                    <image src='../../images/cancel_heng.png'   catchtap='themeSwitch'></image>
+                </view>
+                <!-- <icon type='cancel' size="30"  catchtap='themeSwitch'  ></icon> -->
+            </view>
+        </scroll-view>
+    </view>
+    <!-- stage，包含背景、推流、播放视频 3个元素 -->
+    <view class='stage_box'>
+        <!-- <template is="stage" 
+        data="{{stage ,playerSrc:liveConfig.studentPlayer ,pusherSrc:liveConfig.teacherPusher , clickBG:'menuSwitch'}}"></template> -->
+        <view class='stage'>
+            <!-- 背景 -->
+            <image src='{{stage.stage_background_image}}' style='width: {{stage.stage_width}};' mode='widthFix' catchtap='menuSwitch'></image>
+            <!-- 播放视频 -->
+            <view class='player_default' style='top: 10rpx;right: 10rpx ;'>
+                <xx-live-player 
+                    orientation="{{stage.stage_orientation}}"  
+                    wx:if="{{liveConfig.studentPlayer}}"
+                    src="{{liveConfig.studentPlayer}}" 
+                    width="300rpx" 
+                    height="300rpx" 
+                    coverImage="{{stage.player_image}}" >
+                </xx-live-player> 
+            </view> 
+            <!-- 推流 -->
+            <view class='pusher_default' style='top: 10rpx;left: 10rpx ;'>
+                <xx-live-pusher 
+                    src="{{liveConfig.teacherPusher}}" 
+                    orientation="{{stage.stage_orientation}}"
+                    width="300rpx" 
+                    height="300rpx" 
+                    menu="{{false}}" 
+                    coverImage="{{stage.pusher_image}}">
+                </xx-live-pusher> 
+            </view>
+        </view>        
+    </view>
+    <view style='height:350rpx;'></view>
+     <view class='painter'  >
+        <xx-painter height="calc(100vh - 400rpx - 75px)"
+ catchcomplete="sendDraw" catchclear="sendClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter> 
+    </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+ <!-- hidden='{{!show.menu}}' -->
+
+<view class='tool' wx:if="{{showTool}}">
+    <!-- <icon type='cancel' size="30"  class='cancel' catchtap='stageClose' ></icon> -->
+    <!-- <button size='mini' class='new_heng' catchtap='themeSwitch'>换主题</button> -->
+    <!-- <button size='mini' class='share_heng' open-type="share">邀请好友</button> -->
+    <!-- <button size='mini' class='share_heng' catchtap='sendStage'>邀请好友</button> -->
+    <block wx:if="{{stage.stage_orientation == 'horizontal'}}"> 
+        <label class='cancel'>
+            <image src='../../images/cancel_heng.png'   catchtap='stageClose'></image>
+        </label>
+
+        <label class='theme'>
+            <image src='../../images/theme_heng.png' class=' '  catchtap='themeSwitch'></image>
+        </label>
+
+        <label class='share_heng' hidden="{{isOnline}}">
+            <button size='mini' class='share_heng' open-type="share">
+                <image src='../../images/share_heng.png' class=' '  ></image>
+            </button>
+        </label>
+        <label class='back_heng' hidden='{{col == 0}}'>
+            <image src='../../images/back_heng.png' class='' catchtap='back' ></image>
+        </label>
+        <label class='next_heng' hidden='{{ col >= storyList[rol].list.length - 1 }}'>
+            <image src='../../images/next_heng.png' class='' catchtap='next' ></image>
+        </label>
+    </block>
+
+    <block wx:else> 
+        <label class='cancel_shu'>
+            <image src='../../images/cancel_shu.png'   catchtap='stageClose'></image>
+        </label>
+
+        <label class='theme_shu'>
+            <image src='../../images/theme_shu.png' class=' '  catchtap='themeSwitch'></image>
+        </label>
+
+        <label class='share_shu' hidden="{{isOnline}}">
+            <button size='mini' class='share_shu' open-type="share">
+                <image src='../../images/share_shu.png' class=' '  ></image>
+            </button>
+        </label>
+        <label class='back_shu' hidden='{{col == 0}}'>
+            <image src='../../images/back_shu.png' class='' catchtap='back' ></image>
+        </label>
+        <label class='next_shu' hidden='{{ col >= storyList[rol].list.length - 1 }}'>
+            <image src='../../images/next_shu.png' class='' catchtap='next' ></image>
+        </label>
+    </block>
+    <view class='time_heng'>
+        <label >8:59</label> 
+    </view>
+</view>

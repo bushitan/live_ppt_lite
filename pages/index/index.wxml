@@ -1,0 +1,49 @@
+
+<import src="../../template/template.wxml"/>
+
+
+<scroll-view scroll-y style='height:100vh'>
+    
+     <view style='height:10px;' class='bg_white'></view> 
+    <view class='tab'  class='bg_white'>
+        <xx-tab list="{{playerTab}}" bind:click="clickTab" 
+        colorunselect="#888" colorselect="#efa234" mode="scroll" />
+    </view>
+     <view style='height:10px;' class='bg_white'></view> 
+    <view wx:if='{{show.story}}'>
+        <template is="ppt_list" data="{{pptList,click:'clickStoryImage'}}"></template>
+    </view>   
+    <view wx:if='{{show.member}}'>
+        <template is="member_page" data="{{isMember}}"></template>
+    </view>
+</scroll-view>
+
+
+ <view class='to_index'>
+    <button type='primary'  catchtap='toTeacher'>创建房间</button>
+    
+ </view>
+
+<!-- 会员订单 -->
+<template name="member_page">
+    <view class='member'>
+        <!-- <view style='height:15px;'></view>
+        <image src='../../images/member_1.jpg' mode='widthFix'></image>
+        <view style='height:15px;'></view>
+        <button type='primary'>加入会员 29元/月</button> -->
+        
+        <view style='height:15px;'></view>
+        <image src='../../images/member_2.jpg' mode='widthFix'></image>
+        <button>名师电话</button>
+    </view>
+    <!-- <view wx:if="{{isMember}}">
+        您的会员日期是
+    </view>
+    <view wx:else>
+        <view>会员信息，</view>
+        <button catchtap='payMember'>成为会员</button>
+    </view>
+    
+    <view>想练习口语？名师电话来帮你，在线PPT讲解，立马懂</view>
+    <button catchtap='toTeacherPhone'>名师电话</button> -->
+</template>

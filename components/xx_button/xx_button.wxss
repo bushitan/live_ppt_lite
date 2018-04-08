@@ -1,0 +1,39 @@
+
+/* button 按钮 */
+.xx_button__hx{
+/* margin: 30px 15px 0; */
+padding: 12pt 15px; 
+text-align: center;
+font-size: 11pt;
+line-height: 11pt;
+}
+/* 主要按钮 */
+.xx_button__primary{
+color:#FFFFFF;
+background-color:#1AAD19;
+}
+.xx_button__primary_press{
+    color:rgba(255, 255, 255, 0.6) !important;
+    background-color:#179B16;
+}
+/* 次要按钮 */
+.xx_button__normal{
+color:#000000;
+background-color:#F8F8F8;
+border:1px solid rgba(0, 0, 0, 0.2);
+
+}
+/* button 按钮 */
+.xx_button__normal_press{
+color:rgba(0, 0, 0, 0.6);
+background-color:#DEDEDE;
+}
+.xx_button__hx{
+color:#FFFFFF;
+background-color:#0087ce;
+}
+
+.xx_button__hx_press{
+    color:rgba(255, 255, 255, 0.6);
+    background-color:#0053a5;
+}

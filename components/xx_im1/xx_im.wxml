@@ -1,0 +1,114 @@
+
+<view >
+    <!-- 聊天栏 -->
+    <!-- <scroll-view id='scroll'  scroll-y="true" style='height:calc( {{height}} - 39px)' 
+    scroll-top="{{scrollTop}}">
+         <block  wx:for="{{feedback}}" wx:key="index">
+            <view wx:if="{{item.myDate}}" class="date node">
+                <label >{{item.myDate}}</label>
+            </view>
+            <view class="{{item.role?'other':'self'}} node" >
+                
+                 <template is="self" data="{{item ,networkType, arrow: item.role?rigthArrow :leftArrow}}"></template>   
+            </view>
+        </block> 
+        <view style='height: 20rpx;'></view> 
+    </scroll-view> -->
+
+
+
+    <template name="self">
+          <!--头像-->
+        <view class="logo">
+            <image  src="{{item.img}}"></image>
+        </view>
+        <!--三角-->
+         <view class="triangle">
+            <image   src="{{arrow}}"></image>
+         </view>
+         <!--内容 ：图片/文字-->
+        <view class="content">
+            <image wx:if="{{item.content_type}}" catchtap='clicImage' data-image_url="{{item.content}}"  src="{{item.content}}"></image>
+            <text  wx:else>{{item.content}}</text>
+        </view>
+        <icon wx:if="{{networkType =='fail'}}" class='warm' type="warn" size="20"/>
+        <view class="logo"></view>
+    </template>
+
+
+
+
+</view>
+
+
+    
+<!-- <view class="page-wrap"> -->
+  <scroll-view class="chat-container" scroll-y scroll-into-view="{{lastMessageId}}" scroll-top="9999999999">
+    <template is="wx" data="{{messages}}"></template>
+  </scroll-view>
+<!-- </view> -->
+  <template name="wx">
+    <view wx:for="{{messages}}" wx:for-item="message" wx:key="id" id="{{message.id}}" class="message {{message.type}}">
+      <view wx:if="{{message.type == 'speak'}}" class="user-message {{message.isMe ? 'me' : 'other'}}">
+          <image class="avatar" src="{{message.user.avatarUrl}}" mode="aspectFill"></image>
+          <view class="text">
+              <view class="nickname">{{message.user.nickName}}</view>
+              <view class="content">{{message.content}}</view>
+          </view>
+      </view>
+      <view wx:if="{{message.type == 'system'}}" class="system-message">
+          {{message.content}}
+      </view>
+    </view>
+  </template>
+
+
+  <!--提交框-->
+    <view  class="footer">
+         <!-- <view  class="btn btn_scroll "  catchtap='openScroll'wx:if="{{pusher}}" >模式</view>  -->
+         <view  class="btn btn_scroll" catchtap='closeScroll' wx:if="{{isScroll}}">滚动</view> 
+         <view  class="btn btn_scroll no_scroll"  catchtap='openScroll' wx:else>滚动</view> 
+        <view  class="footinput">
+                <input bindinput="inputValue"  value="{{inputValue}}" type="text" />
+        </view>
+         <view  class="btn btn_send" hover-class='send_hover' catchtap='send'>发送</view> 
+    </view> 
+        <!-- <view class="{{item.role?'imgview1':'imgview2'}}"><image class="headimg" src="{{item.img}}"></image></view>
+
+         <view class="triangle">
+              <image wx:if="{{item.role}}"  src="../../images/hotapp_triangleRight.png"></image>
+              <image wx:else  src="../../images/hotapp_triangleLeft.png"></image>
+         </view>
+
+        <view class="{{item.role?'textview2':'textview'}}">
+          <view class="feedbackimg" wx:if="{{item.content_type}}">  <image  src="{{item.content}}"></image></view>
+          <text class="feedbacktext" wx:else>{{item.content}}</text>
+        </view>
+        <view wx:if="{{networkType=='fail'}}"><icon type="warn" size="20"/></view>
+        <view class="{{item.role?'imgview1':'imgview2'}}"></view> -->
+
+        <!-- <view wx:if="{{sendflag}}" class="foodsend">
+        <view class="send">发送</view>
+        </view>
+        <view wx:else class="footadd" bindtap="bindtapimg">
+        <view class="addbroder">
+            <image src="../../images/hotapp_add.png"/>
+        </view>
+        </view> -->
+          
+   <!-- <view class="footaddbox"  hidden="{{flag ? true : false}}">
+      <ul>
+        <li bindtap="footaddimg">
+          <view class="footaddimg"><image src="../../images/hotapp_img.png"></image></view>
+          <text>添加图片</text>  
+        </li>
+        <li bindtap="footaddtell">
+          <view class="footaddtext"><image src="../../images/hotapp_tell.png"></image></view>
+          <text>联系方式</text>
+        </li>
+        <li bindtap="footaddmore">
+          <view class="footaddtext"><image src="../../images/hotapp_add.png"></image></view>
+          <text>更多</text>
+        </li>
+      </ul>
+  </view>  -->

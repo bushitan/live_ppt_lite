@@ -1,0 +1,82 @@
+
+.live{
+    /* width: 750rpx; */
+    
+}
+.live live-player{
+     width: 100%;
+    height: 100%; 
+    position: relative;
+} 
+
+cover-view{
+    color: #fff;
+}
+
+.cover{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: yellow;
+}
+
+.menu{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(178,178,178,0.4);
+    padding: 4px;
+}
+
+.right , .left{
+    display: flex;
+    padding: 0 5px;
+}
+.icon{
+    width: 24px;height: 24px;
+}
+.right .icon{
+    margin-left:15px;
+}
+.left .icon{
+    margin-right:15px;
+}
+
+.message{
+    position: absolute;
+    bottom: 30px;
+    /* left:10px; */
+     width:750rpx;
+     text-align: left;
+     display: flex;
+     /* flex-direction: column-reverse; */
+}
+.first{     opacity: 0.8;}
+.seconde{     opacity: 0.5;}
+.message .node{
+    display: flex;
+    margin-top:8px; 
+}
+.message .logo{
+    flex-basis:80rpx;
+    width: 80rpx;
+    display: flex;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+.message .logo cover-image{    
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+}
+.content{
+    
+    flex-basis:590rpx;
+     white-space:normal; 
+     font-size: 11pt;
+     padding: 0 8px;
+}
