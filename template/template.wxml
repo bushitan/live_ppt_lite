@@ -1,6 +1,9 @@
 
 <!-- 故事列表 -->
 
+<template name="bg">
+    <image src='../../images/timg.jpg' class='bg'></image>
+</template>
 
 <template name="ppt_list">
     <block wx:for="{{pptList}}" wx:key="index">

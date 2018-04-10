@@ -136,17 +136,23 @@ Page({
 
     //获取故事列表
     getStoryList() {
-        API.Request({
-            url: API.PVP_STORY_GET_LIST,
-            success: function (res) {
-                console.log(res.data)
-                APP.globalData.storyList = res.data.stage_list
-                GP.setData({
-                    pptList: res.data.ppt_list,
-                })
-                // wx.setStorageSync("story_list", res.data.stage_list)
-            },
+        GP.setData({
+            pptList: [
+                { url: "../../images/read1.jpg" },
+                { url: "../../images/read2.jpg" },
+        ],
         })
+        // API.Request({
+        //     url: API.PVP_STORY_GET_LIST,
+        //     success: function (res) {
+        //         console.log(res.data)
+        //         APP.globalData.storyList = res.data.stage_list
+        //         GP.setData({
+        //             pptList: res.data.ppt_list,
+        //         })
+        //         // wx.setStorageSync("story_list", res.data.stage_list)
+        //     },
+        // })
      },
 
     

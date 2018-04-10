@@ -15,7 +15,12 @@ Component({
     color: {
         type: String,
         value: "#000",
-    }
+    },
+
+    showBtn: {
+        type: Boolean,
+        value: true,
+    },
   },
 
   /**

@@ -1,5 +1,8 @@
 
-<view class='tab'  class='bg_white'>
+<import src="../../template/template.wxml"/>
+
+<template is="bg"></template>
+<view   class='tab'>
     <xx-tab list="{{playerTab}}" bind:click="clickTab" 
     colorunselect="#888" colorselect="#efa234" mode="scroll" initindex="{{tabIndex}}" />
 </view>
@@ -13,7 +16,9 @@
             width="300rpx" 
             height="300rpx">
         </xx-live-player> 
-        <view wx:else class='mask' ></view>
+        <view wx:else class='mask' >
+            <button open-type="share" class='mask'>邀请好友</button>
+        </view>
     </view> 
     <!-- 推流 -->
     <view >
@@ -28,11 +33,17 @@
 </view>      
 
 <view class='painter'  wx:if="{{tabIndex==0}}">
-    <xx-painter height="calc(100vh - 189px - 75px)"
+    <xx-painter height="calc(100vh - 240px - 75px)"
 catchcomplete="drawComplete" catchclear="drawClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter> 
+
 </view>
 
 <view wx:if="{{tabIndex==1}}">
     <xx-gallery catchchoice="clickPPTImage" list="{{pptList}}"  ></xx-gallery>
+    
+    <view class='to_index'>
+        <button type='primary'  catchtap='addImage'>本地图片</button>
+    </view>
+
 </view>
 

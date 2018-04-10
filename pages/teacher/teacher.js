@@ -17,7 +17,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        playerTab:["直播","PPT"],
+        playerTab: ["直播", "PPT", "退出"],
         isMember: false,//是否会员
         isOnline:false, //学生未上线
         showTheme: false, //显示主题
@@ -34,12 +34,41 @@ Page({
         tabIndex:0,
         pptList:[],
     },
+    addImage(){
+        wx.chooseImage({
+            count: 1, //
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var tempFilePaths = res.tempFilePaths[0]; //获取成功，读取文件路径
+
+                GP.setData({
+                    tabIndex: 0,
+                    bgImageUrl: tempFilePaths,
+                })
+                APP.globalData.JMessage.sendSinglePic({
+                    'target_username': '<target_username>',
+                    'target_nickname': '<target_nickname>',
+                    'appkey': '<appkey>',
+                    'image': tempFilePaths //设置图片参数
+                }).onSuccess(function (data, msg) {
+                    //TODO
+                    
+                }).onFail(function (data) {
+                    //TODO
+                })
+            }
+        })
+    },
 
     //点击tab菜单
     clickTab(e){
         GP.setData({
             tabIndex:e.detail
         })
+        if (e.detail == 2){
+            GP.stageClose()
+        }
     },
     // 发送ppt
     clickPPTImage(e){
@@ -117,8 +146,8 @@ Page({
     getPPT() {
         GP.setData({
             pptList: [
-                { url: "../../images/cover.jpg" },
-                { url: "4732848932" },
+                { url: "../../images/read1.jpg" },
+                { url: "../../images/read2.jpg" },
             ],
         })
         // API.Request({

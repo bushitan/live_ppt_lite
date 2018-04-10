@@ -1,6 +1,8 @@
 
 .tab{
-    margin-top:20px; 
+    padding-top:20px; 
+    /* background-color: #fff; */
+    /* padding:10px 0;  */
 }
 /* .painter{
     position: fixed;

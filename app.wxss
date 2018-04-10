@@ -63,3 +63,13 @@ page{
     position: relative;  
     text-align: right;
 }
+
+.bg{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -99999;
+}
+.tab{
+    padding-top:20px; 
+}

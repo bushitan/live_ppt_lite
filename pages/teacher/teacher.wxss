@@ -1,7 +1,4 @@
 
-.tab{
-    margin-top:20px; 
-}
 /* .painter{
     position: fixed;
     width: 100%;
@@ -40,4 +37,10 @@
     background-color: #fff;
     width:300rpx;
     height:300rpx;
+}
+.mask button{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

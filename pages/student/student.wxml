@@ -1,9 +1,14 @@
 <!--pages/student/student.wxml-->
 
-<view class='tab'  class='bg_white'>
+<import src="../../template/template.wxml"/>
+
+<template is="bg"></template>
+<view  class=' tab'>
     <xx-tab list="{{playerTab}}" bind:click="stageClose" 
-    colorunselect="#888" colorselect="#efa234" mode="scroll" initindex="1" />
+    colorunselect="#888" colorselect="#efa234"mode="scroll" initindex="0" />
 </view>
+
+
  <view wx:if="{{isConnectSuccess}}"> 
     <view>
         <view class='live'>
@@ -30,7 +35,7 @@
     </view>        
 
     <view class='painter'  >
-        <xx-painter height="calc(100vh - 189px - 75px)"
+        <xx-painter height="calc(100vh - 240px - 75px)"
     catchcomplete="drawComplete" catchclear="drawClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter> 
     </view>
 </view> 

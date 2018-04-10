@@ -5,14 +5,15 @@
     <!--画布区域-->
     <view class="canvas_area" >
         <!--注意：同一页面中的 canvas-id 不可重复，如果使用一个已经出现过的 canvas-id，该 canvas 标签对应的画布将被隐藏并不再正常工作-->
-        <image src='{{bg}}' class='bg_image' mode='widthFix' 
+        <image src='{{bg}}' class='bg_image' mode='aspectFit' 
         style='width: {{width}};height: {{height}};'>
-        <canvas canvas-id="myCanvas" class="myCanvas"
-            disable-scroll="false"
-            bindtouchstart="touchStart"
-            bindtouchmove="touchMove"
-            bindtouchend="touchEnd">
-        </canvas>
+            <canvas canvas-id="myCanvas" class="myCanvas"
+                disable-scroll="false"
+                bindtouchstart="touchStart"
+                bindtouchmove="touchMove"
+                bindtouchend="touchEnd"
+                style='width: {{width}};height: {{height}};'>
+            </canvas>
         </image>
     </view>
     <!--画布工具区域-->

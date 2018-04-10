@@ -4,7 +4,7 @@
         <image catchtap='clickEmoji'  data-image_url="{{item.url}}"
         class='xx_gride__image' src='{{item.url}}' mode='aspectFit'  ></image>
         <view class='btn'> 
-        <button size='mini' catchtap='clickBtn' data-index="{{index}}">选择</button>
+        <button size='mini' catchtap='clickBtn' data-index="{{index}}" hidden="{{!showBtn}}">选择</button>
         </view>
     </view>
 </block>

@@ -1,17 +1,20 @@
 
 <import src="../../template/template.wxml"/>
 
+<template is="bg"></template>
 
 <scroll-view scroll-y style='height:100vh'>
     
-     <view style='height:10px;' class='bg_white'></view> 
-    <view class='tab'  class='bg_white'>
+    <!-- <view style='height:10px;' class='bg_white'></view>  -->
+    <view  class='tab'>
         <xx-tab list="{{playerTab}}" bind:click="clickTab" 
         colorunselect="#888" colorselect="#efa234" mode="scroll" />
     </view>
-     <view style='height:10px;' class='bg_white'></view> 
+     <!-- <view style='height:10px;' class=''></view>  -->
     <view wx:if='{{show.story}}'>
-        <template is="ppt_list" data="{{pptList,click:'clickStoryImage'}}"></template>
+        <!-- <template is="ppt_list" data="{{pptList,click:'clickStoryImage'}}"></template> -->
+        <xx-gallery catchchoice="clickPPTImage" list="{{pptList}}" showBtn="{{false}}"  ></xx-gallery>
+
     </view>   
     <view wx:if='{{show.member}}'>
         <template is="member_page" data="{{isMember}}"></template>
