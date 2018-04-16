@@ -45,12 +45,14 @@ Component({
     },
     clickEmoji(e) {
       var image_url = e.currentTarget.dataset.image_url
+      console.log(image_url)
       wx.previewImage({
         urls: [image_url],
       })
     },
     clickBtn(e) {
       var index = e.currentTarget.dataset.index
+      
       this.triggerEvent('choice', this.data.list[index].url);
     },
   }

@@ -25,7 +25,8 @@ Page({
         showTool: false,//显示根据
         // isHeng:false,//是否横屏
 
-        token:null,//验证是否能够连接
+        // token: null,//验证是否能够连接
+        token: "1",//验证是否能够连接
         teacherName: null, //IM账号
         passWord: null, //IM密码
         studentName: null, //IM账号
@@ -146,8 +147,8 @@ Page({
     getPPT() {
         GP.setData({
             pptList: [
-                { url: "../../images/read1.jpg" },
-                { url: "../../images/read2.jpg" },
+                { url: "http://img.12xiong.top/ppt_read1.jpg" },
+                { url: "http://img.12xiong.top/ppt_read2.jpg" },
             ],
         })
         // API.Request({

@@ -54,7 +54,7 @@
 					"id": 3,
 					"name": "student",
 					"pathName": "pages/student/student",
-					"query": "teacher_name=live_pvp_user_8&token=1"
+					"query": "teacher_name=live_pvp_user_7&token=1"
 				}
 			]
 		}

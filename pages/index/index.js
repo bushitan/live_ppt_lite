@@ -44,6 +44,11 @@ Page({
             Scripte.ShowMember()
 
     },
+    clickPPTImage(e){
+        console.log(e)
+    },
+
+
     //点击图片，选择场景
     clickStoryImage(e) {
         // var rol = e.detail.rol
@@ -138,8 +143,8 @@ Page({
     getStoryList() {
         GP.setData({
             pptList: [
-                { url: "../../images/read1.jpg" },
-                { url: "../../images/read2.jpg" },
+                { url: "http://img.12xiong.top/ppt_read1.jpg" },
+                { url: "http://img.12xiong.top/ppt_read2.jpg" },
         ],
         })
         // API.Request({

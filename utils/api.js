@@ -25,7 +25,7 @@ function Request(options) {
 // 初始化
 function Init() {
     APP = getApp()
-    console.log(APP)
+    // console.log(APP)
     GlobalData = APP.globalData
     //初始化 全局变量
     if (GlobalData.apiIsLogin == undefined) {
