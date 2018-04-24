@@ -1,7 +1,7 @@
 
 <import src="../../template/template.wxml"/>
 
-<!-- <template is="bg"></template> -->
+<template is="bg"></template>
 
 <scroll-view scroll-y style='height:100vh'>
     
@@ -11,36 +11,21 @@
         colorunselect="#888" colorselect="#efa234" mode="scroll" />
     </view>
      <!-- <view style='height:10px;' class=''></view>  -->
-    <view hidden='{{!show.story}}'>
+    <view wx:if='{{show.story}}'>
         <!-- <template is="ppt_list" data="{{pptList,click:'clickStoryImage'}}"></template> -->
-
         <xx-gallery catchchoice="clickPPTImage" list="{{pptList}}" showBtn="{{false}}"  ></xx-gallery>
 
     </view>   
-    <view hidden='{{!show.member}}'>
-        <xx-tag list="{{tag}}"></xx-tag>
-        <xx-gallery catchchoice="clickPPTImage" list="{{pptList}}" showBtn="{{false}}"  ></xx-gallery>
+    <view wx:if='{{show.member}}'>
+        <template is="member_page" data="{{isMember}}"></template>
     </view>
-
-
-
 </scroll-view>
 
 
  <view class='to_index'>
-    <button type='primary'  catchtap='toTeacher'>创建房间</button>    
+    <button type='primary'  catchtap='toTeacher'>创建房间</button>
+    
  </view>
- 
-        <!-- <template is="member_page" data="{{isMember}}"></template> -->
-<!-- 
-  <xx-dialog data-model="dialogvisible" visible="{{dialogvisible}}" position="{{position}}" title="{{title}}" fullscreen="{{options.fullscreen}}" opacity="{{opacity}}" show-close="{{options.showclose}}" show-footer="{{options.showfooter}}" width="{{width}}"
-    close-on-click-modal="{{options.closeonclickmodal}}" bindclose="handleClose" bindopen="handleOpen" bindconfirm="handleConfirm">
-    <view >
-      <input></input>
-    </view>
-  </xx-dialog>
-<button bindtap='showDialog'>打开弹窗(Open Dialog)</button> -->
-
 
 <!-- 会员订单 -->
 <template name="member_page">

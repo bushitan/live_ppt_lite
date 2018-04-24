@@ -50,3 +50,18 @@ App({
     },
 
 })
+
+//     ,
+//     "tabBar": {
+//     "position":"top",
+//         "list": [
+//             {
+//                 "pagePath": "pages/index/index",
+//                 "text": "临时"
+//             },
+//             {
+//                 "pagePath": "pages/team/team",
+//                 "text": "我的目录"
+//             }
+//         ]
+// }

@@ -28,31 +28,8 @@ Page({
             member: false,  //会员支付
         },
 
-        playerTab:["临时图片","我的分类"],
-        tag:["我的","frjie","143"],   
-        dialogvisible: false,
-        // dialogvisible: true,
-        options: {
-            showclose: true,
-            showfooter: true,
-            closeonclickmodal: true,
-            fullscreen: false
-        },
-        title: 'dialog title',
-        opacity: '0.4',
-        width: '85',
-        position: 'center',
-        positions: [{
-            title: '居中',
-            value: 'center'
-        }, {
-            title: '顶部',
-            value: 'top'
-        }, {
-            title: '底部',
-            value: 'bottom'
-        }],
-        positionIndex: 0
+        playerTab:["临时目录","私人收藏","团队收藏"],
+        
     },
 
 
@@ -66,10 +43,6 @@ Page({
         else
             Scripte.ShowMember()
 
-      
-        this.setData({
-            dialogvisible: true
-        })
     },
     clickPPTImage(e){
         console.log(e)

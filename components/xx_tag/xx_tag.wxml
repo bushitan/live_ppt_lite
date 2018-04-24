@@ -1,0 +1,12 @@
+ 
+
+<view>
+    <block wx:for="{{list}}" wx:key="index">
+        <view 
+            class='tag_name {{ initindex==index?"tag_green":"" }}' 
+            hover-class='tag_name_click'
+            catchtap='click'
+            data-index="{{index}}"
+        > {{item}}</view>
+    </block>
+</view>
