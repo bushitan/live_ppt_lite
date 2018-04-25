@@ -19,6 +19,7 @@
         <view wx:else class='mask' >
             <button open-type="share" class='mask'>邀请好友</button>
         </view>
+        <button size='mini'>截图</button>
     </view> 
     <!-- 推流 -->
     <view >
@@ -29,6 +30,7 @@
             height="300rpx" 
             menu="{{false}}">
         </xx-live-pusher> 
+        <button size='mini'>截图</button>
     </view>
 </view>      
 
@@ -39,11 +41,11 @@ catchcomplete="drawComplete" catchclear="drawClear" bg="{{bgImageUrl}}" drawLine
 </view>
 
 <view wx:if="{{tabIndex==1}}">
-    <xx-gallery catchchoice="clickPPTImage" list="{{pptList}}"  ></xx-gallery>
-    
+    <xx-gallery catch:click="clickPPTImage" list="{{pptList}}"  ></xx-gallery>
+<!--     
     <view class='to_index'>
         <button type='primary'  catchtap='addImage'>本地图片</button>
-    </view>
+    </view> -->
 
 </view>
 

@@ -38,6 +38,11 @@ Component({
             type: String,
             value: "11pt",
         },
+
+        showAdd: {
+            type: Boolean,
+            value: true,
+        },
   },
 
   /**
@@ -70,6 +75,13 @@ Component({
             initindex: e.currentTarget.dataset.index
         })
         this.triggerEvent('click', e.currentTarget.dataset.index);
+    },
+    add(){
+        this.triggerEvent('add');
+    },
+
+    long() {
+        this.triggerEvent('long');
     },
   }
 })

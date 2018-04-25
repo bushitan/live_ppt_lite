@@ -17,9 +17,9 @@ Component({
         value: "#000",
     },
 
-    showBtn: {
+    showAdd: {
         type: Boolean,
-        value: true,
+        value: false,
     },
   },
 
@@ -45,15 +45,22 @@ Component({
     },
     clickEmoji(e) {
       var image_url = e.currentTarget.dataset.image_url
-      console.log(image_url)
-      wx.previewImage({
-        urls: [image_url],
-      })
+      this.triggerEvent('click', image_url);
     },
+
+    long() {
+        this.triggerEvent('long');
+    },
+
     clickBtn(e) {
       var index = e.currentTarget.dataset.index
       
       this.triggerEvent('choice', this.data.list[index].url);
+    },
+
+    //增加图片
+    clickAdd(e) {
+        this.triggerEvent('add');
     },
   }
 })

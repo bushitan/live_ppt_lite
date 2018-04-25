@@ -1,10 +1,11 @@
 /**index.wxss**/
 page{
-    background-color: #ebebeb;
+     background-color: #ebebeb; 
+    /* background-color: #000; */
 }
 .tab{
     /* margin-top:20px;  */
-    padding-top:20px; 
+    padding-top:25px; 
     /* background-color: #fff; */
 }
 .preview{
@@ -26,4 +27,20 @@ page{
     margin: 60rpx;
     position: fixed;
     bottom: 30px;
+}
+
+
+.tag_space{
+    padding: 15px 15px 0;
+}
+.tag_input{
+    background-color: #ebebeb;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+.tag_select{
+    padding: 70px 15px;
+}
+.tag_select button{
+    margin: 15px;
 }

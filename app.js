@@ -24,8 +24,13 @@ App({
         teacher_name: "",//教师名字
         student_name: "",//学生名字
 
-        //
+        //直播url配置
         liveConfig :{},
+
+        /** 临时图片数组
+         *  var tempList = [ { url:""},]
+         */
+        tempList:[], 
     },
 
     // 初始化IM

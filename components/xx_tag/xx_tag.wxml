@@ -1,11 +1,18 @@
  
 
 <view>
+    <view 
+        hidden='{{!showAdd}}'
+        class='tag_name tag_add' 
+        hover-class='tag_name_click'
+        catchtap='add'
+    > 添加标签 </view>
     <block wx:for="{{list}}" wx:key="index">
         <view 
             class='tag_name {{ initindex==index?"tag_green":"" }}' 
             hover-class='tag_name_click'
-            catchtap='click'
+            bindtap='click'
+            bindlongpress="long"
             data-index="{{index}}"
         > {{item}}</view>
     </block>
