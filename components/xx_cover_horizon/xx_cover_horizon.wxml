@@ -5,13 +5,15 @@
 <scroll-view scroll-x="true"  class='scroll_box'>
     <view  class='cover_node ' >
         <block wx:for="{{list}}" wx:key="index">
-            <view class='tab' catchtap='click' data-col="{{index}}" > 
-                <image src='{{item.stage_cover}}' class='cover_image' ></image>
-                <!-- <view class='cover_title'>
-                    <button size='mini' catchtap='clickBtn' data-index="{{index}}">选择</button>
-                </view> -->
+            <view class='tab' > 
+                <view class='icon'>
+                    <image src='{{icon}}' ></image>
+                </view>
+                <image src='{{item}}' class='cover_image' catchtap='click' data-src="{{item}}"  ></image>
+                <view class='icon num'>
+                    {{index+1}}
+                </view>
             </view>
-            <!-- <view hidden='{{ index != list.length-1}}' style='margin-right:40px;'></view> -->
         </block> 
     </view>
 </scroll-view>

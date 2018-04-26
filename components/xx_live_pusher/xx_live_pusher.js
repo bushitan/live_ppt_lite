@@ -39,7 +39,7 @@ Component({
         //封面图片
         coverImage: {
             type: String,
-            value: "",
+            value: "../../images/ic_action_add.png",
         },
   },
 
@@ -142,6 +142,11 @@ Component({
       },
     // 点击推流框
     clickPusher(e) {
+        wx.showModal({
+            title: 'uei',
+            content: '',
+        })
+        console.log('dian ji tuiliu k')
         wx.showActionSheet({
             itemList: ['转向'],
             itemColor: '',

@@ -1,7 +1,9 @@
 {
     "pages":[
-        "pages/index/index",
+        "pages/main/main",
+        "pages/room/room",
         "pages/team/team",
+        "pages/index/index",
         "pages/teacher/teacher",
         "pages/student/student"
     ],

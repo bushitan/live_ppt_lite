@@ -1,0 +1,119 @@
+/**index.wxss**/
+page{
+     background-color: #ebebeb; 
+    /* background-color: #000; */
+}
+
+/* 标题 */
+.title{
+    color: #fff;
+    padding:35px 15px 15px;
+}
+.title label{
+    font-size:11pt;
+}
+/* 滚动图 */
+.swiper{
+    width: 750rpx;
+    height: 206rpx;
+}
+.swiper image{
+    width: 750rpx;
+    height: 206rpx;
+}
+
+/* 临时文件 */
+.temp .header{
+    display: flex;
+    justify-content: space-between;
+    padding:0 0 15px ;
+}
+
+/* 临时文件 */
+.my .header{
+    display: flex;
+    justify-content: space-between;
+    padding:0 0 10px ;
+}
+.my .tag{
+    margin-top: 10px;
+    /* padding: 15px 15px 0; */
+}
+
+.my .gallery{
+    margin-top: 5px;
+    /* padding: 15px 15px 0; */
+}
+
+.to_index{
+    z-index: 9999;
+    width: 750rpx; 
+    position: fixed;
+    bottom: 0;
+    font-size: 13pt;
+    background-color: #ff960d;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+}
+.to_index .font{
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tab{
+    /* margin-top:20px;  */
+    padding-top:25px; 
+    /* background-color: #fff; */
+}
+.preview{
+     padding-left:15px;  
+}
+
+.member{
+
+}
+.member image{
+    width: 750rpx;
+}
+.member button{
+    margin: 0 30px 
+}
+
+
+
+.tag_space{
+    padding: 15px 15px 0;
+}
+.tag_input{
+    background-color: #ebebeb;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+.tag_select{
+    padding: 70px 15px;
+}
+.tag_select button{
+    margin: 15px;
+}

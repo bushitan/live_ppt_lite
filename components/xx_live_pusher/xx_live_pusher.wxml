@@ -13,9 +13,8 @@
     enable-camera="true"
     autopush="true"
     waiting-image="../../images/live_bg.jpg"
-    catchtap='clickPusher'
     >
-        <cover-image src='{{coverImage}}'></cover-image>
+        <cover-image src='{{coverImage}}' catchtap='clickPusher'></cover-image>
     </live-pusher>
  
  </view> 

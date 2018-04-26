@@ -4,15 +4,21 @@
 
 
 .scroll_box{    
-    width:750rpx;
+    /* width:750rpx; */
+    width:100%;
     white-space: nowrap;  
     overflow:scroll;
 }
 
 .cover_node{
     display: flex;
+    align-content: center;
 }
 
+.tab{
+    position: relative;
+    height: 75px;
+}
 .tab .cover_title{
     /* margin: 0 0 20px 10px;   */
     line-height: 16pt;
@@ -21,9 +27,26 @@
 }
 
 .cover_image{
-    width: 128px;
-    height: 96px;
-    margin: 0px 15px;
+    width: 75px;
+    height: 75px;
+    margin-right: 15px;
     background-color: #8d8d8d;
 }
 
+.icon{
+    position: absolute;
+    background-color: #888;    
+    width: 23px;
+    height: 23px;
+}
+.icon image{
+    width: 23px;
+    height: 23px;
+}
+.num{
+    line-height: 23px;
+    font-size: 9pt;
+    text-align: center;
+    right: 15px;
+    bottom: 0;
+}

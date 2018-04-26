@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -54,6 +54,18 @@
 					"id": 3,
 					"name": "student",
 					"pathName": "pages/student/student",
+					"query": "teacher_name=live_pvp_user_7&token=1"
+				},
+				{
+					"id": -1,
+					"name": "main",
+					"pathName": "pages/main/main",
+					"query": "teacher_name=live_pvp_user_7&token=1"
+				},
+				{
+					"id": -1,
+					"name": "room",
+					"pathName": "pages/room/room",
 					"query": "teacher_name=live_pvp_user_7&token=1"
 				}
 			]

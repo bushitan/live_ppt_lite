@@ -7,18 +7,10 @@ Component({
         list: {
             type: Array,
             value: [],
-            // observer: '_change',
-            /** 数据结构
-             list[0] = {
-                    "cover_url":'',
-                    "article_id":'',
-                }
-            */
         },
-        //行号
-        rol: {
-            type: Number,
-            value: 0,
+        icon: {
+            type: String,
+            value: "../../images/ic_action_add.png",
         },
         width: {
             type: String,
@@ -51,12 +43,10 @@ Component({
      * return: 点击列表的index
      */
     click(e) {
-        var col = e.currentTarget.dataset.col
-        var temp = {
-            rol:this.data.rol,
-            col:col
-        }
-        this.triggerEvent('click', temp);
+        wx.previewImage({
+            urls: [e.currentTarget.dataset.src],
+        })
+        // this.triggerEvent('click', temp);
     },
   }
 })

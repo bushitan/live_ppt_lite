@@ -6,7 +6,7 @@
     color: #303030;
     font-size: 9pt;
     padding: 5px  11px;
-    margin-right: 8px; 
+    margin:0 8px 4px 0; 
     display: inline-block;
 }
 .tag_green{

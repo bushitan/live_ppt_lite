@@ -192,7 +192,11 @@ Component({
         //   console.log(e.currentTarget);
           this.setData({ color: e.currentTarget.dataset.param });
           this.isClear = false;
-      }
-
+      },
+      
+    //   点击我的图片
+      clickGallery(){
+          this.triggerEvent('clickGallery');
+      },
   }
 })

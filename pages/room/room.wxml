@@ -1,0 +1,128 @@
+
+
+<view class='title page_bg_green'>
+    <label>返回</label>
+</view>
+<view class='live' >
+    <view >
+        <xx-live-player 
+            orientation="{{stage.stage_orientation}}"  
+            wx:if="{{liveConfig.studentPlayer}}"
+            src="{{liveConfig.studentPlayer}}" 
+            width="300rpx" 
+            height="300rpx">
+        </xx-live-player> 
+        <view wx:else class='mask ' >
+            <button open-type="share" class='mask '>
+                <image src='../../images/share.png'></image>
+                邀请好友
+            </button>
+        </view>
+    </view> 
+    <view >
+        <xx-live-pusher 
+            src="{{liveConfig.teacherPusher}}" 
+            orientation="{{stage.stage_orientation}}"
+            width="300rpx" 
+            height="300rpx" 
+            menu="{{false}}">
+        </xx-live-pusher> 
+    </view>
+</view>      
+<view class='line'>
+    <view class='line_black'></view>
+</view>
+
+<view class='painter'  hidden="{{ showGallery }}">
+    <xx-painter 
+        height="calc(100vh - 240px - 75px)"
+        catchcomplete="drawComplete" 
+        catchclear="drawClear" 
+        bg="{{bgImageUrl}}" 
+        drawLine="{{drawLine}}"
+        catch:clickGallery="switchGallery"
+    ></xx-painter> 
+</view>
+<view  hidden="{{!showGallery}}" class='page__p_15 '>
+    <!-- <xx-gallery catch:click="clickPPTImage" list="{{pptList}}"  ></xx-gallery>
+    <view class='to_index'>
+        <button type='primary'  catchtap='addImage'>本地图片</button>
+    </view>  -->
+    
+    <view class='tag'>
+        <xx-tag 
+            list="{{tagNameList}}" 
+            initindex="{{tagIndex}}"
+            catch:add="addTag"
+            bind:click="clickTag"
+            bind:long="menuTag"
+            showAdd="{{false}}"
+        ></xx-tag>
+    </view>
+    <view style='height:5px'></view>
+    <view class='gallery'>
+        <xx-gallery 
+            list="{{pptList}}" 
+            bind:click="clickImage"
+            bind:long="menuImage"  
+        ></xx-gallery> 
+    </view>
+    <view style='height:48px'></view>
+    <view class='to_canvas'  catchtap='switchGallery'>
+        <view class='font '>返回画板</view>
+    </view>
+    <view class='to_canvas_mask'  >
+    </view>
+</view>
+
+
+
+
+<!-- <import src="../../template/template.wxml"/>
+
+<template is="bg"></template>
+<view   class='tab'>
+    <xx-tab list="{{playerTab}}" bind:click="clickTab" 
+    colorunselect="#888" colorselect="#efa234" mode="scroll" initindex="{{tabIndex}}" />
+</view>
+<view class='live' >
+    <view >
+        <xx-live-player 
+            orientation="{{stage.stage_orientation}}"  
+            wx:if="{{liveConfig.studentPlayer}}"
+            src="{{liveConfig.studentPlayer}}" 
+            width="300rpx" 
+            height="300rpx">
+        </xx-live-player> 
+        <view wx:else class='mask' >
+            <button open-type="share" class='mask'>邀请好友</button>
+        </view>
+        <button size='mini'>截图</button>
+    </view> 
+    <view >
+        <xx-live-pusher 
+            src="{{liveConfig.teacherPusher}}" 
+            orientation="{{stage.stage_orientation}}"
+            width="300rpx" 
+            height="300rpx" 
+            menu="{{false}}">
+        </xx-live-pusher> 
+        <button size='mini'>截图</button>
+    </view>
+</view>      
+
+<view class='painter'  wx:if="{{tabIndex==0}}">
+    <xx-painter height="calc(100vh - 240px - 75px)"
+catchcomplete="drawComplete" catchclear="drawClear" bg="{{bgImageUrl}}" drawLine="{{drawLine}}"></xx-painter> 
+
+</view>
+
+<view wx:if="{{tabIndex==1}}">
+    <xx-gallery catch:click="clickPPTImage" list="{{pptList}}"  ></xx-gallery>
+     
+    <view class='to_index'>
+        <button type='primary'  catchtap='addImage'>本地图片</button>
+    </view> 
+
+</view> -->
+

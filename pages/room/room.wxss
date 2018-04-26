@@ -1,0 +1,93 @@
+
+/* .painter{
+    position: fixed;
+    width: 100%;
+} */
+
+/* 标题 */
+.title{
+    color: #fff;
+    padding:35px 15px 15px;
+}
+.title label{
+    font-size:11pt;
+}
+
+.painter{
+    padding: 0 15px;
+}
+
+.player{
+    position: fixed;
+    top:80px;
+    left:100px;
+}
+
+.pusher{
+    
+    position: fixed;
+    top:260px;
+    left:200px;
+}
+
+
+.default{
+    display: flex;
+    justify-content: space-around;
+}
+
+.live{
+    display: flex;
+    justify-content: space-between;
+    /* margin-top:15px;  */
+    padding: 15px 15px 0
+}
+
+.mask{
+    background-color: #fff;
+    width:300rpx;
+    height:300rpx;
+}
+.mask image{
+    width: 48px;
+    height: 48px;
+}
+.mask button{
+    /* font-weight: bold; */
+    color: #2ebe60 ;
+    display: flex;
+    flex-direction:column ;
+    align-items: center;
+    justify-content: center;
+}
+
+.line{
+    padding: 10px 15px;
+}
+.line_black{
+    content: "";
+    border-bottom: 1rpx #ddd solid;
+}
+
+
+.to_canvas{
+    z-index: 9999;
+    /* width: 100%;  */
+    position: fixed;
+    right: 15px;
+    left: 15px;
+    bottom: 15px;
+    font-size: 11pt;
+    background-color: #ff960d;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+.to_canvas_mask{
+     position: fixed;
+     background-color: #eeeeee;   
+     bottom: 0;
+     width: 100%;
+     height: 15px;
+}

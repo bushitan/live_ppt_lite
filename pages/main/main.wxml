@@ -1,0 +1,117 @@
+
+<!-- <import src="../../template/template.wxml"/>
+
+ <template is="bg"></template>  -->
+<view class='title page_bg_green'>
+    <label>现场沟通</label>
+</view>
+
+<swiper class='swiper'>
+    <swiper-item>
+        <image src='../../images/swiper1.png'></image>
+    </swiper-item>
+</swiper>
+
+<view class='temp page__p_a_15 page_bg_white'>
+    <view class='header page_size_10 ' >
+        <view>近期图片：</view>
+        <view class='page_font_green '>添加</view>
+    </view>
+     <cover-horizon list="{{tempList}}" catchclick="toXXArticle"></cover-horizon> 
+</view>
+
+<view style='height:15px;'></view>
+
+<view class='my page__p_a_15 page_bg_white'>
+    <view class='header page_size_10 page__line_gray'>
+        <view>我的图片：</view>
+        <view class='page_font_green '>添加</view>
+    </view>
+    <view class='tag'>
+        <xx-tag 
+            list="{{tagNameList}}" 
+            initindex="{{tagIndex}}"
+            catch:add="addTag"
+            bind:click="clickTag"
+            bind:long="menuTag"
+        ></xx-tag>
+    </view>
+    <view class='gallery'>
+        <xx-gallery 
+            list="{{myList}}" 
+            bind:click="clickImage"
+            bind:long="menuImage"  
+        ></xx-gallery> 
+    </view>
+</view>
+<view style='height:48px'></view>
+<view class='to_index'  catchtap='toTeacher'>
+    <view class='font '>创建房间</view>
+</view>
+
+  <xx-dialog data-model="dialogvisible" visible="{{dialogvisible}}" position="{{position}}" title="{{title}}" fullscreen="{{options.fullscreen}}" opacity="{{opacity}}" show-close="{{options.showclose}}" show-footer="{{options.showfooter}}" width="{{width}}"
+    close-on-click-modal="{{options.closeonclickmodal}}" bindclose="handleClose" bindopen="handleOpen" bindconfirm="handleConfirm">
+    <view class='tag_input' >
+      <input placeholder="请输入标签" focus="{{focus}}" ></input>
+    </view>
+  </xx-dialog>
+
+
+
+
+
+<!-- 
+<view class='tag_select' hidden='{{!show.selectTag}}'>
+    <xx-tag 
+        list="{{tagNameList}}" 
+        initindex="{{tagIndex}}"
+        catch:add="addTag"
+        bind:click="clickTag"
+        bind:long="menuTag"
+        showAdd="{{false}}"
+    ></xx-tag>
+    <view style='height:40px;'></view> 
+    <button catchtap='switchSelectTag'>返回</button>
+</view>
+
+<view hidden='{{show.selectTag}}'>
+<scroll-view scroll-y style='height:100vh' >
+    <view  class='tab'>
+        <xx-tab list="{{playerTab}}" bind:click="clickTab" 
+        colorunselect="#888" colorselect="#efa234" mode="scroll" />
+    </view>
+    <view hidden='{{!show.story}}'>
+        <xx-gallery 
+            list="{{tempList}}" 
+            showAdd="{{true}}" 
+            catch:add="addTempImage" 
+            bind:click="clickImage"
+            bind:long="menuTempImage"
+        ></xx-gallery>
+
+    </view>   
+    <view hidden='{{!show.member}}'>
+        <view class='tag_space'>
+            <xx-tag 
+                list="{{tagNameList}}" 
+                initindex="{{tagIndex}}"
+                catch:add="addTag"
+                bind:click="clickTag"
+                bind:long="menuTag"
+            ></xx-tag>
+        </view>
+        <xx-gallery 
+            list="{{myList}}" 
+            bind:click="clickImage"
+            bind:long="menuImage"  
+        ></xx-gallery>
+    </view>
+</scroll-view> 
+ 
+ <view class='to_index'>
+    <button type='primary'  catchtap='toTeacher'>创建房间</button>    
+</view>  
+</view>-->
+ 
+<!-- <button bindtap='showDialog'>打开弹窗(Open Dialog)</button>  -->
+
