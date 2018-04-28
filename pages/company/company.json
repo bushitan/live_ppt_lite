@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "xx-navigte": "../../components/xx_navigte/xx_navigte"
+    }
+}

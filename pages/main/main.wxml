@@ -3,7 +3,8 @@
 
  <template is="bg"></template>  -->
 <view class='title page_bg_green'>
-    <label>现场沟通</label>
+    <label class='line'>TeamHelper</label>
+    <label catchtap='toCompany'>索骏科技</label>
 </view>
 
 <swiper class='swiper'>
@@ -11,10 +12,15 @@
         <image src='../../images/swiper1.png'></image>
     </swiper-item>
 </swiper>
+ <view  class='tab'>
+    <xx-tab list="{{playerTab}}" bind:click="clickTab" 
+    colorunselect="#888" colorselect="#efa234" mode="scroll" />
+</view>
+<view style='height:5px;'></view>
 
 <view class='temp page__p_a_15 page_bg_white'>
     <view class='header page_size_10 ' >
-        <view>近期图片：</view>
+        <view>我的图片：</view>
         <view class='page_font_green '>添加</view>
     </view>
      <cover-horizon list="{{tempList}}" catchclick="toXXArticle"></cover-horizon> 
@@ -24,7 +30,7 @@
 
 <view class='my page__p_a_15 page_bg_white'>
     <view class='header page_size_10 page__line_gray'>
-        <view>我的图片：</view>
+        <view>企业共享文件：</view>
         <view class='page_font_green '>添加</view>
     </view>
     <view class='tag'>
@@ -46,7 +52,7 @@
 </view>
 <view style='height:48px'></view>
 <view class='to_index'  catchtap='toTeacher'>
-    <view class='font '>创建房间</view>
+    <view class='font '>视频求助</view>
 </view>
 
   <xx-dialog data-model="dialogvisible" visible="{{dialogvisible}}" position="{{position}}" title="{{title}}" fullscreen="{{options.fullscreen}}" opacity="{{opacity}}" show-close="{{options.showclose}}" show-footer="{{options.showfooter}}" width="{{width}}"

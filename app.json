@@ -1,6 +1,7 @@
 {
     "pages":[
         "pages/main/main",
+        "pages/company/company",
         "pages/room/room",
         "pages/team/team",
         "pages/index/index",

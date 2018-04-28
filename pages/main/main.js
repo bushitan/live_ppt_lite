@@ -34,7 +34,7 @@ Page({
             member: false,  //会员支付
         },
 
-        playerTab: ["临时图片", "我的分类"],
+        playerTab: ["我的文件", "公告", "培训", "通讯录", "问题反馈"],
 
         tagList: [],
         tagNameList: [],   
@@ -55,7 +55,11 @@ Page({
         position: 'center',
         positionIndex: 0
     },
-
+    toCompany(){
+        wx.navigateTo({
+            url: '/pages/company/company',
+        })
+    },
 
     //1 点击标签
     clickTab: function (e) {

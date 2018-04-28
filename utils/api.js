@@ -8,7 +8,7 @@ var host_url = 'https://www.12xiong.top/live/';
 // var host_url = 'http://www.12xiong.top:8010/live/';
 
 var wxLoginUrl = host_url + 'lite/login/'
-var APP_ID = "wxcb72cd3899afce06"
+var APP_ID = "wxeb9623bdc85a64f4"
 
 var APP
 var GlobalData

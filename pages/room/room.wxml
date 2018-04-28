@@ -1,7 +1,7 @@
 
 
 <view class='title page_bg_green'>
-    <label>返回</label>
+    <label catchtap='stageClose'>返回</label>
 </view>
 <view class='live' >
     <view >
@@ -63,7 +63,7 @@
     <view class='gallery'>
         <xx-gallery 
             list="{{pptList}}" 
-            bind:click="clickImage"
+            bind:click="clickPPTImage"
             bind:long="menuImage"  
         ></xx-gallery> 
     </view>

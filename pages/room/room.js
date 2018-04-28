@@ -34,7 +34,7 @@ Page({
         liveConfig:{},//直播配置
         tabIndex:0,
         pptList:[],
-        showGallery:!false,
+        showGallery:false,
     },
 
     switchGallery(){
@@ -81,6 +81,7 @@ Page({
     clickPPTImage(e){
         var url = e.detail
         console.log(url)
+        GP.switchGallery()
         GP.setData({
             tabIndex: 0,
             bgImageUrl:url,

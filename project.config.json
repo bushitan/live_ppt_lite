@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
-	"appid": "wxcb72cd3899afce06",
-	"projectname": "%E5%A4%A7%E5%AD%97%E7%89%8C",
+	"appid": "wxeb9623bdc85a64f4",
+	"projectname": "TeamHelper",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -66,6 +66,12 @@
 					"id": -1,
 					"name": "room",
 					"pathName": "pages/room/room",
+					"query": "teacher_name=live_pvp_user_7&token=1"
+				},
+				{
+					"id": -1,
+					"name": "company",
+					"pathName": "pages/company/company",
 					"query": "teacher_name=live_pvp_user_7&token=1"
 				}
 			]

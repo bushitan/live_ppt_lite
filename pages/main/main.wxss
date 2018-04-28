@@ -11,6 +11,11 @@ page{
 }
 .title label{
     font-size:11pt;
+    margin-right:15px; 
+}
+.title .line{
+    /* border-bottom: #fff 2px solid; */
+    font-weight: bold;
 }
 /* 滚动图 */
 .swiper{
@@ -84,8 +89,8 @@ page{
 
 .tab{
     /* margin-top:20px;  */
-    padding-top:25px; 
-    /* background-color: #fff; */
+    /* padding-top:25px;  */
+     background-color: #fff; 
 }
 .preview{
      padding-left:15px;  
