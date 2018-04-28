@@ -1,0 +1,34 @@
+
+
+<view wx:if="{{!isTeacher}}">
+    <view >
+         <xx-live-player 
+            feedback="{{feedback}}"  
+            src="{{appDict.player_url}}" 
+            height="400rpx"
+        >
+        </xx-live-player>  
+
+        <xx-im 
+            message="{{messageList}}" 
+            height="calc(100vh - 400rpx )" 
+            catchsend="sendMsg"  
+        >
+        </xx-im>             
+    </view> 
+</view>
+
+<view wx:else>
+    <view class='bg'>        
+        <xx-tab list="{{pusherTab}}" bind:click="clickTab" initindex="{{tagIndex}}" mode="scroll" colorunselect="#888" colorselect="#efa234" />
+    </view>
+    <view hidden="{{index==0}}">
+        <xx-live-player feedback="{{feedback}}" src="{{appDict.player_url}}" height="400rpx"  ></xx-live-player> 
+    </view>
+     <xx-live-pusher src="{{appDict.pusher_url}}" height="400rpx" menu="{{ index==1 }}" ></xx-live-pusher>  
+    
+    <view hidden="{{index==1}}">
+        <xx-im feedback="{{feedback}}"  message="{{messageList}}" height="calc(100vh - 400rpx - 45px)" catchsend="sendMsg" ></xx-im>   
+    </view>
+</view>
+    

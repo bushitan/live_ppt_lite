@@ -1,5 +1,13 @@
 
 <!-- 故事列表 -->
+<template name="title">
+    <view class='title page_bg_green'>
+        <label class='line'>TeamHelper</label>
+        <label catchtap='toCompany'>{{teamName}}</label>
+    </view>
+</template>
+
+
 
 <template name="bg">
     <image src='../../images/timg.jpg' class='bg'></image>
@@ -20,89 +28,4 @@
     <view style='height:30px;'></view>  
 </template>
 
-
-<!-- 会员订单 -->
-<template name="member_page">
-    <view wx:if="{{isMember}}">
-        您的会员日期是
-    </view>
-    <view wx:else>
-        <view>会员信息，</view>
-        <button catchtap='payMember'>成为会员</button>
-    </view>
-    
-    <view>想练习口语？名师电话来帮你，在线PPT讲解，立马懂</view>
-    <button catchtap='toTeacherPhone'>名师电话</button>
-</template>
-<!-- 会员订单 -->
-<template name="member_page">
-    <view wx:if="{{isMember}}">
-        您的会员日期是
-    </view>
-    <view wx:else>
-        <view>会员信息，</view>
-        <button catchtap='payMember'>成为会员</button>
-    </view>
-    
-    <view>想练习口语？名师电话来帮你，在线PPT讲解，立马懂</view>
-    <button catchtap='toTeacherPhone'>名师电话</button>
-</template>
-<!-- 会员订单 -->
-<template name="member_page">
-    <view wx:if="{{isMember}}">
-        您的会员日期是
-    </view>
-    <view wx:else>
-        <view>会员信息，</view>
-        <button catchtap='payMember'>成为会员</button>
-    </view>
-    
-    <view>想练习口语？名师电话来帮你，在线PPT讲解，立马懂</view>
-    <button catchtap='toTeacherPhone'>名师电话</button>
-</template>
-<!-- 会员订单 -->
-<template name="member_page">
-    <view wx:if="{{isMember}}">
-        您的会员日期是
-    </view>
-    <view wx:else>
-        <view>会员信息，</view>
-        <button catchtap='payMember'>成为会员</button>
-    </view>
-    
-    <view>想练习口语？名师电话来帮你，在线PPT讲解，立马懂</view>
-    <button catchtap='toTeacherPhone'>名师电话</button>
-</template>
-
-<!-- orientation="{{stage.stage_orientation}}" -->
-
-<!-- 会员订单 -->
-<template name="stage">
-    <view class='stage'>
-        <!-- 背景 -->
-        <image src='{{stage.stage_background_image}}' style='width: {{stage.stage_width}};' mode='widthFix' catchtap='{{clickBG}}'></image>
-        <!-- 播放视频 -->
-        <view class='player_default' style='top: {{stage.player_y}};left: {{stage.player_x}};'>
-            <xx-live-player 
-                orientation="horizontal"  
-                wx:if="{{playerSrc}}"
-                src="{{playerSrc}}" 
-                width="{{stage.player_width}}" 
-                height="{{stage.player_height}}"
-                >
-               
-            </xx-live-player> 
-        </view> 
-        <!-- 推流 -->
-        <view class='pusher_default' style='top: {{stage.pusher_y}};left: {{stage.pusher_x}};' >
-            <xx-live-pusher 
-                src="{{pusherSrc}}" 
-                orientation="horizontal"  
-                width="{{stage.pusher_width}}" 
-                height="{{stage.pusher_height}}" 
-                menu="{{false}}" >
-            </xx-live-pusher> 
-        </view>
-    </view>
-</template>
 

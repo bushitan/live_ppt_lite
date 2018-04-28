@@ -1,7 +1,7 @@
 
 
-<view class='title page_bg_green'>
-    <label catchtap='stageClose'>返回</label>
+<view class='back page_bg_green'>
+    <label catchtap='stageClose'>离开</label>
 </view>
 <view class='live' >
     <view >

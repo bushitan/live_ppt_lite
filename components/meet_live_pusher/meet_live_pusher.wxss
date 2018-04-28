@@ -1,0 +1,58 @@
+/* .live{
+    width: 750rpx;
+    
+}
+.live .live_pusher{
+    width: 750rpx;
+    height: 100%;
+    position: relative;
+}  */
+
+.live_pusher{
+    /* width: 750rpx; */
+    /* height: 250px; */
+}
+
+
+.menu{
+    padding: 0 15px;
+    background-color: #fff;
+}
+.xx_line__gray{
+    content: "";
+    border-bottom: 1rpx #f0f0f0 solid;
+}
+
+.xx_node {
+     padding:10px 0;  
+    display:flex;
+    align-items:center;
+    /* font-size: 11pt; */
+    font-size: 10pt;
+}
+
+.title  {
+    flex-grow:1;
+    line-height: 22px;
+}
+.content{
+    text-align: right;
+}
+
+.arrow {
+    margin-left: 8px;
+    margin-top: 3px;
+    content: " ";
+    height: 6px;
+    width: 6px; 
+    border-width: 1px 1px 0 0; 
+    border-color: #C8C8CD; 
+    border-style: solid; 
+    /* -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0); */
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0); 
+}
+
+/* 点击后变色 */
+.xx_active {
+    background-color: #ECECEC !important;
+}

@@ -133,35 +133,59 @@ function _Request(options) {
 }
 
 module.exports = {
-  Request: Request,
-  LITE_LOGIN: wxLoginUrl,
-  PVP_STORY_GET_LIST: host_url + 'ppt/file/get_list/',  //获取故事列表
+    Request: Request,
+    LITE_LOGIN: wxLoginUrl,
+    PVP_STORY_GET_LIST: host_url + 'ppt/file/get_list/',  //获取故事列表
+
+    PPT_TEAM_CHECK: host_url + 'ppt/team/check/',  //检测是否加入团队
+    PPT_TEAM_JOIN: host_url + 'ppt/team/join/',  //获取我的图片
+    PPT_TEAM_QUIT: host_url + 'ppt/team/quit/',  //获取我的图片
+    PPT_TEAM_GET_FILE: host_url + 'ppt/team/get/file/',  //获取我的图片
+    PPT_TEAM_GET_TAG: host_url + 'ppt/team/get/tag/',  //获取我的图片
+    
+    PPT_SELF_GET_FILE: host_url + 'ppt/self/get/file/',  //获取我的图片
+    PPT_SELF_GET_TAG: host_url + 'ppt/self/get/tag/',  //获取我的图片
 
 
-//   PVP_STORY_GET_LIST: host_url + 'pvp/story/get_list/',  //获取故事列表
+    // PPT_NOTICE_GET: host_url + 'ppt/notic/get/',  //获取通知公告
+    COVER_TAG_GET_LIST: host_url + 'cover/tag/get_list/',
+    COVER_NEWS_GET_LIST: host_url + 'cover/news/get_list/',
+    COVER_ARTICLE_GET: host_url + 'cover/article/get/',
 
-//   PVP_ROOM_CREATE: host_url + 'pvp/room/create/',  //获取故事列表
-//   PVP_ROOM_JOIN: host_url + 'pvp/room/join/',  //获取故事列表
+    PPT_NOTICE_GET: host_url + 'ppt/train/get/',  //获取培训列表
 
-//   PVP_MEMBER_CHECK: host_url + 'pvp/member/check/',  //获取故事列表
-//   LITE_COMPANY_GET_INFO: host_url + 'lite/company/get/info/',
-//   LITE_USER_SET_INFO: host_url + 'lite/user/set/info/',
-//   LITE_USER_GET_PPT: host_url + 'lite/user/get/ppt/',
+    PPT_ARTICLE_GET_NOTICE: host_url + 'ppt/article/get/notic',  //文章内容--通知公告
 
-//   COVER_TAG_GET_LIST: host_url + 'cover/tag/get_list/',
-//   COVER_NEWS_GET_LIST: host_url + 'cover/news/get_list/',
-//   COVER_ARTICLE_GET: host_url + 'cover/article/get/',
+    PPT_LIVE_INDEX: host_url + 'ppt/live/index/',  //获取当前直播封面
+    PPT_LIVE_GET_ROOM: host_url + 'ppt/live/get/room/',  //获取当前直播房间内容
+    PPT_LIVE_GET_MESSAGE: host_url + 'ppt/live/get/message/',  //获取直播聊天信息
+    PPT_LIVE_SET_MEESAGE: host_url + 'ppt/live/set/message/',  //获取直播聊天信息
 
-//   ROOM_GET: host_url + 'room/get/',
-//   ROOM_GET_COVER: host_url + 'room/get/cover/',
-//   ROOM_CHECK_TEACHER: host_url + 'room/check/teacher/',
-//   ROOM_GET_LIST_BY_APP: host_url + 'room/get_list/app/',
-//   ROOM_ADD_MESSAGE: host_url + 'room/add/message/',
-
-//   ORDER_CHECK_MEMBER: host_url + 'order/check/member/',
+    PPT_ROSTER_GET_TAG: host_url + 'ppt/roster/get/tag/',  //获取直播聊天信息
+    PPT_ROSTER_GET_INFO: host_url + 'ppt/roster/get/info/',  //获取直播聊天信息
 
 
-    // DAY_INDEX: host_url + 'day365/my/set/clock/',
+    PPT_ISSUE_GET: host_url + 'ppt/issue/set/',  //问题反馈
+
+
+
+    LITE_LOGIN: host_url + 'lite/login/',
+    LITE_REGISTER: host_url + 'lite/register/',
+    LITE_COMPANY_GET_INFO: host_url + 'lite/company/get/info/',
+    LITE_USER_SET_INFO: host_url + 'lite/user/set/info/',
+    LITE_USER_GET_PPT: host_url + 'lite/user/get/ppt/',
+
+    COVER_TAG_GET_LIST: host_url + 'cover/tag/get_list/',
+    COVER_NEWS_GET_LIST: host_url + 'cover/news/get_list/',
+    COVER_ARTICLE_GET: host_url + 'cover/article/get/',
+
+    ROOM_GET: host_url + 'room/get/',
+    ROOM_GET_COVER: host_url + 'room/get/cover/',
+    ROOM_CHECK_TEACHER: host_url + 'room/check/teacher/',
+    ROOM_GET_LIST_BY_APP: host_url + 'room/get_list/app/',
+    ROOM_ADD_MESSAGE: host_url + 'room/add/message/',
+
+    ORDER_CHECK_MEMBER: host_url + 'order/check/member/',
 
 };
 

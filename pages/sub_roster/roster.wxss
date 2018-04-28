@@ -1,0 +1,10 @@
+
+
+.roster image{
+    width: 32px;
+    height: 32px;
+    margin-right:10px; 
+}
+.space{
+    /* margin-bottom: 15px; */
+}

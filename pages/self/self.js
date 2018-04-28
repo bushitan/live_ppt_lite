@@ -8,6 +8,8 @@ var KEY = require('../../utils/key.js');
 var GP
 Page({
     data: {
+        //权限
+        isMember:false,//是否会员
     
         //临时图片
         tempList: [
@@ -15,21 +17,77 @@ Page({
             "http://img.12xiong.top/ppt_read1.jpg", "http://img.12xiong.top/ppt_read2.jpg",
             "http://img.12xiong.top/ppt_read1.jpg", "http://img.12xiong.top/ppt_read2.jpg"
         ],
-        //权限
-        isTeamMember: !false,//是否会员
+
+        //我的分类
+        myList:[],//场景的二维数组
+
+        userName: "",//老师名字
+        // userName:'live_pvp_user_5', //学生
+
+        //页面显示
+        show:{
+            // stage: false, //直播舞台
+            // menu: false, //菜单
+            // theme:false, //更换主题
+            selectTag:false,
+            story: true, //故事菜单
+            member: false,  //会员支付
+        },
+
+        playerTab: ["我的文件", "公告", "会务直播", "培训", "通讯录", "问题反馈"],
+
+        tagList: [],
+        tagNameList: [],   
+        tagIndex:0,
+
+        focus:false, //自动获取焦点
+        dialogvisible: false,
+        // dialogvisible: true,
+        options: {
+            showclose: false,
+            showfooter: true,
+            closeonclickmodal: true,
+            fullscreen: false
+        },
+        title: '添加标签',
+        opacity: '0.4',
+        width: '85',
+        position: 'center',
+        positionIndex: 0
     },
-
-    //加入团队
-    join(){
-        API.Request({
-            url: API.PPT_TEAM_JOIN,
-            success: function (res) {
-
-            },
+    toCompany(){
+        wx.navigateTo({
+            url: '/pages/company/company',
         })
-        GP.setData({ isTeamMember:true})
     },
 
+    //1 点击标签
+    clickTab: function (e) {
+        if (e.detail == 0)
+            Scripte.ShowStory()
+        else
+            Scripte.ShowMember()
+    },
+
+    // 2.1 获取临时图片
+    addTempImage() {
+        console.log("temp") 
+        wx.chooseImage({
+            count: 9, // 默认9
+            sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var tempFilePaths = res.tempFilePaths
+                var _list = APP.globalData.tempList 
+                for( var i= 0;i<tempFilePaths.length;i++ ){
+                    _list.push({ url: tempFilePaths[i] })
+                }
+                APP.globalData.tempList = _list
+                GP.getTempImageList()
+
+            }
+        })
+    },
     // 2.2 获取临时图片
     getTempImageList(){
         return
@@ -206,11 +264,8 @@ Page({
     
 
     //创建房间
-    toTeacher() {
-        // wx.navigateTo({
-        //     url: '/pages/room/room',
-        // })
-        wx.redirectTo({
+    toTeacher(){
+        wx.navigateTo({
             url: '/pages/room/room',
         })
     },

@@ -116,7 +116,10 @@ Page({
                         }
                         JMessage.sendSingleCustom(GP.data.studentName, t_call)
                     }
-                    wx.navigateBack({})
+                    // wx.navigateBack({})
+                    wx.redirectTo({
+                        url: '/pages/main/main',
+                    })
                 }
             },
         })

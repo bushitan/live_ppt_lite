@@ -70,3 +70,5 @@ App({
 //             }
 //         ]
 // }
+    // ,
+    // "navigationStyle":"custom"

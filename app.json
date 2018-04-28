@@ -1,17 +1,30 @@
 {
     "pages":[
         "pages/main/main",
-        "pages/company/company",
         "pages/room/room",
-        "pages/team/team",
+        "pages/self/self",
+
+        "pages/sub_more/more",
+        "pages/sub_file/file",
+        "pages/sub_issue/issue",
+        "pages/article/article",
+        "pages/sub_train/train",
+        "pages/sub_meet_live/meet_live",
+        "pages/sub_meet_index/meet_index",
+        "pages/sub_roster/roster",
+        "pages/sub_roster_info/roster_info",
+        "pages/sub_notice/notice",
+
+
         "pages/index/index",
         "pages/teacher/teacher",
+        "pages/team/team",
         "pages/student/student"
     ],
     "window":{
+        "navigationBarBackgroundColor": "#2ebe60",
         "backgroundTextStyle":"light",
-        "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle":"white",
-        "navigationStyle":"custom"
+        "navigationBarTitleText": "TeamHelper",
+        "navigationBarTextStyle":"white"
     }
 }

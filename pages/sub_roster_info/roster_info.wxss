@@ -1,0 +1,17 @@
+/* pages/company/company.wxss */
+.title{
+    color: #fff;
+    padding:35px 15px 15px;
+}
+.title label{
+    font-size:11pt;
+}
+
+.roster image{
+    width: 32px;
+    height: 32px;
+    margin-right:10px; 
+}
+.space{
+    margin-bottom: 15px;
+}

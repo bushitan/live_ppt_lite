@@ -1,0 +1,19 @@
+/* pages/article_video/article_video.wxss */
+
+.video{
+    width: 750rpx;
+    height:422rpx;
+}
+.video video{
+    width: 750rpx;
+    height:422rpx;
+}
+.title{
+    font-size: 14pt;
+    color: #151515;
+}
+
+.summary{
+    font-size: 11pt;
+    color: #8d8d8d;
+}

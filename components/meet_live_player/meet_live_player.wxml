@@ -1,0 +1,82 @@
+<wxs module="foo">
+    function getFirst(list){
+        return list.slice(0,2)
+    }
+    module.exports = {
+        msg : getFirst,
+    }
+</wxs>
+
+<view class='live' style='width:{{width}};height: {{height}};' catchtap='showMenu'>
+    <live-player 
+        id="player"
+        src="{{src}}"  
+        mode="SD"  
+        orientation="{{orientation}}"
+        object-fit="fillCrop"
+        autoplay bindstatechange="statechangePlayer"    binderror="error"  >
+             <template is="menu_full" data="{{isShowMenu,isPlay,isVoice}}"   wx:if="{{isFullScreen}}"></template>
+             <template is="menu_lite" data="{{isShowMenu,isPlay,isVoice}}"  wx:else></template>
+            <!-- 信息 -->
+            <template is="message" data="{{messages:foo.msg(messages)}}" wx:if="{{isFullScreen && isShowMessage}}"></template> 
+    </live-player> 
+</view>
+
+    <!-- 小屏幕菜单 -->
+    <template name="menu_lite"> 
+        <cover-view class='menu' hidden='{{!isShowMenu}}'>
+            <cover-view class='left'>    
+                <template is="play" data="{{isPlay}}"/>
+                <template is="voice" data="{{isVoice}}"/>
+            </cover-view>
+            <cover-view class='right'>
+                <cover-image class="icon" catchtap='reverse' src="../../components/xx_live_player/images/reverse_1.png" />
+                <cover-image class="icon" catchtap='liveFullScreen' src="../../components/xx_live_player/images/full.png" />
+            </cover-view>
+            </cover-view>
+    </template> 
+    <!-- 全屏菜单 -->
+    <template name="menu_full"> 
+        <cover-view class='menu' hidden='{{!isShowMenu}}'>
+            <cover-view class='left'>
+                <template is="play" data="{{isPlay}}"/>
+                <template is="voice" data="{{isVoice}}"/>
+                <cover-image class="icon" catchtap='switchMessage' src="../../components/xx_live_player/images/dan.png" />
+            </cover-view>
+            <cover-view class='right'>
+                <cover-image class="icon" catchtap='exitFullScreen' src="../../components/xx_live_player/images/full_exit.png" />
+            </cover-view>
+            </cover-view>
+    </template>     
+    <template name="play">
+        <cover-image class="icon" catchtap='stop' src="../../components/xx_live_player/images/stop.png"  wx:if="{{isPlay}}"/>
+        <cover-image class="icon" catchtap='play' src="../../components/xx_live_player/images/play.png" wx:else/>
+    </template>  
+
+    <template name="voice">
+        <cover-image class="icon" catchtap='closeVoice' src="../../components/xx_live_player/images/voice_none.png" wx:if="{{isVoice}}"/>
+        <cover-image class="icon" catchtap='openVoice' src="../../components/xx_live_player/images/voice.png"  wx:else/>
+    </template>  
+
+
+
+
+    <template name="message">  
+        <cover-view class='message'  catchtap='showMenu'>
+            <block wx:for="{{foo.msg(messages)}}" wx:key="index">
+                <cover-view class='node {{index==0 ? "first":"seconde"}}'>
+                    <cover-view class='logo'>
+                        <cover-image  catchtap='' src="{{item.user.avatarUrl}}" />
+                    </cover-view>
+                    <cover-view  class='content'>{{item.content}}</cover-view>
+                </cover-view>
+            </block>  
+        </cover-view>
+    </template> 
+
+
+       <!-- <cover-view class='cover' catchtap='exitFullScreen'>退出</cover-view>
+            <cover-view class='cover' catchtap='exitFullScreen'>全屏</cover-view>
+            <cover-view class='cover' catchtap='exitFullScreen'>播放/暂停</cover-view>
+            <cover-view class='cover' catchtap='exitFullScreen'>接收弹幕</cover-view> -->
+            <!-- <cover-image class="cover_img" catchtap='liveFullScreen' src="../../images/hotapp_sicon2.png" /> -->

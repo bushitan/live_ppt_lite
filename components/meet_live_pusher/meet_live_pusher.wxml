@@ -1,0 +1,41 @@
+
+
+
+<!-- <view class='live' style='height: {{height}};' catchtap='showMenu'> -->
+  <live-pusher url="rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=live.12xiong.top" 
+    id="pusher"
+    class="live_pusher"
+    style="width:{{width}};height:{{height}}"
+    mode="{{mode}}" 
+    autopush bindstatechange="statechange"
+    orientation="{{orientation}}"
+    aspect="aspect"
+    enable-camera="true"
+    autopush="true"
+    waiting-image="../../images/live_bg.jpg"
+    />
+<!-- </view> -->
+
+<view class='menu' hidden='{{!menu}}'>
+    <template is="node_action" data='{{name:"切换摄像头",e:"switchCamera"}}'/>
+    <view class='xx_line__gray'></view>     
+    <template is="node_action" data='{{name:"播放状态",action:statusPlay,e:"switchPlay"}}' />
+    <view class='xx_line__gray'></view>     
+     <template is="node_action" data='{{name:"屏幕方向",action:statusOrientation,e:"switchOrientation"}}' />
+    <view class='xx_line__gray'></view>     
+    <template is="node_action" data='{{name:"视频模式",action:statusMode,e:"switchMode"}}'/>
+    <view class='xx_line__gray'></view>     
+    <template is="node_action" data='{{name:"宽高比",action:aspect,e:"switchAspect"}}'/>
+</view>
+
+<template name="node_action">
+    <view  class="xx_node " hover-class="xx_active"  catchtap='{{e}}'>
+        <view class="title">
+            {{name}}
+        </view>
+        <view class="content">
+            {{action}}
+        </view> 
+        <view class="arrow" hidden='{{isarrow == "false"}}'></view> 
+    </view>
+</template>

@@ -1,0 +1,11 @@
+
+
+
+<view class="xx_input page__p_15 page_bg_white">
+    <xx-input name="姓名" placeholder="请输入姓名" bindinput='inputName' value='{{userInfo.name}}'></xx-input>
+<view class='page__line_gray'></view> 
+<xx-input name="手机" placeholder="请填写手机号码" bindinput='inputPhone' value='{{userInfo.phone}}'></xx-input>
+<view class='page__line_gray'></view>
+<button >提交</button>
+<view style='height:15px;'></view>
+</view>

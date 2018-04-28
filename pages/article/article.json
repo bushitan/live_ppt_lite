@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "xx-im": "../../components/xx_im/xx_im",
+        "article": "../../components/xx_article/xx_article"
+    }
+}

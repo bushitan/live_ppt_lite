@@ -73,6 +73,54 @@
 					"name": "company",
 					"pathName": "pages/company/company",
 					"query": "teacher_name=live_pvp_user_7&token=1"
+				},
+				{
+					"id": -1,
+					"name": "通知公告",
+					"pathName": "pages/sub_notice/notice",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "共享文件",
+					"pathName": "pages/sub_file/file",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "问题反馈",
+					"pathName": "pages/sub_issue/issue",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "团队培训",
+					"pathName": "pages/sub_train/train",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "直播首页",
+					"pathName": "pages/sub_meet_index/meet_index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "直播房间",
+					"pathName": "pages/sub_meet_live/meet_live",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "通讯录",
+					"pathName": "pages/sub_roster/roster",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "更多",
+					"pathName": "pages/sub_more/more",
+					"query": ""
 				}
 			]
 		}

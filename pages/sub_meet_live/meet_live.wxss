@@ -1,0 +1,37 @@
+/* pages/mode/mode.wxss */
+
+.bg{
+    background-color: #fff;
+}
+.painter{
+    padding: 10px 20px;
+}
+.cover image{
+    width: 100%;
+}
+.title{
+    padding: 15px;
+    font-size: 12pt;
+    font-weight: bold;
+}
+.time{
+    padding: 0 15px 15px;
+    font-size: 9pt;
+    color: #b8b8b8;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.btn{
+    padding: 0 15px 15px ;
+}
+.content{
+    padding: 15px;
+}
+.content image{
+    width: 100%;
+}
+
+button{
+    margin: 5px 15px;
+}

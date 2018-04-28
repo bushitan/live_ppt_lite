@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "cover-horizon": "../../components/xx_cover_horizon/xx_cover_horizon",
+        "xx-gallery": "../../components/xx_gallery/xx_gallery",
+        "xx-tab": "../../components/xx_tab/xx_tab",
+        "xx-tag": "../../components/xx_tag/xx_tag",
+        "xx-dialog": "../../components/xx_dialog/xx_dialog",
+        "xx-im": "../../components/xx_im/xx_im"
+    }
+}

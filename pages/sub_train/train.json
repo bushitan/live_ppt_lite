@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "tab": "../../components/xx_tab/xx_tab",
+        "cover": "../../components/xx_cover/xx_cover"
+    }
+}

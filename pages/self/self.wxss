@@ -31,61 +31,38 @@ page{
 .temp .header{
     display: flex;
     justify-content: space-between;
-    padding:0 0 10px ;
-    margin-bottom:10px; 
+    padding:0 0 15px ;
 }
 
 /* 临时文件 */
-.team .header{
+.my .header{
     display: flex;
     justify-content: space-between;
-    align-content: center;
-    /* padding:0 0 10px ; */
+    padding:0 0 10px ;
 }
-.team .rol{
-    display: flex;
-    justify-content: space-between; 
+.my .tag{
+    margin-top: 10px;
+    /* padding: 15px 15px 0; */
 }
 
-.team .node{
-    display: flex;
-    flex-direction:column ;
-    width: 150rpx;
-    /* m: auto; */
-     justify-content: center; 
-     text-align: center;
-     font-size: 9pt;
-     color:#141414;
+.my .gallery{
+    margin-top: 5px;
+    /* padding: 15px 15px 0; */
 }
-.team image{
-    width: 36px;
-    height: 36px;
-    margin: 0 auto 4px ; 
-}
-/* 视频求助按钮 */
+
 .to_index{
     z-index: 9999;
     width: 750rpx; 
     position: fixed;
     bottom: 0;
     font-size: 13pt;
+    background-color: #ff960d;
     display: flex;
     justify-content: center;
     padding: 15px 0;
 }
-.to_index .circle {
-    width: 96px;
-    height: 96px;
-    background-color: #ff960d;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
 .to_index .font{
-    line-height: 96px;
     color: #fff;
-    /* padding: 30px; */
 }
 
 
@@ -93,36 +70,7 @@ page{
 
 
 
-/* 客服按钮 */
-button[size=mini] {
-display:inline-block ;
-line-height:10pt !important;
-font-size:10pt !important;
-padding:0 !important;
 
-}
-button {
- position: block; 
-display:block;
-margin-left:auto;
-margin-right:auto;
-padding-left:0;
-padding-right:0;
-box-sizing:border-box;
-font-size:18px;
-text-align:center;
-text-decoration:none;
-line-height:2.55555556;
-border-radius:5px;
--webkit-tap-highlight-color:transparent;
-overflow:hidden;
-color:#000000;
-background-color:#fff !important;
-
-}
-button::after{
-    border: none;
-}
 
 
 

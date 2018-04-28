@@ -1,0 +1,12 @@
+
+
+
+<view wx:if="{{mode=='live'}}">
+    <view class='video'>
+        <video  src='{{src}}'></video>
+    </view>
+    <xx-im  message="{{messageList}}" height="calc(100vh - 422rpx)" catchsend="sendMsg" ></xx-im>  
+</view>
+<view wx:else>
+    <article content="{{article}}" mode="{{mode}}" ></article>
+</view>
