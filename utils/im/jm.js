@@ -50,15 +50,15 @@ module.exports = new (function () {
       var signature = MD5.hex_md5("appkey=" + appKey + "&timestamp=" + timestamp + "&random_str=" + _random + "&key=" + Key + "")
       
       cb({
-        "appkey": appKey,
-        "random_str": _random,
-        "signature": signature,
-        "timestamp": timestamp,
-        // "appkey": "4f7aef34fb361292c566a1cd",
-        // "random_str": "404",
-        // "signature": "7db047a67a9d7293850ac69d14cc82bf",
-        // "timestamp": "1507882399401",
-        // "flag": 0
+        // "appkey": appKey,
+        // "random_str": _random,
+        // "signature": signature,
+        // "timestamp": timestamp,
+        "appkey": "4f7aef34fb361292c566a1cd",
+        "random_str": "404",
+        "signature": "7db047a67a9d7293850ac69d14cc82bf",
+        "timestamp": "1507882399401",
+        "flag": 0
       });
       //app.api.net.ajaxjson({}, function (r) {
       //    cb(r.data);

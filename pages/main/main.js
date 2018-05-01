@@ -227,7 +227,7 @@ Page({
         GP.initIM()
         GP.getStoryList()
 
-        GP.getTag() //获取标签列表
+        // GP.getTag() //获取标签列表
     },
 
     /**IM初始化 */

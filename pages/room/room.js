@@ -12,30 +12,134 @@ var intervarID
 
 
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
         playerTab: ["直播", "PPT", "退出"],
-        isMember: false,//是否会员
+        isTeacher: true,//是否会员
+        
         isOnline:false, //学生未上线
-        showTheme: false, //显示主题
-        // showTool: true,//显示根据
-        showTool: false,//显示根据
-        // isHeng:false,//是否横屏
 
         // token: null,//验证是否能够连接
         token: "1",//验证是否能够连接
+
         teacherName: null, //IM账号
         passWord: null, //IM密码
         studentName: null, //IM账号
 
         liveConfig:{},//直播配置
+        
         tabIndex:0,
         pptList:[],
         showGallery:false,
     },
+
+    initLive() {
+        var user_info = wx.getStorageSync(KEY.USER_INFO)
+        var domain = "?vhost=live.12xiong.top"
+        var pushBase = "rtmp://video-center.alivecdn.com/pvplive/"
+        var playerBase = "rtmp://live.12xiong.top/pvplive/"
+        var teacherName = "live_pvp_user_" + user_info.user_id
+        var liveConfig = {
+            teacherName: teacherName,
+            teacherPusher: pushBase + "room_" + user_info.user_id + "_teacher" + domain,
+            teacherPlayer: playerBase + "room_" + user_info.user_id + "_teacher",
+            studentPusher: pushBase + "room_" + user_info.user_id + "_student" + domain,
+            studentPlayer: playerBase + "room_" + user_info.user_id + "_student",
+        }
+        console.log(liveConfig)
+        GP.setData({
+            liveConfig: liveConfig,
+        })
+    },
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        GP = this
+        APP.globalData.currentPage = this //当前页面设置为全局变量
+
+        if (options.is_student == true) {
+            GP.setData({ isTeacher: false, })
+        }
+        else {
+            GP.initLive() //初始化live链接
+        }
+
+
+        GP.initIM() //登陆IM
+        Scripte.Init(APP, GP, API, JMessage) //初始化脚本
+        GP.getPPT()
+    },
+    /**IM初始化 */
+    initIM() {
+        var user_info = wx.getStorageSync(KEY.USER_INFO)
+        var teacherName = "live_pvp_user_" + user_info.user_id
+        var passWord = "123"
+        GP.setData({
+            teacherName: teacherName,
+            passWord: passWord,
+        })
+        JMessage.init("", teacherName, passWord, GP.IMSuccess);
+
+    },
+
+    // IM登陆成功
+    IMSuccess() {
+        if(GP.data.isTeacher)
+            GP.isTeacherSuccess()
+        else
+            GP.isStudentSuccess()
+    },
+
+    isStudentSuccess() {
+        GP.initLive() //初始化live链接
+        Scripte.studentOnline() //学生上线通知
+        JMessage.JIM.onMsgReceive(function (data) {
+            Scripte.teacherReceive(body)
+        })
+        
+    },
+
+    isTeacherSuccess(){
+        GP.initLive() //初始化live链接
+        JMessage.JIM.onMsgReceive(function (data) {
+            // GP.IMMsgReceive(data) //监听事件
+
+            Scripte.teacherReceive(body)
+        })
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     switchGallery(){
         GP.setData({ showGallery: !GP.data.showGallery})
@@ -125,35 +229,9 @@ Page({
         })
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-        GP = this
-        APP.globalData.currentPage = this //当前页面设置为全局变量
-
-        //学生的player为空
-
-        var liveConfig = {
-            teacherName: APP.globalData.liveConfig.teacherName,
-            teacherPusher: APP.globalData.liveConfig.teacherPusher,
-            teacherPlayer: APP.globalData.liveConfig.teacherPlayer,
-            studentPusher: APP.globalData.liveConfig.studentPusher,
-            studentPlayer: false,
-        }
-        GP.setData({
-            liveConfig: liveConfig ,
-            // teacherName: APP.globalData.liveConfig.teacherName,
-        })
 
 
-
-        Scripte.Init(APP, GP, API, APP.globalData.JMessage) //初始化脚本
-
-        GP.getPPT()
-    },
-
-
+    // 我的图片
     getPPT() {
         GP.setData({
             pptList: [
@@ -213,24 +291,6 @@ Page({
         console.log('teacher login success')
     },
 
-    //接收IM信息
-    IMMsgReceive(data) {
-        var body = data.messages[0].content.msg_body
-
-        if (body.text == "check") { //接收学生的上线信息
-            console.log(APP.globalData.liveConfig)
-            GP.setData({liveConfig: APP.globalData.liveConfig}) //学生上线后，再设置推流地址
-            Scripte.getCheck(body.student_name, body.token)
-        }
-
-        // if (body.text == "on") { //接收学生的上线信息
-        //     GP.getStudentOnline(body.student_name)
-        // }
-
-        if (body.text == "off") { //接收学生的下信息
-            Scripte.getStudentOffline(body.student_name)
-        }
-    },
 
     onShareAppMessage: function () {
         var newToken = "1"
