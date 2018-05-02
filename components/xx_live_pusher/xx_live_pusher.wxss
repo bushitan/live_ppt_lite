@@ -57,3 +57,14 @@
     background-color: #ECECEC !important;
 }
 
+.switch_camera, .snapshot{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+}
+.switch_camera {
+    left: 0;
+}
+.snapshot{
+    right: 0;
+}

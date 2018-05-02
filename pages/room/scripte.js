@@ -12,14 +12,130 @@ module.exports = new (function () {
         API = _API
         JMessage = _JMessage
     }
- 
-    //验证用户是否有权限
+    /**1 初始化 */
+    // 1.1 老师初始化
+    this.initTeacherIM = function () {
+        utilInit(GP.isTeacherSuccess)
+    }
+    // 1.2 学生初始化
+    this.initStudentIM = function () {
+        utilInit(GP.isStudentSuccess)
+    }
+    function utilInit( callback){
+        var user_info = wx.getStorageSync(KEY.USER_INFO)
+        var selfName = "live_pvp_user_" + user_info.user_id
+        console.log(selfName)
+        var passWord = "123"
+        GP.setData({
+            selfName: selfName,
+            passWord: passWord,
+        })
+        JMessage.init("", selfName, passWord, callback );
+    }
+
     /**
-     * arg: 
-     *  student_name 同学账户
-     *  toekn 验证码
+     * 2 发送信息
      */
-    this.getCheck = function (student_name, token){
+    // 2.1 老师发送
+    //发送老师上线通知
+    function sendTeacherOnline() {
+        sendOtherMessage({ text: "teacher_online", liveConfig: GP.data.liveConfig })
+    }
+
+    // 2.2 学生发送
+    // 发送学生验证请求
+    this.sendStudentCheck = function (body) {
+        //发出验证token的请求
+        var s_say = {
+            text: "student_check",  //验证
+            student_name: GP.data.selfName, //学生名字
+            token: GP.data.token,//验证token
+        }
+        JMessage.sendSingleCustom(GP.data.teacherName, s_say) //学生打招呼
+    }
+
+    //2.3 公共发送
+    //发送绘画
+    this.sendPPT = function (url) {
+        sendOtherMessage({ text: "ppt", url: url })
+    }
+   
+    //发送绘画
+    this.sendDraw = function (path) {
+        sendOtherMessage({ text: "draw", path: path })
+    }
+    //清除
+    this.sendClear = function (path) {
+        sendOtherMessage({ text: "clear", path: path })
+    }
+    //下线通知
+    function sendStudentOffline() {
+        sendOtherMessage({ text: "off", })
+    }
+    // 向对方发送信息
+    function sendOtherMessage(t_call) {
+        JMessage.sendSingleCustom(GP.data.otherName, t_call)
+    }
+
+    /**
+     * 3 接收消息
+     */
+    // 3.1 教师接收事件
+    this.teacherReceive = function (data) {
+        var body = data.messages[0].content.msg_body
+
+        if (body.text == "student_check") { //接收学生的上线信息
+            // console.log(APP.globalData.liveConfig)
+            // GP.setData({ liveConfig: APP.globalData.liveConfig }) //学生上线后，再设置推流地址
+            getCheck(body.student_name, body.token)
+        }
+        
+    }
+    // 3.2 学生接收事件
+    this.studentReceive = function (data) {
+        //监听单聊信息
+        var body = data.messages[0].content.msg_body
+
+        var _push = GP.data.print
+        _push.push(body.text)
+        GP.setData({ print: _push })
+
+        if (body.text == "expire") {  //token过期
+            expire()
+        }
+
+        if (body.text == "teacher_online") {  //连接成功
+            online(body)
+        }
+        if (body.text == "time_out") {
+            getTimeOut()
+        }
+    }
+    // 3.3 公共接收
+    this.utilReceive = function (data) {
+        var body = data.messages[0].content.msg_body
+        if (body.text == "ppt") { //切换场景
+            console.log(body)
+            getPPT(body.url)
+        }
+        if (body.text == "draw") { //绘画完成
+            console.log(body)
+            getDraw(body.path)
+        }
+        if (body.text == "clear") { //清除屏幕
+            console.log(body)
+            getClear(body.path)
+        }
+        if (body.text == "off") { //接收学生的下信息
+            getStudentOffline(body.student_name)
+        }
+    }
+
+    /**
+     * 4、接收事件
+     */
+    // 4.1 老师接收事件
+    function getCheck(student_name, token){
 
         //失败，返回 expire
         if ( GP.data.token == undefined){
@@ -33,12 +149,15 @@ module.exports = new (function () {
 
         if (GP.data.token == token) {
             GP.setData({
+                otherName: student_name,
                 studentName: student_name,
-                token:null,
+                // token:null, //token过期，别 的就不能进了
                 isOnline:true,
+                isStart: true,
+                isConnect: true,
                 // liveConfig: liveConfig,
             })
-            this.sendStudentOnline()
+            sendTeacherOnline()
             // this.sendStage()
         }
         else{ //分享过期
@@ -52,40 +171,8 @@ module.exports = new (function () {
 
     }
 
-    //发送绘画
-    this.sendPPT = function (url) {
-        var t_call = {
-            text: "ppt",
-            url: url
-        }
-        JMessage.sendSingleCustom(GP.data.studentName, t_call)
-    }
-    //发送绘画
-    this.sendDraw = function (path) {
-        var t_call = {
-            text: "draw",
-            path: path
-        }
-        JMessage.sendSingleCustom(GP.data.studentName, t_call)
-    }
-    //清除
-    this.sendClear = function (path) {
-        var t_call = {
-            text: "clear",
-            path: path
-        }
-        JMessage.sendSingleCustom(GP.data.studentName, t_call)
-    }
-    //学生上线
-    this.sendStudentOnline = function () {
-        var t_call = {
-            text: "on",
-            liveConfig: GP.data.liveConfig
-        }
-        JMessage.sendSingleCustom(GP.data.studentName, t_call)
-    }
-    //下线
-    this.getStudentOffline = function(){
+    //接收下线
+    function getStudentOffline(){
         wx.showModal({
             title: '学生下线',
             success: function () {
@@ -95,66 +182,7 @@ module.exports = new (function () {
     }
 
 
-    //学生接收事件
-    this.teacherReceive = function (data) {
-        var body = data.messages[0].content.msg_body
-        if (body.text == "check") { //接收学生的上线信息
-            console.log(APP.globalData.liveConfig)
-            GP.setData({ liveConfig: APP.globalData.liveConfig }) //学生上线后，再设置推流地址
-            Scripte.getCheck(body.student_name, body.token)
-        }
-
-        // if (body.text == "on") { //接收学生的上线信息
-        //     GP.getStudentOnline(body.student_name)
-        // }
-
-        if (body.text == "off") { //接收学生的下信息
-            Scripte.getStudentOffline(body.student_name)
-        }
-    }
-
-
-
-    //学生接收事件
-    this.studentOnline = function (body) {
-        //发出验证token的请求
-        var s_say = {
-            text: "check",  //验证
-            student_name: GP.data.studentName, //学生名字
-            token: GP.data.token,//验证token
-        }
-        JMessage.sendSingleCustom(GP.data.teacherName, s_say) //学生打招呼
-    }
-    //学生接收事件
-    this.studentReceive = function (body) {
-        //监听单聊信息
-        var body = data.messages[0].content.msg_body
-        if (body.text == "expire") {  //token过期
-            expire()
-        }
-        if (body.text == "ppt") { //切换场景
-            console.log(body)
-            getPPT(body.url)
-        }
-        if (body.text == "draw") { //绘画完成
-            console.log(body)
-            getDraw(body.path)
-        }
-        if (body.text == "clear") { //清除屏幕
-            console.log(body)
-            getClear(body.path)
-        }
-        if (body.text == "on") {  //连接成功
-            online()
-        }
-        if (body.text == "off") { //下线
-            getTeacherOffline()
-        }
-        if (body.text == "time_out") {
-            getTimeOut()
-        }
-    }
-
+    // 4.2 学生接收事件
     function expire(){
         wx.showModal({
             title: '温馨提示',
@@ -166,30 +194,14 @@ module.exports = new (function () {
             },
         })
     }
-    function getPPT(url){
+    function online(body){
         wx.showToast({
-            title: '更换PPT成功',
-            icon: "success",
+            title: 'online成功',
         })
-        GP.setData({
-            bgImageUrl: url,
-        })
-    }
-    function getDraw (path) {
-        GP.setData({
-            drawLine: path
-        })
-    }
-    function getClear(path) {
-        GP.setData({
-            drawLine: path
-        })
-    }
-
-    function online(){
         wx.hideLoading()
         GP.setData({
-            isConnectSuccess: true,
+            otherName: GP.data.teacherName,
+            isConnect: true,
             liveConfig: body.liveConfig
         })
     }
@@ -213,6 +225,36 @@ module.exports = new (function () {
                     url: '/pages/index/index',
                 })
             },
+        })
+    }
+
+    
+    // 4.3 公共接收事件
+    function getPPT(url) {
+        wx.showToast({
+            title: '更换PPT成功',
+            icon: "success",
+        })
+        GP.setData({
+            bgImageUrl: url,
+        })
+    }
+    function getDraw(path) {
+
+        wx.showToast({
+            title: 'drwa成功',
+        })
+        GP.setData({
+            drawLine: path
+        })
+    }
+    function getClear(path) {
+
+        wx.showToast({
+            title: 'clear成功',
+        })
+        GP.setData({
+            drawLine: path
         })
     }
 })

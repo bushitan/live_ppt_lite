@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -121,6 +121,12 @@
 					"name": "更多",
 					"pathName": "pages/sub_more/more",
 					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "room_student",
+					"pathName": "pages/room/room",
+					"query": "teacher_name=live_pvp_user_19&is_student=true"
 				}
 			]
 		}

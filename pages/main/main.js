@@ -213,6 +213,10 @@ Page({
         wx.redirectTo({
             url: '/pages/room/room',
         })
+        // wx.redirectTo({
+        //     url: '/pages/room/room?teacher_name=live_pvp_user_19&is_student=true',
+        // })
+        
     },
 
     onShow(){

@@ -130,10 +130,21 @@ module.exports = new (function () {
         }).onSuccess(function (data) {
             console.log(data)
         }).onFail(function (data) {
-            var re = that.data.logInfo + 'fail:' + JSON.stringify(data);
-            that.setData({
-                logInfo: re
-            });
+            // var re = that.data.logInfo + 'fail:' + JSON.stringify(data);
+            // that.setData({
+            //     logInfo: re
+            // });
+        });
+    } 
+    this.sendSinglePic = function (username, tempFilePaths) {
+        console.log(1111,username,tempFilePaths)
+        jim.sendSinglePic({
+            'target_username': username,
+            'image': tempFilePaths  
+        }).onSuccess(function (data) {
+            console.log("pic",data)
+        }).onFail(function (data) {
+            console.log(data)
         });
     }
     

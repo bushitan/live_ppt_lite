@@ -18,21 +18,25 @@ Page({
     data: {
         playerTab: ["直播", "PPT", "退出"],
         isTeacher: true,//是否会员
-        
         isOnline:false, //学生未上线
+        isConnect:false,
 
         // token: null,//验证是否能够连接
         token: "1",//验证是否能够连接
 
+        selfName:null, //本端账号
+        otherName:null, //对端账号
+
         teacherName: null, //IM账号
         passWord: null, //IM密码
-        studentName: null, //IM账号
+        // studentName: null, //IM账号
 
         liveConfig:{},//直播配置
         
         tabIndex:0,
         pptList:[],
         showGallery:false,
+        print:[],
     },
 
     initLive() {
@@ -59,64 +63,95 @@ Page({
      */
     onLoad: function (options) {
         GP = this
-        APP.globalData.currentPage = this //当前页面设置为全局变量
-
-        if (options.is_student == true) {
-            GP.setData({ isTeacher: false, })
-        }
-        else {
-            GP.initLive() //初始化live链接
-        }
-
-
-        GP.initIM() //登陆IM
+        // APP.globalData.currentPage = this //当前页面设置为全局变量
         Scripte.Init(APP, GP, API, JMessage) //初始化脚本
-        GP.getPPT()
-    },
-    /**IM初始化 */
-    initIM() {
-        var user_info = wx.getStorageSync(KEY.USER_INFO)
-        var teacherName = "live_pvp_user_" + user_info.user_id
-        var passWord = "123"
-        GP.setData({
-            teacherName: teacherName,
-            passWord: passWord,
+        wx.showToast({
+            title: '连接中',
+            icon:"loading",
         })
-        JMessage.init("", teacherName, passWord, GP.IMSuccess);
+        if (options.is_student == 'true') {  //学生登录，填写老师名字
+            GP.setData({ isTeacher: false, teacherName:options.teacher_name})
+            Scripte.initStudentIM()//IM学生初始化
+        }
+        else { 
+            GP.initLive() //初始化live链接
+            Scripte.initTeacherIM()//IM老师初始化
+        }
 
+        GP.getPPT()  //获取自己文件夹内容
     },
 
-    // IM登陆成功
-    IMSuccess() {
-        if(GP.data.isTeacher)
-            GP.isTeacherSuccess()
-        else
-            GP.isStudentSuccess()
-    },
-
-    isStudentSuccess() {
+    isTeacherSuccess() {
         GP.initLive() //初始化live链接
-        Scripte.studentOnline() //学生上线通知
         JMessage.JIM.onMsgReceive(function (data) {
-            Scripte.teacherReceive(body)
+            // GP.IMMsgReceive(data) //监听事件
+            Scripte.teacherReceive(data)
+            Scripte.utilReceive(data)
+        })
+    },
+    isStudentSuccess() {
+        // GP.initLive() //初始化live链接
+        Scripte.sendStudentCheck() 
+        JMessage.JIM.onMsgReceive(function (data) {
+            Scripte.studentReceive(data)
+            Scripte.utilReceive(data)
         })
         
     },
 
-    isTeacherSuccess(){
-        GP.initLive() //初始化live链接
-        JMessage.JIM.onMsgReceive(function (data) {
-            // GP.IMMsgReceive(data) //监听事件
 
-            Scripte.teacherReceive(body)
+
+
+    // 发送截图
+    snapshot(e) {
+
+        wx.chooseImage({
+            count: 1, //
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var tempFilePaths = res.tempFilePaths[0]; //获取成功，读取文件路径
+                JMessage.sendSinglePic(GP.data.otherName, tempFilePaths )
+            }
         })
+
+
+        // var url = e.detail
+        // console.log(url)
+        // // GP.switchGallery()
+        // GP.setData({
+        //     // tabIndex: 0,
+        //     bgImageUrl: url,
+        // })
+        // JMessage.sendSinglePic(GP.data.otherName, url)
+
+
+        // Scripte.sendPPT(url)
     },
 
 
+        // GP.initIM() //登陆IM
 
+    /**IM初始化 */
+    // initIM() {
+    //     var user_info = wx.getStorageSync(KEY.USER_INFO)
+    //     var selfName = "live_pvp_user_" + user_info.user_id
+    //     console.log(selfName)
+    //     var passWord = "123"
+    //     GP.setData({
+    //         selfName: selfName,
+    //         passWord: passWord,
+    //     })
+    //     JMessage.init("", selfName, passWord, GP.IMSuccess);
+    // },
 
-
-
+    // // IM登陆成功
+    // IMSuccess() {
+    //     if(GP.data.isTeacher)
+    //         GP.isTeacherSuccess()
+    //     else
+    //         GP.isStudentSuccess()
+    // },
 
 
 
@@ -212,14 +247,17 @@ Page({
             title: '退出房间',
             content:"退出后通话将断开",
             success:function(res){
-                if(res.confirm){
-                    if (GP.data.studentName != null) {
-                        var t_call = {
-                            text: "off",
-                            stage: GP.data.stage
-                        }
-                        JMessage.sendSingleCustom(GP.data.studentName, t_call)
+                if (res.confirm) {
+                    if (GP.data.otherName != null) {
+                        Scripte.sendStudentOffline(e.detail)
                     }
+                    // if (GP.data.studentName != null) {
+                    //     var t_call = {
+                    //         text: "off",
+                    //         stage: GP.data.stage
+                    //     }
+                    //     JMessage.sendSingleCustom(GP.data.studentName, t_call)
+                    // }
                     // wx.navigateBack({})
                     wx.redirectTo({
                         url: '/pages/main/main',
@@ -287,20 +325,26 @@ Page({
         });
     },
 
-    IMSuccess() {
-        console.log('teacher login success')
-    },
-
 
     onShareAppMessage: function () {
+        if( GP.data.isTeacher == false ){
+            console.log("请先结束课堂")
+            var path = "/pages/main/main"
+            return {
+                title: "有个问题需要您的帮助",
+                // imageUrl: GP.data.stage.stage_cover,
+                path: path,
+            } 
+        }
+        // teacher_name = live_pvp_user_19 & is_student=true
         var newToken = "1"
-        var path = "/pages/student/student?teacher_name=" + GP.data.teacherName + "&token=" + newToken //原始分享路径
+        var path = "/pages/room/room?is_student=true&teacher_name=" + GP.data.selfName + "&token=" + newToken //原始分享路径
         GP.setData({
             token: newToken
         })
         console.log(path)
         return {
-            title: "我给你讲个故事",
+            title: "有个问题需要您的帮助",
             // imageUrl: GP.data.stage.stage_cover,
             path: path,
         }

@@ -74,8 +74,27 @@ Component({
     },
     // 切换摄像头
     switchCamera(){
+        console.log("switch camera")
       GP.data.pusher.switchCamera() 
     },
+    //截屏
+    snapshot() {
+        console.log("snapshot")
+        GP.triggerEvent('snapshot');
+        // GP.triggerEvent('snapshot',"21321");
+        GP.data.pusher.snapshot({
+            success(res) { 
+                console.log(res)
+                // wx.previewImage({
+                //     urls: [res.tempImagePath],
+                // })
+                // GP.triggerEvent('snapshot', res.tempImagePath);
+            },
+            fail(res) { console.log(res) },
+        }) 
+    },
+
+
     // 播出状态
     switchPlay(){
       console.log(213)

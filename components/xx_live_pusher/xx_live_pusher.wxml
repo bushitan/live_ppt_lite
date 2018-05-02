@@ -14,7 +14,16 @@
     autopush="true"
     waiting-image="../../images/live_bg.jpg"
     >
-        <cover-image src='{{coverImage}}' catchtap='clickPusher'></cover-image>
+        <cover-image 
+            src='../../images/theme_heng.png' 
+            catchtap='switchCamera' 
+            class='switch_camera'
+        ></cover-image>
+        <cover-image 
+            src='../../images/ic_action_add.png' 
+            catchtap='snapshot' 
+            class='snapshot'
+        ></cover-image>
     </live-pusher>
  
  </view> 
