@@ -83,8 +83,14 @@ Page({
 
     isTeacherSuccess() {
         GP.initLive() //初始化live链接
-        JMessage.JIM.onMsgReceive(function (data) {
+        JMessage.JIM.onMsgReceive(function (data,msg) {
             // GP.IMMsgReceive(data) //监听事件
+            console.log(data, msg,"teacher")
+
+          
+
+
+
             Scripte.teacherReceive(data)
             Scripte.utilReceive(data)
         })
@@ -105,25 +111,25 @@ Page({
     // 发送截图
     snapshot(e) {
 
-        wx.chooseImage({
-            count: 1, //
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function (res) {
-                var tempFilePaths = res.tempFilePaths[0]; //获取成功，读取文件路径
-                JMessage.sendSinglePic(GP.data.otherName, tempFilePaths )
-            }
-        })
-
-
-        // var url = e.detail
-        // console.log(url)
-        // // GP.switchGallery()
-        // GP.setData({
-        //     // tabIndex: 0,
-        //     bgImageUrl: url,
+        // wx.chooseImage({
+        //     count: 1, //
+        //     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        //     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        //     success: function (res) {
+        //         var tempFilePaths = res.tempFilePaths[0]; //获取成功，读取文件路径
+        //         JMessage.sendSinglePic(GP.data.otherName, tempFilePaths )
+        //     }
         // })
-        // JMessage.sendSinglePic(GP.data.otherName, url)
+
+
+        var url = e.detail
+        console.log(url)
+        // GP.switchGallery()
+        GP.setData({
+            // tabIndex: 0,
+            bgImageUrl: url,
+        })
+        JMessage.sendSinglePic(GP.data.otherName, url)
 
 
         // Scripte.sendPPT(url)

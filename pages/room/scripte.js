@@ -114,16 +114,18 @@ module.exports = new (function () {
     // 3.3 公共接收
     this.utilReceive = function (data) {
         var body = data.messages[0].content.msg_body
+
+        if (data.messages[0].content.msg_type == "image") { //视频截图
+            getSnapshot(data.messages[0].content.msg_body.media_id)
+        }
+
         if (body.text == "ppt") { //切换场景
-            console.log(body)
             getPPT(body.url)
         }
         if (body.text == "draw") { //绘画完成
-            console.log(body)
             getDraw(body.path)
         }
         if (body.text == "clear") { //清除屏幕
-            console.log(body)
             getClear(body.path)
         }
         if (body.text == "off") { //接收学生的下信息
@@ -230,6 +232,20 @@ module.exports = new (function () {
 
     
     // 4.3 公共接收事件
+    function getSnapshot(media_id){
+        JMessage.JIM.getResource({
+            'media_id': media_id,
+        }).onSuccess(function (data) {
+            // console.log(data, "image info")
+            GP.setData({
+                bgImageUrl: data.url,
+            })
+        }).onFail(function (data) {
+            //data.code 返回码
+            //data.message 描述
+        });
+    }
+
     function getPPT(url) {
         wx.showToast({
             title: '更换PPT成功',

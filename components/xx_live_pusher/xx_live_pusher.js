@@ -80,7 +80,7 @@ Component({
     //截屏
     snapshot() {
         console.log("snapshot")
-        GP.triggerEvent('snapshot');
+        // GP.triggerEvent('snapshot');
         // GP.triggerEvent('snapshot',"21321");
         GP.data.pusher.snapshot({
             success(res) { 
@@ -88,7 +88,7 @@ Component({
                 // wx.previewImage({
                 //     urls: [res.tempImagePath],
                 // })
-                // GP.triggerEvent('snapshot', res.tempImagePath);
+                GP.triggerEvent('snapshot', res.tempImagePath);
             },
             fail(res) { console.log(res) },
         }) 
