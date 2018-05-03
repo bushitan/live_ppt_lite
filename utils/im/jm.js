@@ -141,8 +141,8 @@ module.exports = new (function () {
         jim.sendSinglePic({
             'target_username': username,
             'image': tempFilePaths  
-        }).onSuccess(function (data) {
-            console.log("pic",data)
+        }).onSuccess(function (data,msg) {
+            console.log("pic", data, msg)
         }).onFail(function (data) {
             console.log(data)
         });

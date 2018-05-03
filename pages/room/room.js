@@ -87,10 +87,6 @@ Page({
             // GP.IMMsgReceive(data) //监听事件
             console.log(data, msg,"teacher")
 
-          
-
-
-
             Scripte.teacherReceive(data)
             Scripte.utilReceive(data)
         })
@@ -134,6 +130,44 @@ Page({
 
         // Scripte.sendPPT(url)
     },
+
+    //点击背景图，打开菜单
+    stageClose() {
+        wx.showModal({
+            title: '退出房间',
+            content: "退出后通话将断开",
+            success: function (res) {
+                if (res.confirm) {
+                    if (GP.data.otherName != null) {
+                        Scripte.sendOtherOffline()
+                    }
+                    // if (GP.data.studentName != null) {
+                    //     var t_call = {
+                    //         text: "off",
+                    //         stage: GP.data.stage
+                    //     }
+                    //     JMessage.sendSingleCustom(GP.data.studentName, t_call)
+                    // }
+                    // wx.navigateBack({})
+                    wx.redirectTo({
+                        url: '/pages/main/main',
+                    })
+                }
+            },
+        })
+    },
+    onUnload() {
+        JMessage.JIM.loginOut();
+        JMessage.JIM = null
+    },
+
+
+
+
+
+
+
+
 
 
         // GP.initIM() //登陆IM
@@ -247,31 +281,7 @@ Page({
     /**
      * 1 菜单功能
      */
-    //点击背景图，打开菜单
-    stageClose() {
-        wx.showModal({
-            title: '退出房间',
-            content:"退出后通话将断开",
-            success:function(res){
-                if (res.confirm) {
-                    if (GP.data.otherName != null) {
-                        Scripte.sendStudentOffline(e.detail)
-                    }
-                    // if (GP.data.studentName != null) {
-                    //     var t_call = {
-                    //         text: "off",
-                    //         stage: GP.data.stage
-                    //     }
-                    //     JMessage.sendSingleCustom(GP.data.studentName, t_call)
-                    // }
-                    // wx.navigateBack({})
-                    wx.redirectTo({
-                        url: '/pages/main/main',
-                    })
-                }
-            },
-        })
-    },
+  
 
 
 

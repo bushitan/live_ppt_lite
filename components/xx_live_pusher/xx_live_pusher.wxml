@@ -15,12 +15,12 @@
     waiting-image="../../images/live_bg.jpg"
     >
         <cover-image 
-            src='../../images/theme_heng.png' 
+            src='../../images/live_switch.png' 
             catchtap='switchCamera' 
             class='switch_camera'
         ></cover-image>
         <cover-image 
-            src='../../images/ic_action_add.png' 
+            src='../../images/live_snapshot.png' 
             catchtap='snapshot' 
             class='snapshot'
         ></cover-image>

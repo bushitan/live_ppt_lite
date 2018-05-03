@@ -19,33 +19,40 @@
 
 <view class='team page__p_a_15 page_bg_white' hidden='{{!isTeamMember}}'>
     <view class='rol'>
-        <navigator class='node' url="/pages/sub_file/file" >
+        <!-- <navigator class='node' url="/pages/sub_file/file" >
             <image src='../../images/share.png'></image><view>共享文件夹</view>
+        </navigator> -->
+        <navigator class='node' url="/pages/sub_roster/roster">
+            <image src='../../images/share.png'></image><view>通讯录</view>
         </navigator>
         <navigator class='node' url="/pages/sub_notice/notice">
             <image src='../../images/share.png'></image><view>通知公告</view>
         </navigator>
-        <navigator class='node' url="/pages/sub_notice/notice">
-            <image src='../../images/share.png'></image><view>邮箱</view>
+        <navigator class='node' url="/pages/sub_meet_index/meet_index">
+            <image src='../../images/share.png'></image><view>会务</view>
         </navigator>
-        <navigator class='node' url="/pages/sub_issue/issue">
-            <image src='../../images/share.png'></image><view>问题反馈</view>
-        </navigator> 
-    </view>  
-    <view style='height:15px;'></view>
-    <view class='rol'>
         <navigator class='node' url="/pages/sub_train/train">
             <image src='../../images/share.png'></image><view>团队培训</view>
         </navigator>
-        <navigator class='node' url="/pages/sub_meet_index/meet_index">
-            <image src='../../images/share.png'></image><view>会务直播</view>
-        </navigator>
-        <navigator class='node' url="/pages/sub_roster/roster">
-            <image src='../../images/share.png'></image><view>通讯录</view>
-        </navigator>
+    </view>  
+    <view style='height:15px;'></view>
+    <view class='rol'>
+        <!-- <navigator class='node' url="/pages/sub_train/train">
+            <image src='../../images/share.png'></image><view>团队培训</view>
+        </navigator> -->
+        <navigator class='node' url="/pages/sub_issue/issue">
+            <image src='../../images/share.png'></image><view>问题反馈</view>
+        </navigator> 
         <navigator class='node' url="/pages/sub_more/more">
             <image src='../../images/share.png'></image><view>更多</view>
         </navigator> 
+         <navigator class='node' >
+        </navigator> 
+         <navigator class='node' >
+        </navigator> 
+         <!-- <navigator class='node' url="/pages/sub_notice/notice">
+            <image src='../../images/share.png'></image><view>邮箱</view>
+        </navigator>  -->
     </view>
     
 </view>
@@ -58,6 +65,13 @@
     </view>
      <cover-horizon list="{{tempList}}" catchclick="toXXArticle"></cover-horizon> 
 </view> -->
+<navigator url="../../pages/self/self"  class='team page__p_a_15 page_bg_white' hidden='{{!isTeamMember}}'>
+    <view class='header page_size_10 '>
+        <view>团队共享文件</view>
+        <view class='page_font_green '>详情</view>
+    </view> 
+</navigator> 
+<view class="page__line_gray" hidden='{{!isTeamMember}}'></view>
 <navigator url="../../pages/self/self"  class='team page__p_a_15 page_bg_white' >
     <view class='header page_size_10 '>
         <view>我的文件</view>

@@ -228,7 +228,7 @@ Page({
         // GP.checkTimeOut(options)
         // GP.onInit()
         Scripte.Init(APP, GP, API, APP.globalData.JMessage)
-        GP.initIM()
+        // GP.initIM()
         GP.getStoryList()
 
         // GP.getTag() //获取标签列表

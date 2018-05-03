@@ -69,7 +69,7 @@ module.exports = new (function () {
         sendOtherMessage({ text: "clear", path: path })
     }
     //下线通知
-    function sendStudentOffline() {
+    this.sendOtherOffline = function() {
         sendOtherMessage({ text: "off", })
     }
     // 向对方发送信息
@@ -129,7 +129,7 @@ module.exports = new (function () {
             getClear(body.path)
         }
         if (body.text == "off") { //接收学生的下信息
-            getStudentOffline(body.student_name)
+            getStudentOffline()
         }
     }
 
@@ -176,9 +176,12 @@ module.exports = new (function () {
     //接收下线
     function getStudentOffline(){
         wx.showModal({
-            title: '学生下线',
+            title: '对方下线',
             success: function () {
-                wx.navigateBack()
+                // wx.navigateBack()
+                wx.redirectTo({
+                    url: '/pages/main/main',
+                })
             },
         })
     }
