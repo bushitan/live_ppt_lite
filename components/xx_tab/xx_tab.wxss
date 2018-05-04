@@ -1,6 +1,7 @@
 
 .scroll_box{
-    width:750rpx;
+    /* width:750rpx; */
+    width:100%;
      white-space: nowrap;  
     overflow:scroll;
 }
@@ -10,7 +11,8 @@
 
 /* tab选择按钮 */
 .tab_scroll{
-    padding: 0 15px;
+    /* padding: 0 15px; */
+    padding: 0 20px 0 0;
     /* width:100%; */
 }
 .tab_menu{

@@ -3,14 +3,20 @@
 
 
 <scroll-view scroll-x="true"  class='scroll_box'>
-    <view  class='cover_node ' >
+    <block wx:if="{{list.length==0}}">
+        <slot></slot>
+    </block>
+    <view  class='cover_node '   wx:else>
         <block wx:for="{{list}}" wx:key="index">
             <view class='tab' > 
-                <view class='icon'>
-                    <image src='{{icon}}' ></image>
+                <view class='icon icon_tag' >
+                    <picker bindchange="bindPickerChange" data-src='{{item.url}}' value="{{tagIndex}}"  range="{{tagList}}">
+                        <image src='../../images/file_tag.png' ></image>
+                    </picker>
                 </view>
-                <image src='{{item}}' class='cover_image' catchtap='click' data-src="{{item}}"  ></image>
-                <view class='icon num'>
+                
+                <image src='{{item.url}}' mode='aspectFit'class='cover_image' catchtap='click' data-src="{{item.url}}"  ></image>
+                <view class=' num'>
                     {{index+1}}
                 </view>
             </view>

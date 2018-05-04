@@ -68,7 +68,10 @@ page{
 }
 
 
-
+.none_content{
+    font-size: 9pt;
+    color: #888;
+}
 
 
 

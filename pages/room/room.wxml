@@ -62,9 +62,11 @@
 </view>
 
         <!-- height="calc(100vh - 240px - 75px)" -->
+        <!-- height="calc(750rpx - 30px)" -->
  <view class='painter'  hidden="{{ showGallery }}" wx:if="{{true}}">
     <xx-painter 
-        height="calc(750rpx - 30px)"
+        width="300px"
+        height="300px"
         catchcomplete="drawComplete" 
         catchclear="drawClear" 
         bg="{{bgImageUrl}}" 
@@ -77,25 +79,79 @@
     <view class='to_index'>
         <button type='primary'  catchtap='addImage'>本地图片</button>
     </view>  -->
-    
-    <view class='tag'>
-        <xx-tag 
-            list="{{tagNameList}}" 
-            initindex="{{tagIndex}}"
-            catch:add="addTag"
-            bind:click="clickTag"
-            bind:long="menuTag"
-            showAdd="{{false}}"
-        ></xx-tag>
+    <view   class='tab'>
+    <xx-tab list="{{playerTab}}" bind:click="clickTab" 
+        colorunselect="#888" colorselect="#efa234" mode="scroll" initindex="{{tabIndex}}" />
     </view>
-    <view style='height:5px'></view>
-    <view class='gallery'>
-        <xx-gallery 
-            list="{{pptList}}" 
-            bind:click="clickPPTImage"
-            bind:long="menuImage"  
-        ></xx-gallery> 
-    </view>
+        <view style='height:5px'></view>
+        <view hidden='{{tabIndex!=0}}'>
+            <view style='height:5px'></view>
+            <view class='gallery'>
+                <xx-gallery 
+                    list="{{pptList}}" 
+                    bind:click="clickPPTImage"
+                    bind:long="menuImage"
+                >
+                    <view  class='none_content'>截图将保存在这里</view>
+                </xx-gallery> 
+            </view>
+        </view>
+
+
+        <view hidden='{{tabIndex!=1}}'>
+            <view class='tag' >
+                <xx-tag 
+                    list="{{tagNameList}}" 
+                    initindex="{{tagIndex}}"
+                    catch:add="addTag"
+                    bind:click="clickTag"
+                    bind:long="menuTag"
+                    showAdd="{{false}}"
+                ></xx-tag>
+            </view>
+            <view style='height:5px'></view>
+            <view class='gallery'>
+                <xx-gallery 
+                    list="{{pptList}}" 
+                    bind:click="clickPPTImage"
+                    bind:long="menuImage"  
+                >
+                    <view  class='none_content'>暂无文件，在 首页->我的文件 上传</view>
+                </xx-gallery> 
+            </view>
+        </view>
+        
+        <view hidden='{{tabIndex!=2}}'>
+            <view  wx:if="{{isTeamMember}}">
+                <view style='height:5px'></view>
+                <view class='tag' >
+                    <xx-tag 
+                        list="{{tagNameList}}" 
+                        initindex="{{tagIndex}}"
+                        catch:add="addTag"
+                        bind:click="clickTag"
+                        bind:long="menuTag"
+                        showAdd="{{false}}"
+                    ></xx-tag>
+                </view>
+                <view style='height:5px'></view>
+                <view class='gallery'>
+                    <xx-gallery 
+                        list="{{pptList}}" 
+                        bind:click="clickPPTImage"
+                        bind:long="menuImage"  
+                    >
+                        <view  class='none_content'>暂无文件，在 首页->我的文件 上传</view>
+                    </xx-gallery> 
+                </view>
+            </view>
+            <view wx:else class='none_content'>
+                <view style='height:5px'></view>
+                还未加入团队
+            </view>
+        </view>
+        
+
     <view style='height:48px'></view>
     <view class='to_canvas'  catchtap='switchGallery'>
         <view class='font '>返回画板</view>

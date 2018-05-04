@@ -17,25 +17,29 @@
         matrix : matrix,
     }
 </wxs>
-<block wx:for="{{foo.matrix(list)}}" wx:key="index_i" wx:for-item="i">
-    <view class='node'>
-        <block wx:for="{{i}}" wx:key="index_j" wx:for-item="j">
-            <image 
-                bindtap='clickEmoji'
-                bindlongpress="long"
-                data-image_url="{{j.url}}"
-                src='{{j.url}}' 
-                mode='aspectFit' 
-            ></image>
-<!-- {{i.length}} -->
-            <!-- <view hidden='{{index_j==2}}'></view> -->
-        </block>
-        <view class='space' hidden='{{i.length==1?false:true}}'></view>
-        <view class='space' hidden='{{i.length==1?false:true}}'></view>
-        <view class='space' hidden='{{i.length==2?false:true}}'></view>
-    </view>
+<block wx:if="{{list.length==0}}">
+    <slot></slot>
 </block>
-
+<block wx:else>
+    <block wx:for="{{foo.matrix(list)}}" wx:key="index_i" wx:for-item="i">
+        <view class='node'>
+            <block wx:for="{{i}}" wx:key="index_j" wx:for-item="j">
+                <image 
+                    bindtap='clickEmoji'
+                    bindlongpress="long"
+                    data-image_url="{{j.url}}"
+                    src='{{j.url}}' 
+                    mode='aspectFit' 
+                ></image>
+    <!-- {{i.length}} -->
+                <!-- <view hidden='{{index_j==2}}'></view> -->
+            </block>
+            <view class='space' hidden='{{i.length==1?false:true}}'></view>
+            <view class='space' hidden='{{i.length==1?false:true}}'></view>
+            <view class='space' hidden='{{i.length==2?false:true}}'></view>
+        </view>
+    </block>
+</block>
 
 
 

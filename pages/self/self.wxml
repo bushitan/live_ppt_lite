@@ -1,42 +1,32 @@
 
-<!-- <import src="../../template/template.wxml"/>
 
- <template is="bg"></template>  -->
-<view class='title page_bg_green'>
-    <label class='line'>TeamHelper</label>
-    <label catchtap='toCompany'>索骏科技</label>
-</view>
-
-<swiper class='swiper'>
-    <swiper-item>
-        <image src='../../images/swiper1.png'></image>
-    </swiper-item>
-</swiper>
- <view  class='tab'>
-    <xx-tab list="{{playerTab}}" bind:click="clickTab" 
-    colorunselect="#888" colorselect="#efa234" mode="scroll" />
-</view>
-<view style='height:5px;'></view>
-
-<view class='temp page__p_a_15 page_bg_white'>
-    <view class='header page_size_10 ' >
-        <view>我的文件：</view>
-        <view class='page_font_green '>添加</view>
+<view class='my page__p_a_15 page_bg_white'>
+    <view class='header page_size_10 page__line_gray'>
+        <view>临时文件：</view>
+        <view class='page_font_green ' catchtap='addTempImage'>添加</view>
     </view>
-     <cover-horizon list="{{tempList}}" catchclick="toXXArticle"></cover-horizon> 
+    <view style='height:10px;'></view>
+      <cover-horizon 
+        list="{{tempList}}" 
+        catchclick="toXXArticle"
+        tagList="{{tagNameList}}" 
+        bind:choiceTag="choiceTag"
+    >
+        <view class='none_content' >暂无临时文件，请添加（或视频求助截图）</view>
+    </cover-horizon>  
+     
 </view>
 
 <view style='height:15px;'></view>
 
 <view class='my page__p_a_15 page_bg_white'>
     <view class='header page_size_10 page__line_gray'>
-        <view>企业共享文件：</view>
-        <view class='page_font_green '>添加</view>
+        <view>我的文件：</view>
+        <!-- <view class='page_font_green '>添加</view> -->
     </view>
     <view class='tag'>
         <xx-tag 
             list="{{tagNameList}}" 
-            initindex="{{tagIndex}}"
             catch:add="addTag"
             bind:click="clickTag"
             bind:long="menuTag"
@@ -47,18 +37,16 @@
             list="{{myList}}" 
             bind:click="clickImage"
             bind:long="menuImage"  
-        ></xx-gallery> 
+        >
+            <view  class='none_content'>暂无文件，在临时文件中选择标签上传</view>
+        </xx-gallery> 
     </view>
-</view>
-<view style='height:48px'></view>
-<view class='to_index'  catchtap='toTeacher'>
-    <view class='font '>视频求助</view>
 </view>
 
   <xx-dialog data-model="dialogvisible" visible="{{dialogvisible}}" position="{{position}}" title="{{title}}" fullscreen="{{options.fullscreen}}" opacity="{{opacity}}" show-close="{{options.showclose}}" show-footer="{{options.showfooter}}" width="{{width}}"
-    close-on-click-modal="{{options.closeonclickmodal}}" bindclose="handleClose" bindopen="handleOpen" bindconfirm="handleConfirm">
+    close-on-click-modal="{{options.closeonclickmodal}}" bindclose="handleClose" bindopen="handleOpen" bindconfirm="inputConfirm">
     <view class='tag_input' >
-      <input placeholder="请输入标签" focus="{{focus}}" ></input>
+      <input placeholder="请输入标签" focus="{{focus}}" bindinput="bindInputTagName" value="{{inputTagName}}" ></input>
     </view>
   </xx-dialog>
 

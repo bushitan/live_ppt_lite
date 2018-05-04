@@ -51,7 +51,7 @@ Component({
     data: {
         MODE_SCROLL: "scroll",
         MODE_MENU: "menu",
-        initindex:0,
+        // initindex:-1,
   },
 
   /**
@@ -75,6 +75,13 @@ Component({
             initindex: e.currentTarget.dataset.index
         })
         this.triggerEvent('click', e.currentTarget.dataset.index);
+    },
+    all(e){
+        console.log(e.currentTarget.dataset.index)
+        this.setData({
+            initindex: e.currentTarget.dataset.index
+        })
+        
     },
     add(){
         this.triggerEvent('add');

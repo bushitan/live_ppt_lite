@@ -14,7 +14,9 @@
 }
 
 .painter{
-    padding: 0 15px;
+    /* padding: 0 15px; */
+    display: flex;
+    justify-content: center;
 }
 
 .player{

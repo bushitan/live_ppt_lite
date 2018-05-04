@@ -16,7 +16,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        playerTab: ["直播", "PPT", "退出"],
+        playerTab: ["临时文件", "我的文件", "团队共享文件"],
+        isTeamMember: false,//是否加入团队
         isTeacher: true,//是否会员
         isOnline:false, //学生未上线
         isConnect:false,
@@ -78,7 +79,8 @@ Page({
             Scripte.initTeacherIM()//IM老师初始化
         }
 
-        GP.getPPT()  //获取自己文件夹内容
+        // GP.getPPT()  //获取自己文件夹内容
+        GP.getTempFile()
     },
 
     isTeacherSuccess() {
@@ -103,10 +105,6 @@ Page({
 
 
 
-
-    // 发送截图
-    snapshot(e) {
-
         // wx.chooseImage({
         //     count: 1, //
         //     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -117,18 +115,26 @@ Page({
         //     }
         // })
 
-
+    // 发送截图
+    snapshot(e) {
         var url = e.detail
         console.log(url)
-        // GP.switchGallery()
+        //更改canvas背景
         GP.setData({
             // tabIndex: 0,
             bgImageUrl: url,
         })
-        JMessage.sendSinglePic(GP.data.otherName, url)
+        //保存到临时文件
+        var _list = APP.globalData.tempList
+        _list.unshift({url:url})
+        APP.globalData.tempList = _list
+        //实时更新
+        if (GP.data.tabIndex == 0)
+            GP.setData({ pptList: _list})
 
-
-        // Scripte.sendPPT(url)
+        //发送图片
+        if (GP.data.otherName)  
+            JMessage.sendSinglePic(GP.data.otherName, url)
     },
 
     //点击背景图，打开菜单
@@ -252,10 +258,60 @@ Page({
         GP.setData({
             tabIndex:e.detail
         })
-        if (e.detail == 2){
-            GP.stageClose()
+        if (e.detail == 0) {
+            GP.getTempFile()
+        }
+        if (e.detail == 1) {
+            GP.getTag()
+        }
+        if (e.detail == 2) {
+            GP.setData({ pptList: APP.globalData.tempList })
         }
     },
+    getTempFile() {
+        GP.setData({ pptList: APP.globalData.tempList })
+    },
+    // 3 获取标签列表
+    getTag() {
+        GP.setData({ pptList: [] })
+        API.Request({
+            url: API.PPT_SELF_GET_TAG,
+            success: function (res) {
+            
+                var tag_list = res.data.tag_list
+                var tagNameList = []
+                for (var i = 0; i < tag_list.length; i++)
+                    tagNameList.push(tag_list[i].tag_name)
+                GP.setData({
+                    tagList: tag_list,
+                    tagNameList: tagNameList,
+                })
+                GP.clickTag()
+            },
+        })
+    },
+    clickTag(e) {
+        var index = e == undefined ? 0 : e.detail
+        var tag_id = GP.data.tagList[index].tag_id
+        API.Request({
+            url: API.PPT_SELF_GET_FILE,
+            data: { tag_id: tag_id },
+            success: function (res) {
+                GP.setData({
+                    pptList: res.data.file_list
+                })
+            },
+        })
+    },
+
+
+
+
+
+
+
+
+
     // 发送ppt
     clickPPTImage(e){
         var url = e.detail

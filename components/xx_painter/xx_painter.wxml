@@ -9,7 +9,7 @@
         <view class="box box3" bindtap="colorSelect" data-param="#cc0033"></view>
         <view class="box box4" bindtap="colorSelect" data-param="#ff9900"></view>
         <view class="box box5" bindtap="clearCanvasEvent"></view>
-        <view class="box box5" bindtap="clearCanvasEvent"></view>
+        <!-- <view class="box box5" bindtap="clearCanvasEvent"></view> -->
         <view class="react " bindtap="clickGallery">我的图片</view>
     </view>
     <!--画布区域-->

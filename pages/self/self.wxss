@@ -49,6 +49,10 @@ page{
     margin-top: 5px;
     /* padding: 15px 15px 0; */
 }
+/* .my .none_file{
+    font-size: 9pt;
+    color: #888;
+} */
 
 .to_index{
     z-index: 9999;

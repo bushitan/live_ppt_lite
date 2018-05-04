@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -126,6 +126,12 @@
 					"id": 15,
 					"name": "room_student",
 					"pathName": "pages/room/room",
+					"query": "teacher_name=live_pvp_user_19&is_student=true"
+				},
+				{
+					"id": -1,
+					"name": "我的文件",
+					"pathName": "pages/self/self",
 					"query": "teacher_name=live_pvp_user_19&is_student=true"
 				}
 			]

@@ -38,7 +38,7 @@ Page({
 
         tagList: [],
         tagNameList: [],   
-        tagIndex:0,
+        // tagIndex:0,
 
         focus:false, //自动获取焦点
         dialogvisible: false,
@@ -61,13 +61,25 @@ Page({
         })
     },
 
-    //1 点击标签
-    clickTab: function (e) {
-        if (e.detail == 0)
-            Scripte.ShowStory()
-        else
-            Scripte.ShowMember()
+    //Temp 临时文件
+    //上传临时文件到指定目录下
+    choiceTag(e){
+        console.log(e.detail)
+        var tagIndex = e.detail.tagIndex
+        var url = e.detail.url
+        var tag_id = GP.data.tagList[tagIndex].tag_id
+        console.log(tag_id,url)
+        // TODO 上传文件
+
     },
+
+    // //1 点击标签
+    // clickTab: function (e) {
+    //     if (e.detail == 0)
+    //         Scripte.ShowStory()
+    //     else
+    //         Scripte.ShowMember()
+    // },
 
     // 2.1 获取临时图片
     addTempImage() {
@@ -79,8 +91,9 @@ Page({
             success: function (res) {
                 var tempFilePaths = res.tempFilePaths
                 var _list = APP.globalData.tempList 
-                for( var i= 0;i<tempFilePaths.length;i++ ){
-                    _list.push({ url: tempFilePaths[i] })
+                for (var i = 0; i < tempFilePaths.length; i++) {
+                    // _list.push({ url: tempFilePaths[i] })
+                    _list.unshift( {url:tempFilePaths[i]} )
                 }
                 APP.globalData.tempList = _list
                 GP.getTempImageList()
@@ -90,7 +103,7 @@ Page({
     },
     // 2.2 获取临时图片
     getTempImageList(){
-        return
+        // return
         GP.setData({ tempList: APP.globalData.tempList })
     },
 
@@ -170,11 +183,19 @@ Page({
     // 3 获取标签列表
     getTag(){
         API.Request({
-            url: API.PVP_STORY_GET_LIST,
+            url: API.PPT_SELF_GET_TAG,
             success: function (res) {
+                // GP.setData({
+                //     tagList: [{ name: "我的",tag_id:1},],
+                //     tagNameList: ["我的", "frjie", "143321", "我的", "12", "frjie",  "143321", "我的", "frjie", "143321"],   
+                // })
+                var tag_list = res.data.tag_list
+                var tagNameList = []
+                for (var i = 0; i < tag_list.length;i++)
+                    tagNameList.push(tag_list[i].tag_name)
                 GP.setData({
-                    tagList: [{ name: "我的",tag_id:1},],
-                    tagNameList: ["我的", "frjie", "143321", "我的", "12", "frjie",  "143321", "我的", "frjie", "143321"],   
+                    tagList:tag_list,
+                    tagNameList:tagNameList,
                 })
                 GP.clickTag()
                 // var tag_id = 1
@@ -183,41 +204,68 @@ Page({
         })
     },
 
+    clickTag(e) {
+        var index = e==undefined? 0 :e.detail
+        var tag_id = GP.data.tagList[index].tag_id
+        GP.getImageByTag(tag_id)
+    },
     // 4 获取标签下的图片
     getImageByTag(tag_id){
         console.log(tag_id)
         API.Request({
-            url: API.PVP_STORY_GET_LIST,
+            url: API.PPT_SELF_GET_FILE,
+            data: { tag_id: tag_id},
             success: function (res) {
-                var _myList = [
-                    { url: "http://img.12xiong.top/ppt_read1.jpg" },
-                    { url: "http://img.12xiong.top/ppt_read2.jpg" },
-                    { url: "http://img.12xiong.top/ppt_read1.jpg" },
-                    { url: "http://img.12xiong.top/ppt_read2.jpg" },
-                    { url: "http://img.12xiong.top/ppt_read2.jpg" },
-                ]
                 GP.setData({
-                    myList: _myList
+                    myList: res.data.file_list
                 })
+                // var _myList = [
+                //     { url: "http://img.12xiong.top/ppt_read1.jpg" },
+                //     { url: "http://img.12xiong.top/ppt_read2.jpg" },
+                //     { url: "http://img.12xiong.top/ppt_read1.jpg" },
+                //     { url: "http://img.12xiong.top/ppt_read2.jpg" },
+                //     { url: "http://img.12xiong.top/ppt_read2.jpg" },
+                // ]
+
             },
         })
     },
 
-    clickTag(e){
-        var index = e ? e.detail : GP.data.tagIndex
-        var tag_id = GP.data.tagList[index].tag_id
-        GP.getImageByTag(tag_id)
-    },
 
     // 5 增加标签
     addTag(){
-
         this.setData({
             focus:true,
             dialogvisible: true,
+            inputTagName: "",
         })
     },
-
+    //输入标签名字
+    bindInputTagName(e){
+        var input = e.detail.value;
+        console.log(input)
+        GP.setData({ inputTagName:input})
+    },
+    //确定 --- 添加标签
+    inputConfirm(){
+        if (GP.data.inputTagName == ""){
+            wx.showModal({
+                title: '添加标签失败',
+                content: '未输入标签名字',
+            })
+            return
+        }
+        API.Request({
+            url: API.PPT_SELF_ADD_TAG,
+            data: { tag_name: GP.data.inputTagName },
+            success: function (res) {
+                wx.showModal({
+                    title: '添加标签成功',
+                })
+                GP.getTag()
+            },
+        })
+    },
     // 6 删除标签
     deleteTag() { 
         if (GP.data.myList.length > 0){
@@ -227,12 +275,12 @@ Page({
             })
             return 
         }
-        API.Request({
-            url: API.PVP_STORY_GET_LIST,
-            success: function (res) {
-               
-            },
-        })
+        // API.Request({
+        //     url: API.PVP_STORY_GET_LIST,
+        //     success: function (res) {
+        //         GP.getTag()
+        //     },
+        // })
     },
 
     // 7 更新标签
@@ -276,68 +324,12 @@ Page({
     onLoad: function (options) {
         GP = this
         APP.globalData.currentPage = this //当前页面的钩子
-        // GP.checkTimeOut(options)
-        // GP.onInit()
+
         Scripte.Init(APP, GP, API, APP.globalData.JMessage)
-        GP.initIM()
-        GP.getStoryList()
 
         GP.getTag() //获取标签列表
     },
 
-    /**IM初始化 */
-    initIM(){
-        var user_info = wx.getStorageSync(KEY.USER_INFO)
-        var domain = "?vhost=live.12xiong.top"
-        var pushBase = "rtmp://video-center.alivecdn.com/pvplive/"
-        var playerBase = "rtmp://live.12xiong.top/pvplive/"
-        var teacherName = "live_pvp_user_" + user_info.user_id
-        var passWord = "123"
-
-        var liveConfig = {
-            teacherName: teacherName,
-            teacherPusher: pushBase + "room_" + user_info.user_id + "_teacher" + domain,
-            teacherPlayer: playerBase + "room_" + user_info.user_id + "_teacher",
-            studentPusher: pushBase + "room_" + user_info.user_id + "_student" + domain,
-            studentPlayer: playerBase + "room_" + user_info.user_id + "_student",
-        }
-        console.log(liveConfig)
-
-        GP.setData({
-            liveConfig: liveConfig,
-            teacherName: teacherName,
-            passWord: passWord,
-        })
-        APP.globalData.liveConfig = liveConfig
-        APP.initIM(teacherName, passWord)
-    },
-    IMSuccess(){
-        console.log('denglu chen gong')
-    },
-    IMMsgReceive(){
-        
-    },
-
-    //获取故事列表
-    getStoryList() {
-        GP.setData({
-            pptList: [
-                { url: "http://img.12xiong.top/ppt_read1.jpg" },
-                { url: "http://img.12xiong.top/ppt_read2.jpg" },
-        ],
-        })
-        // API.Request({
-        //     url: API.PVP_STORY_GET_LIST,
-        //     success: function (res) {
-        //         console.log(res.data)
-        //         APP.globalData.storyList = res.data.stage_list
-        //         GP.setData({
-        //             pptList: res.data.ppt_list,
-        //         })
-        //         // wx.setStorageSync("story_list", res.data.stage_list)
-        //     },
-        // })
-     },
 
 
     //分享好友
