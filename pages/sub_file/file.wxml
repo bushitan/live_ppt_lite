@@ -1,13 +1,14 @@
 
+
+
 <view class='my page__p_a_15 page_bg_white'>
     <view class='header page_size_10 page__line_gray'>
-        <view>企业共享文件：</view>
-        <!-- <view class='page_font_green '>添加标签</view> -->
+        <view>团队共享文件：</view>
+        <!-- <view class='page_font_green '>添加</view> -->
     </view>
     <view class='tag'>
         <xx-tag 
             list="{{tagNameList}}" 
-            initindex="{{tagIndex}}"
             catch:add="addTag"
             bind:click="clickTag"
             bind:long="menuTag"
@@ -19,15 +20,16 @@
             list="{{myList}}" 
             bind:click="clickImage"
             bind:long="menuImage"  
-        ></xx-gallery> 
+        >
+            <view  class='none_content'>暂无文件，在临时文件中选择标签上传</view>
+        </xx-gallery> 
     </view>
 </view>
 
-
   <xx-dialog data-model="dialogvisible" visible="{{dialogvisible}}" position="{{position}}" title="{{title}}" fullscreen="{{options.fullscreen}}" opacity="{{opacity}}" show-close="{{options.showclose}}" show-footer="{{options.showfooter}}" width="{{width}}"
-    close-on-click-modal="{{options.closeonclickmodal}}" bindclose="handleClose" bindopen="handleOpen" bindconfirm="handleConfirm">
+    close-on-click-modal="{{options.closeonclickmodal}}" bindclose="handleClose" bindopen="handleOpen" bindconfirm="inputConfirm">
     <view class='tag_input' >
-      <input placeholder="请输入标签" focus="{{focus}}" ></input>
+      <input placeholder="请输入标签" focus="{{focus}}" bindinput="bindInputTagName" value="{{inputTagName}}" ></input>
     </view>
   </xx-dialog>
 

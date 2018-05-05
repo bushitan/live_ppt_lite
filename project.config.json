@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -132,6 +132,12 @@
 					"id": -1,
 					"name": "我的文件",
 					"pathName": "pages/self/self",
+					"query": "teacher_name=live_pvp_user_19&is_student=true"
+				},
+				{
+					"id": -1,
+					"name": "通讯录明细",
+					"pathName": "pages/sub_roster_info/roster_info",
 					"query": "teacher_name=live_pvp_user_19&is_student=true"
 				}
 			]

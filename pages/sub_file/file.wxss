@@ -5,6 +5,18 @@ page{
 }
 
 /* 标题 */
+.title{
+    color: #fff;
+    padding:35px 15px 15px;
+}
+.title label{
+    font-size:11pt;
+    margin-right:15px; 
+}
+.title .line{
+    /* border-bottom: #fff 2px solid; */
+    font-weight: bold;
+}
 /* 滚动图 */
 .swiper{
     width: 750rpx;
@@ -37,6 +49,10 @@ page{
     margin-top: 5px;
     /* padding: 15px 15px 0; */
 }
+/* .my .none_file{
+    font-size: 9pt;
+    color: #888;
+} */
 
 .to_index{
     z-index: 9999;

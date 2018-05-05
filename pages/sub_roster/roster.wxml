@@ -1,8 +1,8 @@
 <!--pages/company/company.wxml-->
 
-<block wx:for="{{sectionList}}">
+<block wx:for="{{rosterTagList}}">
     <view class='page__p_15 page_bg_white roster space'>
-        <xx-navigte   catchclick="clickPhone" >
+        <xx-navigte   catchclick="click" data-roster_tag_id="{{item.roster_tag_id}}">
             <image slot="icon" src="../../images/share.png"></image> 
             <view slot="left" >{{item.name}}</view> 
             <view slot="right"></view>

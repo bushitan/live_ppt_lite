@@ -1,6 +1,6 @@
 <!-- <view class='title page_bg_green'>
     <label class='line'>TeamHelper</label>
-    <label catchtap='toCompany' hidden='{{!isTeamMember}}'>索骏科技</label>
+    <label catchtap='toCompany' hidden='{{!teamID}}'>索骏科技</label>
 </view> -->
 
 <swiper class='swiper'>
@@ -10,14 +10,14 @@
 </swiper>
 <view style='height:10px;'></view>
 
-<view class='team page__p_a_15 page_bg_white' hidden='{{isTeamMember}}'>
-    <view class='header page_size_10 ' catchtap='join'>
+<view class='team page__p_a_15 page_bg_white' hidden='{{teamID}}'>
+    <view class='header page_size_10 ' >
         <view>您还未加入团队</view>
-        <view class='page_font_green '>加入团队</view>
+        <view class='page_font_green ' catchtap='join'> 加入团队</view>
     </view>
 </view> 
 
-<view class='team page__p_a_15 page_bg_white' hidden='{{!isTeamMember}}'>
+<view class='team page__p_a_15 page_bg_white' hidden='{{!teamID}}'>
     <view class='rol'>
         <!-- <navigator class='node' url="/pages/sub_file/file" >
             <image src='../../images/share.png'></image><view>共享文件夹</view>
@@ -65,13 +65,13 @@
     </view>
      <cover-horizon list="{{tempList}}" catchclick="toXXArticle"></cover-horizon> 
 </view> -->
-<navigator url="../../pages/self/self"  class='team page__p_a_15 page_bg_white' hidden='{{!isTeamMember}}'>
+<navigator url="../../pages/sub_file/file"  class='team page__p_a_15 page_bg_white' hidden='{{!teamID}}'>
     <view class='header page_size_10 '>
         <view>团队共享文件</view>
         <view class='page_font_green '>详情</view>
     </view> 
 </navigator> 
-<view class="page__line_gray" hidden='{{!isTeamMember}}'></view>
+<view class="page__line_gray" hidden='{{!teamID}}'></view>
 <navigator url="../../pages/self/self"  class='team page__p_a_15 page_bg_white' >
     <view class='header page_size_10 '>
         <view>我的文件</view>

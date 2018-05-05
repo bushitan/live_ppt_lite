@@ -1,24 +1,44 @@
 // pages/company/company.js
+const APP = getApp()
+var API = require('../../utils/api.js');
+var KEY = require('../../utils/key.js');
+var GP
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        sectionList: [
-            { name: "农网部" },
-            { name: "网络部" },
-        ],
+        rosterTagList: [],
+        teamID :false,
     },
     //点击背景图，打开菜单
-    back() {
-        wx.navigateBack({})
+    click(e){
+        var roster_tag_id = e.currentTarget.dataset.roster_tag_id
+        console.log(roster_tag_id)
+        wx.navigateTo({
+            url: '/pages/sub_roster_info/roster_info?roster_tag_id=' + roster_tag_id,
+        })
     },
+    getRosterTag() {
+        API.Request({
+            url: API.PPT_TEAM_GET_ROSTER_TAG,
+            data: { team_id: GP.data.teamID},
+            success: function (res) {
+                GP.setData({ rosterTagList: res.data.roster_tag_list})
+            },
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-    
+        GP = this
+
+        // GP.setData({ teamID: APP.globalData.teamID })
+        GP.setData({ teamID:1 })
+        GP.getRosterTag()
     },
 
     /**

@@ -122,11 +122,10 @@ Component({
             // console.log(this.posList)
             // this.paintByPosList(this.posList)
           if (this.posList.length >= TOP_TOUCH_STEP )
-            wx.showModal({
-              title: '温馨提示',
-              content: '这一笔太长，没墨水了T_T，请画短一点',
-              showCancel:false,
-              confirmText:"知道了",
+            wx.showToast({
+                title: '没墨水了T_T',
+                icon:"loading",
+                duration:400,
             })
           var painterData = {
               style: DRAW_LINE,

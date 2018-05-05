@@ -1,7 +1,7 @@
 <!--pages/company/company.wxml-->
 
 <view class='page__p_15 page_bg_white roster space'>
-    <xx-navigte   catchclick="clickPhone" >
+    <xx-navigte   catchclick="clickQuit" >
         <image slot="icon" src="../../images/share.png"></image> 
         <view slot="left" >退出团队</view> 
         <view slot="right"></view>

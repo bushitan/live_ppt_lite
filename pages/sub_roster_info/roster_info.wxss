@@ -15,3 +15,7 @@
 .space{
     margin-bottom: 15px;
 }
+.phone{
+    font-size: 9pt;
+    color: #888;
+}

@@ -1,4 +1,17 @@
 <!--pages/company/company.wxml-->
+
+
+<block wx:for="{{rosterList}}">
+    <view class='page__p_15 page_bg_white roster'>
+        <xx-navigte   catchclick="click" data-phone="{{item.phone}}">
+            <!-- <image slot="icon" src="../../images/share.png"></image>  -->
+            <view slot="left" >{{item.name}}</view> 
+            <view slot="right" class='phone'>{{item.phone}}</view>
+        </xx-navigte>
+    </view>
+    <view class='page__line_gray'></view>
+</block>
+<!-- 
 <view class='title page_bg_green'>
     <label catchtap='back'>返回</label>
 </view>
@@ -50,7 +63,7 @@
         <view slot="left" >公告通知</view> 
         <view slot="right"></view>
     </xx-navigte>
-</view> 
+</view>  -->
 
 <!-- 
 <view class='page__p_15 page_bg_white roster space'>

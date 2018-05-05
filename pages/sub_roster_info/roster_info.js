@@ -1,21 +1,39 @@
 // pages/company/company.js
+const APP = getApp()
+var API = require('../../utils/api.js');
+var KEY = require('../../utils/key.js');
+var GP
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-    
+        rosterList:[],
     },
-    //点击背景图，打开菜单
-    back() {
-        wx.navigateBack({})
+    click(e) {
+        var phone = e.currentTarget.dataset.phone
+        wx.makePhoneCall({
+            phoneNumber: phone,
+        })
+    },
+    getRoster() {
+        API.Request({
+            url: API.PPT_TEAM_GET_ROSTER,
+            data: { roster_tag_id: GP.data.rosterTagID },
+            success: function (res) {
+                GP.setData({ rosterList: res.data.roster_list })
+            },
+        })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-    
+        GP = this
+        GP.setData({ rosterTagID: options.roster_tag_id })
+        // GP.setData({ rosterTagID: 1 })
+        GP.getRoster()
     },
 
     /**

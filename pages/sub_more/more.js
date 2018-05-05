@@ -1,4 +1,8 @@
 // pages/company/company.js
+const APP = getApp()
+var API = require('../../utils/api.js');
+var KEY = require('../../utils/key.js');
+var GP
 Page({
 
     /**
@@ -9,13 +13,21 @@ Page({
     },
     //点击背景图，打开菜单
     back() {
-        wx.navigateBack({})
+        // wx.navigateBack({})
+    },
+    clickQuit(){
+        API.Request({
+            url: API.PPT_TEAM_QUIT,
+            success: function (res) {
+                wx.navigateBack({})
+            },
+        })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-    
+        GP = this
     },
 
     /**

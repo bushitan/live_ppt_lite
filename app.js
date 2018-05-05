@@ -31,6 +31,10 @@ App({
          *  var tempList = [ { url:""},]
          */
         tempList:[], 
+
+        /**团队信息 */
+        // teamID: 1,
+        teamID: false,
     },
 
     // 初始化IM

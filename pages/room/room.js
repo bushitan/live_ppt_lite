@@ -17,7 +17,8 @@ Page({
      */
     data: {
         playerTab: ["临时文件", "我的文件", "团队共享文件"],
-        isTeamMember: false,//是否加入团队
+        // isTeamMember: false,//是否加入团队
+        teamID: false,
         isTeacher: true,//是否会员
         isOnline:false, //学生未上线
         isConnect:false,
@@ -65,6 +66,9 @@ Page({
     onLoad: function (options) {
         GP = this
         // APP.globalData.currentPage = this //当前页面设置为全局变量
+        //设置团队的teamID
+        GP.setData({ teamID: APP.globalData.teamID })
+
         Scripte.Init(APP, GP, API, JMessage) //初始化脚本
         wx.showToast({
             title: '连接中',
@@ -262,34 +266,49 @@ Page({
             GP.getTempFile()
         }
         if (e.detail == 1) {
-            GP.getTag()
+            GP.getSelfTag()
         }
         if (e.detail == 2) {
-            GP.setData({ pptList: APP.globalData.tempList })
+            // GP.setData({ pptList: APP.globalData.tempList })
+            GP.getTeamTag()
         }
     },
     getTempFile() {
         GP.setData({ pptList: APP.globalData.tempList })
     },
-    // 3 获取标签列表
-    getTag() {
+    // 获取自己标签
+    getSelfTag() {
         GP.setData({ pptList: [] })
         API.Request({
             url: API.PPT_SELF_GET_TAG,
             success: function (res) {
-            
-                var tag_list = res.data.tag_list
-                var tagNameList = []
-                for (var i = 0; i < tag_list.length; i++)
-                    tagNameList.push(tag_list[i].tag_name)
-                GP.setData({
-                    tagList: tag_list,
-                    tagNameList: tagNameList,
-                })
-                GP.clickTag()
+                GP.renderTag(res)
             },
         })
     },
+    //获取团队标签
+    getTeamTag(){
+        API.Request({
+            url: API.PPT_TEAM_GET_TAG,
+            data: { team_id: GP.data.teamID },
+            success: function (res) {
+                GP.renderTag(res)
+            },
+        })
+    },
+    renderTag(res){
+        var tag_list = res.data.tag_list
+        var tagNameList = []
+        for (var i = 0; i < tag_list.length; i++)
+            tagNameList.push(tag_list[i].tag_name)
+        GP.setData({
+            tagList: tag_list,
+            tagNameList: tagNameList,
+        })
+        GP.clickTag()
+    },
+
+
     clickTag(e) {
         var index = e == undefined ? 0 : e.detail
         var tag_id = GP.data.tagList[index].tag_id
@@ -304,6 +323,7 @@ Page({
         })
     },
 
+    
 
 
 
@@ -318,7 +338,7 @@ Page({
         console.log(url)
         GP.switchGallery()
         GP.setData({
-            tabIndex: 0,
+            // tabIndex: 0,
             bgImageUrl:url,
         })
         Scripte.sendPPT(url)
