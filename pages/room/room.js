@@ -16,7 +16,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        playerTab: ["临时文件", "我的文件", "团队共享文件"],
+        playerTab: ["临时文件", "我的文件", "团队共享"],
         // isTeamMember: false,//是否加入团队
         teamID: false,
         isTeacher: true,//是否会员
@@ -37,7 +37,7 @@ Page({
         
         tabIndex:0,
         pptList:[],
-        showGallery:false,
+        showGallery:!false,
         print:[],
     },
 

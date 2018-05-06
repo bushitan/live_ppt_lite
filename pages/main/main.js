@@ -1,4 +1,4 @@
-//index.js
+3423432//index.js
 //获取应用实例
 const APP = getApp()
 var API = require('../../utils/api.js');

@@ -28,7 +28,7 @@
 .menu{
     display: flex;
     justify-content: space-around;
-    width:750rpx;
+    width:100%;
 }
 .select_line{
     width: 10px;
