@@ -20,11 +20,11 @@ page{
 /* 滚动图 */
 .swiper{
     width: 750rpx;
-    height: 229rpx;
+    height: 228rpx;
 }
 .swiper image{
     width: 750rpx;
-    height: 229rpx;
+    height: 228rpx;
 }
 
 /* 临时文件 */

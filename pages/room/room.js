@@ -37,7 +37,7 @@ Page({
         
         tabIndex:0,
         pptList:[],
-        showGallery:!false,
+        showGallery:false,
         print:[],
     },
 

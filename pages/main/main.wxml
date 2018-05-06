@@ -23,16 +23,16 @@
             <image src='../../images/share.png'></image><view>共享文件夹</view>
         </navigator> -->
         <navigator class='node' url="/pages/sub_roster/roster">
-            <image src='../../images/share.png'></image><view>通讯录</view>
+            <image src='../../images/icon_roster.png'></image><view>通讯录</view>
         </navigator>
         <navigator class='node' url="/pages/sub_notice/notice">
-            <image src='../../images/share.png'></image><view>通知公告</view>
+            <image src='../../images/icon_notice.png'></image><view>通知公告</view>
         </navigator>
         <navigator class='node' url="/pages/sub_meet_index/meet_index">
-            <image src='../../images/share.png'></image><view>会务</view>
+            <image src='../../images/icon_meet.png'></image><view>会务</view>
         </navigator>
         <navigator class='node' url="/pages/sub_train/train">
-            <image src='../../images/share.png'></image><view>团队培训</view>
+            <image src='../../images/icon_train.png'></image><view>团队培训</view>
         </navigator>
     </view>  
     <view style='height:15px;'></view>
@@ -41,10 +41,10 @@
             <image src='../../images/share.png'></image><view>团队培训</view>
         </navigator> -->
         <navigator class='node' url="/pages/sub_issue/issue">
-            <image src='../../images/share.png'></image><view>问题反馈</view>
+            <image src='../../images/icon_issue.png'></image><view>问题反馈</view>
         </navigator> 
         <navigator class='node' url="/pages/sub_more/more">
-            <image src='../../images/share.png'></image><view>更多</view>
+            <image src='../../images/icon_more.png'></image><view>更多</view>
         </navigator> 
          <navigator class='node' >
         </navigator> 
