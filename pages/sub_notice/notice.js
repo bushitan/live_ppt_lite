@@ -19,17 +19,68 @@ Page({
    * 页面的初始数据
    */
   data: {
-      currentTabList: ["最新通知", "学习天地"],
+      currentTabList: ["最新通知","问题汇总",],
       coverList: [],
+
+        matrix:[
+            [
+                
+                {
+                    content: "北海片区波分安装督导：韦丰 15277126678",
+                    time: "2018-5-2",
+                },
+                {
+                    content: "钦州片区波分安装督导：郭小平 18778018857",
+                    time: "2018-5-2",
+                },
+                {
+                    content: "梧州片区波分安装督导：李闻雕 18269006929",
+                    time: "2018-5-2",
+                },
+                {
+                    content: "贺州片区波分安装督导：刘星宇 18588276558",
+                    time: "2018-5-2",
+                },
+                {
+                    content: "桂林片区波分安装督导：王杰 15577887615",
+                    time: "2018-5-2",
+                },
+            ],
+            [
+                {
+                    content: "波分上行管理端口：乡镇-S2000-15",
+                    time: "2018-5-4",
+                },
+                {
+                    content: "波分下行业务端口：乡镇-S5650-16",
+                    time: "2018-5-4",
+                },
+            ],
+        ],
+
     //   coverIndex:0,
     },
+
+    onLoad() {
+        GP = this
+        // GP.onInit()
+        GP.setData({
+            coverList:GP.data.matrix[0]
+        })
+    },
+
+
 
     // 点击tab
     clickTag(e) {
         console.log(e.detail)
         var index = e.detail
 
-        GP.getCoverList(GP.data.tagList[index].tag_id)
+        GP.setData({
+            coverList: GP.data.matrix[index]
+        })
+
+        // GP.getCoverList(GP.data.tagList[index].tag_id)
     },  
 
     //点击文章
@@ -77,11 +128,6 @@ Page({
     },
 
     
-    onLoad(){
-        GP = this
-        GP.onInit()
-
-    },
 
 
 })

@@ -4,11 +4,23 @@
 <view class="container" >
     <!--画布工具区域-->
     <view class="canvas_tools" wx:if="{{tool}}">
-        <view class="box box1" bindtap="penSelect" data-param="5"></view>
+        <view class="box box3" bindtap="colorSelect" data-param="#cc0033"></view>
+        <view class="box box4" bindtap="colorSelect" data-param="#ff9900"></view>
+        <view class="box " bindtap="penSelect" data-param="5">
+            <image class='icon1' src='../../images/draw_pencil.png'></image>
+        </view>
+        <view class="box " bindtap="penSelect" data-param="15">
+            <image class='icon2' src='../../images/draw_shua.png'></image>
+        </view>
+        <view class="box " bindtap="clearCanvasEvent">
+            <image class='icon3' src='../../images/draw_eraser.png'></image>
+        </view>
+
+         <!-- <view class="box box1" bindtap="penSelect" data-param="5"></view> 
         <view class="box box2" bindtap="penSelect" data-param="15"></view>
         <view class="box box3" bindtap="colorSelect" data-param="#cc0033"></view>
         <view class="box box4" bindtap="colorSelect" data-param="#ff9900"></view>
-        <view class="box box5" bindtap="clearCanvasEvent"></view>
+        <view class="box box5" bindtap="clearCanvasEvent"></view> -->
         <!-- <view class="box box5" bindtap="clearCanvasEvent"></view> -->
         <view class="react " bindtap="clickGallery">我的图片</view>
     </view>

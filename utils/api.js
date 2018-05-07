@@ -1,6 +1,6 @@
 var KEY = require('key.js');
 
-// var host_url = 'http://192.168.200.104:8000/live/'
+// var host_url = 'http://192.168.200.101:8000/live/'
 // var host_url = 'http://192.168.199.203:8000/live/';
 
 // var host_url = 'http://127.0.0.1:8000/live/'; 

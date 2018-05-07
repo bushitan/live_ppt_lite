@@ -7,13 +7,61 @@ var GP
 Page({
   data: {
     isMember:false,
+
+    tagList: ["5月2日", "5月3日"],
+    coverList:[],
+    matrix: [
+        [
+
+            {
+                start_time: "8:00",
+                end_time: "12:00",
+                title: "波分产品培训",
+                summary: "详细讲解本次波分安装的关键技术",
+                des: "20楼会议厅",
+            },
+
+            {
+                start_time: "14:00",
+                end_time: "17:00",
+                title: "波分技术培训",
+                summary: "机房施工步骤、安全注意事项",
+                des: "20楼会议厅",
+            }
+        ],
+        [
+            {
+                start_time: "8:00",
+                end_time: "17:00",
+                title: "波分安装实战演练",
+                summary: "在实验室进行实战演练，每个操作员必须严格按照步骤，完成标准操作",
+                des: "6楼实验室",
+            }
+        ],
+    ],
   },
 
   onReady() {
     GP = this
-    GP.onInit()
+
+    GP.setData({
+        coverList: GP.data.matrix[0]
+    })
+    // GP.onInit()
     // APP.checkMember(GP.success)
   },
+
+  // 点击tab
+  clickTag(e) {
+      console.log(e.detail)
+      var index = e.detail
+
+      GP.setData({
+          coverList: GP.data.matrix[index]
+      })
+
+      // GP.getCoverList(GP.data.tagList[index].tag_id)
+  },  
   success(res){
     GP.setData({
       isMember: res.data.is_member

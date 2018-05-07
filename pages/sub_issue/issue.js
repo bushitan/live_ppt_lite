@@ -26,6 +26,18 @@ Page({
         },
         ]
     },
+    confirm(){
+        wx.showModal({
+            title: '问题提交成功',
+            content: '管理员查看中',
+            success:function(){
+                var userInfo = GP.data.userInfo
+                GP.setData({
+                    userInfo:{},
+                })
+            },
+        })
+    },
 
     //点击头像，注册用户
     clickLogo(){
@@ -144,11 +156,11 @@ Page({
     onLoad: function (options) {
         GP = this
 
-        GP.setData({ isSign: wx.getStorageSync(KEY.IS_SIGN) == true ? true :false})
-        GP.setData({
-          userInfo: wx.getStorageSync(KEY.USER_INFO)
-        })
-        GP.onInit()
+        // GP.setData({ isSign: wx.getStorageSync(KEY.IS_SIGN) == true ? true :false})
+        // GP.setData({
+        //   userInfo: wx.getStorageSync(KEY.USER_INFO)
+        // })
+        // GP.onInit()
     },
 
     inputName(e) {

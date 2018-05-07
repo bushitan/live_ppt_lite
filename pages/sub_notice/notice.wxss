@@ -3,3 +3,20 @@
 .tab{
     background-color: #fff;
 }
+
+.notice{
+}
+.notice .node{
+    margin-bottom: 15px;
+    border-radius:5px; 
+}
+.notice .content{
+    font-size: 11pt;
+    color: #141414;
+}
+.notice .time{
+    margin-top:10px;
+    font-size: 9pt;
+    color: #888;
+    text-align: right;    
+}

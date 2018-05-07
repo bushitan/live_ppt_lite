@@ -1,7 +1,15 @@
 <!--pages/cover/cover.wxml-->
-<!-- <view class="tab">
+ <view class="page_bg_white page__p_15">
     <tab list="{{currentTabList}}" mode="scroll"    colorunselect="#888" colorselect="#efa234"  bind:click="clickTag" ></tab>
-</view> -->
+</view> 
 
-<cover list="{{coverList}}" bind:click="clickCover" mode="cover"></cover>
+ <view class="notice page__p_a_15"> 
+    <block wx:for="{{coverList}}" >
+        <view class='node page_bg_white page__p_a_15'>
+            <view class='content'>{{item.content}}</view>
+            <view class='time'>{{item.time}}</view>
+        </view>
+    </block>
+ </view> 
+<!-- <cover list="{{coverList}}" bind:click="clickCover" mode="cover"></cover> -->
 <!-- <cover_news list="{{coverList}}" bind:click="clickCover"></cover_news> -->

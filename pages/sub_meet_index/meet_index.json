@@ -1,5 +1,7 @@
 {
   "usingComponents": {
+    "cover": "../../components/xx_cover/xx_cover",
+    "tab": "../../components/xx_tab/xx_tab",
     "article": "../../components/xx_article/xx_article"
   }
 }

@@ -1,8 +1,14 @@
 
-<article content="{{room}}" mode="live" ></article>
+<!-- <article content="{{room}}" mode="live" ></article>
 <view style='height:80px'></view>
 <view class='btn'>
     <button catchtap='toLive' type='primary' wx:if="{{room.status == 1}}">进入房间</button>
     <button catchtap='prepar' type='primary' wx:else>预约</button>
 </view>
-  
+   -->
+
+
+ <view class="page_bg_white page__p_15">
+    <tab list="{{tagList}}" mode="scroll"    colorunselect="#888" colorselect="#efa234"  bind:click="clickTag" ></tab>
+</view> 
+ <cover mode="agenda" list="{{coverList}}" catchclick="clickAgenda"></cover>

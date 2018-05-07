@@ -139,6 +139,12 @@
 					"name": "通讯录明细",
 					"pathName": "pages/sub_roster_info/roster_info",
 					"query": "teacher_name=live_pvp_user_19&is_student=true"
+				},
+				{
+					"id": -1,
+					"name": "会务",
+					"pathName": "pages/sub_meet_index/meet_index",
+					"query": ""
 				}
 			]
 		}
