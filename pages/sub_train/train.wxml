@@ -2,6 +2,6 @@
 <view class="tab page__p_15">
     <tab list="{{currentTabList}}" mode="scroll"    colorunselect="#888" colorselect="#efa234"  bind:click="clickTag" ></tab>
 </view>
-
+<view style='height:10px;'></view>
 <cover list="{{coverList}}" bind:click="clickCover" mode="cover"></cover>
 <!-- <cover_news list="{{coverList}}" bind:click="clickCover"></cover_news> -->
