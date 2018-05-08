@@ -64,11 +64,20 @@ Page({
     //Temp 临时文件
     //上传临时文件到指定目录下
     choiceTag(e){
+        if (GP.data.tagList.length == 0 ){
+            wx.showModal({
+                title: '没有标签',
+                content: '请在“我的文件”中添加新标签才能分类',
+            })
+            return 
+        }
+
         console.log(e.detail)
         var tagIndex = e.detail.tagIndex
         var url = e.detail.url
         var tag_id = GP.data.tagList[tagIndex].tag_id
         console.log(tag_id,url)
+        Scripte.uploadFile(tag_id, url)
         // TODO 上传文件
 
     },

@@ -30,13 +30,24 @@ Page({
     },
     //加入团队
     join(){
-        API.Request({
-            url: API.PPT_TEAM_JOIN,
-            data:{team_id : "1"},
-            success: function (res) {
-                GP.initTeamID(res)
-            },
-        })       
+
+        wx.showModal({
+            title: '加入索骏科技团队',
+            content: '团队功能能在内侧，加入索骏科技，体验TeamHelper的团队功能',
+            confirmText:"加入",
+            success:function(res){
+                if(res.confirm){
+                    API.Request({
+                        url: API.PPT_TEAM_JOIN,
+                        data:{team_id : "1"},
+                        success: function (res) {
+                            GP.initTeamID(res)
+                        },
+                    })       
+                }
+            }
+        })
+
     },
     initTeamID(res) {
         var teamID = res.data.team_id

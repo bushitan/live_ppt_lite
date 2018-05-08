@@ -4,6 +4,7 @@ var API = require('../../utils/api.js');
 var KEY = require('../../utils/key.js');
 var Scripte = require('scripte.js');
 var JMessage = require('../../utils/im/jm.js')
+var MD5 = require('../../utils/im/md5.js')
 
 var teacher = "live_app_3"
 var student = 'live_pvp_user_5'
@@ -54,6 +55,29 @@ Page({
             studentPusher: pushBase + "room_" + user_info.user_id + "_student" + domain,
             studentPlayer: playerBase + "room_" + user_info.user_id + "_student",
         }
+
+        var key = "87416c13d3f5cf4590615bb1f0138715"
+        var stream_id = "15628_a80dddec91"
+        var txTime = "5af1917e"
+        var txSecret = MD5.hex_md5(key + stream_id + txTime)
+        var pusher = "rtmp://15628.livepush.myqcloud.com/live/15628_a80dddec91"
+        var player = "rtmp://15628.liveplay.myqcloud.com/live/15628_a80dddec91"
+        var secret = "?txSecret=" + txSecret + "&txTime=" + txTime
+
+        var liveConfig = {
+            teacherName: teacherName,
+            teacherPusher: pusher + secret,
+            studentPlayer: player + secret,
+            // teacherPusher: "rtmp://15628.livepush.myqcloud.com/live/15628_a80dddec91?bizid=15628&txSecret=bfdc81bcbd982e422797f5a3f2a8db6e&txTime=5AF1C97F",
+            // studentPlayer: "rtmp://15628.liveplay.myqcloud.com/live/15628_a80dddec91",
+        }
+
+      
+        "rtmp://3891.liveplay.myqcloud.com/live/3891_test_clock_for_rtmpacc"
+        "?bizid=bizid&txTime=5FD4431C&txSerect=20e6d865f462dff61ada209d53c71cf9"
+
+
+
         console.log(liveConfig)
         GP.setData({
             liveConfig: liveConfig,

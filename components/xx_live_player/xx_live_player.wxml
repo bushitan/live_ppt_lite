@@ -10,7 +10,8 @@
     <live-player 
         id="player"
         src="{{src}}"  
-        mode="SD"  
+        mode="RTC"  
+        autoplay="{{true}}"
         orientation="{{orientation}}"
         object-fit="fillCrop"
         autoplay bindstatechange="statechangePlayer"    binderror="error"  >
