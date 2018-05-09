@@ -198,6 +198,10 @@ Component({
         },
         statechangePlayer(e) {
             console.log('live-player code:', e.detail.code)
+            if (e.detail.code == -2301)
+                this.data.player.play({
+                    complete:function(){console.log(213)}
+                })
         },
         error(e) {
             console.error('live-player error:', e.detail.errMsg)
