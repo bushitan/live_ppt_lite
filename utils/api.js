@@ -1,10 +1,10 @@
 var KEY = require('key.js');
 
 // var host_url = 'http://192.168.200.101:8000/live/'
-// var host_url = 'http://192.168.199.203:8000/live/';
+var host_url = 'http://192.168.199.203:8000/live/';
 
 // var host_url = 'http://127.0.0.1:8000/live/'; 
-var host_url = 'https://www.12xiong.top/live/';
+// var host_url = 'https://www.12xiong.top/live/';
 // var host_url = 'http://www.12xiong.top:8010/live/';
 
 var wxLoginUrl = host_url + 'lite/login/'
@@ -146,6 +146,7 @@ module.exports = {
     PPT_TEAM_GET_ROSTER: host_url + 'ppt/team/get/roster/',  //获取通讯录
 
 
+    PPT_SELF_STIMESTAMP: host_url + 'ppt/self/timestamp/',  //添加我的标签
     PPT_SELF_ADD_TAG: host_url + 'ppt/self/add/tag/',  //添加我的标签
     PPT_SELF_GET_TAG: host_url + 'ppt/self/get/tag/',  //获取我的图片
     PPT_SELF_GET_FILE: host_url + 'ppt/self/get/file/',  //获取我的图片
