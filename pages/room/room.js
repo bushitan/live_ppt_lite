@@ -83,7 +83,7 @@ Page({
             keepScreenOn: true
         });
         console.log(GP.data.options)
-        GP.onInit(GP.data.options)
+        // GP.onInit(GP.data.options)
     },
 
     /**
@@ -102,7 +102,7 @@ Page({
             icon:"loading",
         })
         GP.setData({ options: options})
-        // GP.onInit(options)
+        GP.onInit(options)
     },
 
     onInit(options){
