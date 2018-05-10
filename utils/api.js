@@ -1,10 +1,10 @@
 var KEY = require('key.js');
 
-// var host_url = 'http://192.168.200.101:8000/live/'
+var host_url = 'http://192.168.200.101:8000/live/'
 // var host_url = 'http://192.168.199.203:8000/live/';
 
 // var host_url = 'http://127.0.0.1:8000/live/'; 
-var host_url = 'https://www.12xiong.top/live/';
+// var host_url = 'https://www.12xiong.top/live/';
 // var host_url = 'http://www.12xiong.top:8010/live/';
 
 var wxLoginUrl = host_url + 'lite/login/'

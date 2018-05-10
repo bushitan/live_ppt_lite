@@ -24,8 +24,8 @@ Page({
         isOnline:false, //学生未上线
         isConnect:false,
 
-        // token: null,//验证是否能够连接
-        token: "1",//验证是否能够连接
+        token: null,//验证是否能够连接
+        // token: "1",//验证是否能够连接
 
         selfName:null, //本端账号
         otherName:null, //对端账号
@@ -77,6 +77,15 @@ Page({
         })        
     },
 
+    onShow() {
+        //保持长列
+        wx.setKeepScreenOn({
+            keepScreenOn: true
+        });
+        console.log(GP.data.options)
+        GP.onInit(GP.data.options)
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -85,26 +94,33 @@ Page({
         // APP.globalData.currentPage = this //当前页面设置为全局变量
         //设置团队的teamID
         GP.setData({ teamID: APP.globalData.teamID })
+        console.log("1231")
 
         Scripte.Init(APP, GP, API, JMessage) //初始化脚本
         wx.showToast({
             title: '连接中',
             icon:"loading",
         })
-        
+        GP.setData({ options: options})
+        // GP.onInit(options)
+    },
 
+    onInit(options){
         if (options.is_student == 'true') {  //学生登录，填写老师名字
-            GP.setData({ isTeacher: false, teacherName:options.teacher_name})
+            GP.setData({ isTeacher: false, teacherName: options.teacher_name, token: options.token, otherName: options.teacher_name })
             Scripte.initStudentIM()//IM学生初始化
+            console.log(GP.data)
         }
-        else { 
+        else {
             GP.initLive() //初始化live链接
             Scripte.initTeacherIM()//IM老师初始化
         }
 
         // GP.getPPT()  //获取自己文件夹内容
         GP.getTempFile()
+        console.log("onload")
     },
+
 
 
     isTeacherSuccess() {
@@ -123,8 +139,9 @@ Page({
         Scripte.sendStudentCheck() 
         var interval = setInterval(
             function(){
-                if (i < 3) {
-                    Scripte.sendStudentCheck
+                if (i < 15) {
+                    console.log(i)
+                    Scripte.sendStudentCheck()
                     i++
                 }else{
                     wx.showModal({
@@ -142,7 +159,7 @@ Page({
                    
 
             },
-            5000,
+            2000,
         )
         JMessage.JIM.onMsgReceive(function (data) {
             clearInterval(interval) 
@@ -455,13 +472,6 @@ Page({
         //     }
         // })
     },
-    onShow(){
-        //保持长列
-        wx.setKeepScreenOn({
-            keepScreenOn: true
-        });
-    },
-
 
     onShareAppMessage: function () {
         if( GP.data.isTeacher == false ){

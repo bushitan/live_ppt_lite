@@ -51,7 +51,10 @@ module.exports = new (function () {
             student_name: GP.data.selfName, //学生名字
             token: GP.data.token,//验证token
         }
-        JMessage.sendSingleCustom(GP.data.teacherName, s_say) //学生打招呼
+        console.log(GP.data.selfName, GP.data.token)
+        // JMessage.sendSingleCustom(GP.data.teacherName, s_say) //学生打招呼
+
+        sendOtherMessage(s_say)
     }
 
     //2.3 公共发送
@@ -74,7 +77,9 @@ module.exports = new (function () {
     }
     // 向对方发送信息
     function sendOtherMessage(t_call) {
-        JMessage.sendSingleCustom(GP.data.otherName, t_call)
+        console.log("send other",GP.data.otherName)
+        if (GP.data.otherName)
+            JMessage.sendSingleCustom(GP.data.otherName, t_call)
     }
 
     /**
@@ -87,6 +92,7 @@ module.exports = new (function () {
         if (body.text == "student_check") { //接收学生的上线信息
             // console.log(APP.globalData.liveConfig)
             // GP.setData({ liveConfig: APP.globalData.liveConfig }) //学生上线后，再设置推流地址
+            console.log("token",data)
             getCheck(body.student_name, body.token)
         }
         
@@ -153,7 +159,7 @@ module.exports = new (function () {
             GP.setData({
                 otherName: student_name,
                 studentName: student_name,
-                // token:null, //token过期，别 的就不能进了
+                token:null, //token过期，别 的就不能进了
                 isOnline:true,
                 isStart: true,
                 isConnect: true,
@@ -194,7 +200,7 @@ module.exports = new (function () {
             content: '房间已经过期，您可以选择任意一个故事，重新邀请好友',
             success: function () {
                 wx.redirectTo({
-                    url: '/pages/index/index',
+                    url: '/pages/main/main',
                 })
             },
         })
@@ -215,7 +221,7 @@ module.exports = new (function () {
             title: '老师下线',
             success: function () {
                 wx.redirectTo({
-                    url: '/pages/index/index',
+                    url: '/pages/main/main',
                 })
             },
         })
@@ -227,7 +233,7 @@ module.exports = new (function () {
                 var s_say = { text: "off", student_name: APP.globalData.student_name }
                 JMessage.sendSingleCustom(APP.globalData.teacher_name, s_say) //学生打招呼
                 wx.navigateTo({
-                    url: '/pages/index/index',
+                    url: '/pages/main/main',
                 })
             },
         })
