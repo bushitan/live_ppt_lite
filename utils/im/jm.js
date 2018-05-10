@@ -123,6 +123,7 @@ module.exports = new (function () {
 
 
     this.sendSingleCustom = function (username, custom) {
+        // username ="live_pvp_user_11"
         jim.sendSingleCustom({
             'target_username': username,
             'custom': custom,
