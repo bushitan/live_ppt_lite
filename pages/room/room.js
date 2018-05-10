@@ -119,8 +119,33 @@ Page({
     },
     isStudentSuccess() {
         // GP.initLive() //初始化live链接
+        var i = 0
         Scripte.sendStudentCheck() 
+        var interval = setInterval(
+            function(){
+                if (i < 3) {
+                    Scripte.sendStudentCheck
+                    i++
+                }else{
+                    wx.showModal({
+                        title: '退出房间',
+                        content: "房主不在线， 请重新视频求助",
+                        showCancel: false,
+                        success: function (res) {
+                            wx.redirectTo({
+                                url: '/pages/main/main',
+                            })
+                        },
+                    })
+                    clearInterval(interval) 
+                }
+                   
+
+            },
+            5000,
+        )
         JMessage.JIM.onMsgReceive(function (data) {
+            clearInterval(interval) 
             Scripte.studentReceive(data)
             Scripte.utilReceive(data)
         })
