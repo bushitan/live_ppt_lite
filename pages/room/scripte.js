@@ -12,6 +12,68 @@ module.exports = new (function () {
         API = _API
         JMessage = _JMessage
     }
+    this.roomAdd = function () { 
+        API.Request({
+            url: API.PPT_ROOM_ADD,
+            success: function (res) {
+                GP.setData({
+                    liveConfig: res.data.config_dict,
+                })
+            },
+        })        
+    }
+    this.roomDelete = function () { 
+        API.Request({
+            url: API.PPT_ROOM_DELETE,
+            success: function (res) {
+                wx.redirectTo({
+                    url: '/pages/main/main',
+                })
+            }
+        })     
+    }
+    this.roomCheck = function (host_name) { 
+        API.Request({
+            url: API.PPT_ROOM_CHECK,
+            data: {
+                host_name: host_name
+            },
+            success: function (res) {
+                console.log(res)
+                console.log(res.data.check_dict)
+                if (res.data.check_dict == false){
+                    //房间不存在
+                    wx.showModal({
+                        title: '温馨提示',
+                        content: '房间已经过期，您可以选择任意一个故事，重新邀请好友',
+                        success: function () {
+                            wx.redirectTo({
+                                url: '/pages/main/main',
+                            })
+                        },
+                    })
+                }
+                else{
+                    //房间存在
+                    wx.showToast({
+                        title: 'online成功',
+                    })
+                    wx.hideLoading()
+                    GP.setData({
+                        otherName: GP.data.teacherName,
+                        isConnect: true,
+                        liveConfig: res.data.check_dict
+                    })
+                }
+
+            },
+        })
+    }
+     
+
+
+
+
     /**1 初始化 */
     // 1.1 老师初始化
     this.initTeacherIM = function () {

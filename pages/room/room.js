@@ -46,36 +46,16 @@ Page({
 // 完整链接
 // teacherPusher: "rtmp://15628.livepush.myqcloud.com/live/15628_cf1302ad02?bizid=15628&txSecret=8fa94235423def94a4ae47cf18792b92&txTime=5AF31AFF",
 // studentPlayer: "rtmp://15628.liveplay.myqcloud.com/live/15628_cf1302ad02?bizid=15628&txSecret=8fa94235423def94a4ae47cf18792b92&txTime=5AF31AFF",
-    initLive() {
-        API.Request({
-            url: API.PPT_SELF_STIMESTAMP,
-            success: function (res) {
-                var txTime = res.data.unix
-                
-                function LiveUrl(txTime,style,user_name,role){
-                    var key = "87416c13d3f5cf4590615bb1f0138715"
-                    var stream_id = "15628_" + user_name + "_" + role
-                    var txSecret = MD5.hex_md5(key + stream_id + txTime)                    
-                    var base = "rtmp://15628.live" + style + ".myqcloud.com/live/" + stream_id
-                    var secret = "?txSecret=" + txSecret + "&txTime=" + txTime
-                    return base + secret
-                }
-                var user_id = wx.getStorageSync(KEY.USER_INFO).user_id
-                var teacherName = "live_ppt_user_" + user_id                
-                var liveConfig = {
-                    teacherName: teacherName,
-                    teacherPusher: LiveUrl(txTime, "push", teacherName,"teacher"),
-                    teacherPlayer: LiveUrl(txTime, "play", teacherName, "teacher"),
-                    studentPusher: LiveUrl(txTime, "push", teacherName, "student"),
-                    studentPlayer: LiveUrl(txTime, "play", teacherName, "student"),
-                }
-                console.log(liveConfig)
-                GP.setData({
-                    liveConfig: liveConfig,
-                })
-            },
-        })        
-    },
+    // initLive() {
+    //     API.Request({
+    //         url: API.PPT_ROOM_ADD,
+    //         success: function (res) {
+    //             GP.setData({
+    //                 liveConfig: res.data.config_dict,
+    //             })
+    //         },
+    //     })        
+    // },
 
     onShow() {
         //保持长列
@@ -83,7 +63,10 @@ Page({
             keepScreenOn: true
         });
         console.log(GP.data.options)
+        console.log(JMessage.JIM.isConnect())
         // GP.onInit(GP.data.options)
+
+        GP.roomAdd
     },
 
     /**
@@ -108,11 +91,12 @@ Page({
     onInit(options){
         if (options.is_student == 'true') {  //学生登录，填写老师名字
             GP.setData({ isTeacher: false, teacherName: options.teacher_name, token: options.token, otherName: options.teacher_name })
+            Scripte.roomCheck(options.teacher_name) //验证房间是否存在
             Scripte.initStudentIM()//IM学生初始化
             console.log(GP.data)
         }
         else {
-            GP.initLive() //初始化live链接
+            Scripte.roomAdd() //初始化live链接
             Scripte.initTeacherIM()//IM老师初始化
         }
 
@@ -124,7 +108,6 @@ Page({
 
 
     isTeacherSuccess() {
-        // GP.initLive() //初始化live链接
         JMessage.JIM.onMsgReceive(function (data,msg) {
             // GP.IMMsgReceive(data) //监听事件
             console.log(data, msg,"teacher")
@@ -134,43 +117,17 @@ Page({
         })
     },
     isStudentSuccess() {
-        // GP.initLive() //初始化live链接
-        var i = 0
-        Scripte.sendStudentCheck() 
-        var interval = setInterval(
-            function(){
-                if (i < 15) {
-                    console.log(i)
-                    Scripte.sendStudentCheck()
-                    i++
-                }else{
-                    wx.showModal({
-                        title: '退出房间',
-                        content: "房主不在线， 请重新视频求助",
-                        showCancel: false,
-                        success: function (res) {
-                            wx.redirectTo({
-                                url: '/pages/main/main',
-                            })
-                        },
-                    })
-                    clearInterval(interval) 
-                }
-                   
-
-            },
-            2000,
-        )
         JMessage.JIM.onMsgReceive(function (data) {
-            clearInterval(interval) 
+            clearInterval(interval)
             Scripte.studentReceive(data)
             Scripte.utilReceive(data)
         })
+       
         
     },
 
 
-
+    //上传本地图片
         // wx.chooseImage({
         //     count: 1, //
         //     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -213,24 +170,17 @@ Page({
                     if (GP.data.otherName != null) {
                         Scripte.sendOtherOffline()
                     }
-                    // if (GP.data.studentName != null) {
-                    //     var t_call = {
-                    //         text: "off",
-                    //         stage: GP.data.stage
-                    //     }
-                    //     JMessage.sendSingleCustom(GP.data.studentName, t_call)
-                    // }
-                    // wx.navigateBack({})
-                    wx.redirectTo({
-                        url: '/pages/main/main',
-                    })
+                    JMessage.JIM.loginOut();
+                    JMessage.JIM = null
+                    Scripte.roomDelete() //初始化live链接
+                    
                 }
             },
         })
     },
     onUnload() {
-        JMessage.JIM.loginOut();
-        JMessage.JIM = null
+        // JMessage.JIM.loginOut();
+        // JMessage.JIM = null
     },
 
 
@@ -485,7 +435,7 @@ Page({
         }
         // teacher_name = live_pvp_user_19 & is_student=true
         var newToken = "1"
-        var path = "/pages/room/room?is_student=true&teacher_name=" + GP.data.selfName + "&token=" + newToken //原始分享路径
+        var path = "/pages/room/room?is_student=true&teacher_name=" + GP.data.selfName + "&token=" + newToken + "&host_session=" + wx.getStorageSync(KEY.SESSION)["session"] //原始分享路径
         GP.setData({
             token: newToken
         })
@@ -498,3 +448,56 @@ Page({
     },
 
 })
+
+
+ // var txTime = res.data.unix
+
+                // function LiveUrl(txTime,style,user_name,role){
+                //     var key = "87416c13d3f5cf4590615bb1f0138715"
+                //     var stream_id = "15628_" + user_name + "_" + role
+                //     var txSecret = MD5.hex_md5(key + stream_id + txTime)                    
+                //     var base = "rtmp://15628.live" + style + ".myqcloud.com/live/" + stream_id
+                //     var secret = "?txSecret=" + txSecret + "&txTime=" + txTime
+                //     return base + secret
+                // }
+                // var user_id = wx.getStorageSync(KEY.USER_INFO).user_id
+                // var teacherName = "live_ppt_user_" + user_id                
+                // var liveConfig = {
+                //     teacherName: teacherName,
+                //     teacherPusher: LiveUrl(txTime, "push", teacherName,"teacher"),
+                //     teacherPlayer: LiveUrl(txTime, "play", teacherName, "teacher"),
+                //     studentPusher: LiveUrl(txTime, "push", teacherName, "student"),
+                //     studentPlayer: LiveUrl(txTime, "play", teacherName, "student"),
+                // }
+                // console.log(liveConfig)
+                // GP.setData({
+                //     liveConfig: liveConfig,
+                // })
+
+
+                 // var i = 0
+        // Scripte.sendStudentCheck() 
+        // var interval = setInterval(
+        //     function(){
+        //         if (i < 15) {
+        //             console.log(i)
+        //             Scripte.sendStudentCheck()
+        //             i++
+        //         }else{
+        //             wx.showModal({
+        //                 title: '退出房间',
+        //                 content: "房主不在线， 请重新视频求助",
+        //                 showCancel: false,
+        //                 success: function (res) {
+        //                     wx.redirectTo({
+        //                         url: '/pages/main/main',
+        //                     })
+        //                 },
+        //             })
+        //             clearInterval(interval) 
+        //         }
+
+
+        //     },
+        //     2000,
+        // )

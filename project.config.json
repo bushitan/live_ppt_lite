@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -126,7 +126,7 @@
 					"id": 15,
 					"name": "room_student",
 					"pathName": "pages/room/room",
-					"query": "teacher_name=live_pvp_user_11&is_student=true&token=1"
+					"query": "teacher_name=live_ppt_user_10&is_student=true&token=1&host_session=iRPP5reRQanRZN5sbbNFAg=="
 				},
 				{
 					"id": -1,

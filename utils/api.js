@@ -1,10 +1,10 @@
 var KEY = require('key.js');
 
 // var host_url = 'http://192.168.200.101:8000/live/'
-// var host_url = 'http://192.168.199.203:8000/live/';
+var host_url = 'http://192.168.199.203:8000/live/';
 
 // var host_url = 'http://127.0.0.1:8000/live/'; 
-var host_url = 'https://www.12xiong.top/live/';
+// var host_url = 'https://www.12xiong.top/live/';
 // var host_url = 'http://www.12xiong.top:8010/live/';
 
 var wxLoginUrl = host_url + 'lite/login/'
@@ -137,6 +137,11 @@ module.exports = {
     LITE_LOGIN: wxLoginUrl,
     PVP_STORY_GET_LIST: host_url + 'ppt/file/get_list/',  //获取故事列表
 
+    PPT_ROOM_ADD: host_url + 'ppt/room/add/',  //检测是否加入团队
+    PPT_ROOM_DELETE: host_url + 'ppt/room/delete/',  //检测是否加入团队
+    PPT_ROOM_CHECK: host_url + 'ppt/room/check/',  //检测是否加入团队
+
+
     PPT_TEAM_CHECK: host_url + 'ppt/team/check/',  //检测是否加入团队
     PPT_TEAM_JOIN: host_url + 'ppt/team/join/',  //获取我的图片
     PPT_TEAM_QUIT: host_url + 'ppt/team/quit/',  //获取我的图片
@@ -152,6 +157,7 @@ module.exports = {
     PPT_SELF_GET_FILE: host_url + 'ppt/self/get/file/',  //获取我的图片
     PPT_SELF_UPLOAD_TOKEN: host_url + 'ppt/self/upload/token/',  //获取我的图片
     PPT_SELF_UPLOAD_CALLBACK: host_url + 'ppt/self/upload/callback/',  //获取我的图片
+    
     
     // PPT_SELF_GET_ALL_FILE: host_url + 'ppt/self/get/all/file/',  //获取我的图片
 
