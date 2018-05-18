@@ -56,7 +56,7 @@ Component({
           if (this.data.tool == false)
             return
           //得到触摸点的坐标
-          console.log(e)
+        //   console.log(e)
           this.startX = e.changedTouches[0].x
           this.startY = e.changedTouches[0].y
           this.posList = [{ "x": parseInt(this.startX), "y": parseInt(this.startY )}] //记录数组

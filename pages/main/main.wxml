@@ -8,73 +8,41 @@
         <image src='../../images/swiper1.jpg'></image>
     </swiper-item>
 </swiper>
-<view style='height:10px;'></view>
 
-<view class='team page__p_a_15 page_bg_white' hidden='{{teamID}}'>
-    <view class='header page_size_10 ' >
-        <view>您还未加入团队</view>
-        <view class='page_font_green ' catchtap='join'> 加入团队</view>
-    </view>
-</view> 
-
-<view class='team page__p_a_15 page_bg_white' hidden='{{!teamID}}'>
-    <view class='rol'>
-        <!-- <navigator class='node' url="/pages/sub_file/file" >
-            <image src='../../images/share.png'></image><view>共享文件夹</view>
-        </navigator> -->
-        <navigator class='node' url="/pages/sub_roster/roster">
-            <image src='../../images/icon_roster.png'></image><view>通讯录</view>
-        </navigator>
-        <navigator class='node' url="/pages/sub_notice/notice">
-            <image src='../../images/icon_notice.png'></image><view>通知公告</view>
-        </navigator>
-        <navigator class='node' url="/pages/sub_meet_index/meet_index">
-            <image src='../../images/icon_meet.png'></image><view>会务</view>
-        </navigator>
-        <navigator class='node' url="/pages/sub_train/train">
-            <image src='../../images/icon_train.png'></image><view>团队培训</view>
-        </navigator>
-    </view>  
-    <view style='height:15px;'></view>
-    <view class='rol'>
-        <!-- <navigator class='node' url="/pages/sub_train/train">
-            <image src='../../images/share.png'></image><view>团队培训</view>
-        </navigator> -->
-        <navigator class='node' url="/pages/sub_issue/issue">
-            <image src='../../images/icon_issue.png'></image><view>问题反馈</view>
-        </navigator> 
-        <navigator class='node' url="/pages/sub_more/more">
-            <image src='../../images/icon_more.png'></image><view>更多</view>
-        </navigator> 
-         <navigator class='node' >
-        </navigator> 
-         <navigator class='node' >
-        </navigator> 
-         <!-- <navigator class='node' url="/pages/sub_notice/notice">
-            <image src='../../images/share.png'></image><view>邮箱</view>
-        </navigator>  -->
-    </view>
-    
-</view>
-<view style='height:10px;'></view>
-
-<!-- <view class='temp page__p_a_15 page_bg_white'>
-    <view class='header page_size_10 page__line_gray' >
-        <view>我的文件：</view>
-        <view class='page_font_green '>更多</view>
-    </view>
-     <cover-horizon list="{{tempList}}" catchclick="toXXArticle"></cover-horizon> 
-</view> -->
-<navigator url="../../pages/sub_file/file"  class='team page__p_a_15 page_bg_white' hidden='{{!teamID}}'>
+<!-- <navigator  class='team page__p_15 page_bg_white ' >
+    <view style='height:15px'></view>
     <view class='header page_size_10 '>
-        <view>团队共享文件</view>
-        <view class='page_font_green '>详情</view>
+        <view>公开课程</view>
+        <view class='page__font_gray '>精品课程免费使用</view>
     </view> 
+    <view style='height:10px'></view>
 </navigator> 
-<view class="page__line_gray" hidden='{{!teamID}}'></view>
+   <view class='tab page_bg_white page__p_15 '>
+        <xx-tag 
+            list="{{tagNameList}}" 
+            initindex="{{tabIndex}}"
+            catch:add="addTag"
+            bind:click="clickTag"
+            bind:long="menuTag"
+            showAdd="{{false}}"
+        ></xx-tag>
+        <scroll-view scroll-y="true" style="height:150px">
+            <view style='height:10px;'></view>
+            <xx-gallery 
+                list="{{myList}}" 
+                bind:click="clickPPTImage"
+                bind:long="menuImage" 
+                showAdd="{{false}}" 
+            >
+            </xx-gallery> 
+        </scroll-view>
+</view>  -->
+
+<view style='height:10px;'></view>
+
 <navigator url="../../pages/self/self"  class='team page__p_a_15 page_bg_white' >
     <view class='header page_size_10 '>
-        <view>我的文件</view>
+        <view>我的图片</view>
         <view class='page_font_green '>详情</view>
     </view> 
 </navigator> 
@@ -93,7 +61,7 @@
 <view style='height:48px'></view>
 <view class='to_index'  catchtap='toTeacher'>
     <view class='circle'>
-        <view class='font '>视频求助</view>
+        <view class='font '>视频沟通</view>
     </view>
 </view>
 

@@ -67,7 +67,7 @@ Page({
         if (GP.data.tagList.length == 0 ){
             wx.showModal({
                 title: '没有标签',
-                content: '请在“我的文件”中添加新标签才能分类',
+                content: '请在下方添加标签',
             })
             return 
         }

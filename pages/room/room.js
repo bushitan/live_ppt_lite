@@ -17,7 +17,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        playerTab: ["临时文件", "我的文件", "团队共享"],
+        playerTab: ["临时图片","我的图片",],
         // isTeamMember: false,//是否加入团队
         teamID: false,
         isTeacher: true,//是否会员
@@ -40,8 +40,13 @@ Page({
         pptList:[],
         showGallery:false,
         print:[],
-    },
 
+
+        isStudentOnline:false,
+    },
+    studentOnline(){
+        GP.setData({ isStudentOnline:true,})
+    },
 
 // 完整链接
 // teacherPusher: "rtmp://15628.livepush.myqcloud.com/live/15628_cf1302ad02?bizid=15628&txSecret=8fa94235423def94a4ae47cf18792b92&txTime=5AF31AFF",
@@ -66,7 +71,7 @@ Page({
         console.log(JMessage.JIM.isConnect())
         // GP.onInit(GP.data.options)
 
-        GP.roomAdd
+        // GP.roomAdd
     },
 
     /**
@@ -102,6 +107,7 @@ Page({
 
         // GP.getPPT()  //获取自己文件夹内容
         GP.getTempFile()
+        // GP.getTeamTag()
         console.log("onload")
     },
 
@@ -117,11 +123,46 @@ Page({
         })
     },
     isStudentSuccess() {
+        // GP.initLive() //初始化live链接
+        var i = 0
+        Scripte.sendStudentCheck()
+        var interval = setInterval(
+            function () {
+                if (i < 10000) {
+                    console.log(i)
+                    Scripte.sendStudentCheck()
+                    i++
+                } else {
+                    wx.showModal({
+                        title: '退出房间',
+                        content: "房主不在线， 请重新视频求助",
+                        showCancel: false,
+                        success: function (res) {
+                            wx.redirectTo({
+                                url: '/pages/main/main',
+                            })
+                        },
+                    })
+                    clearInterval(interval)
+                }
+
+
+            },
+            2000,
+        )
         JMessage.JIM.onMsgReceive(function (data) {
+            clearInterval(interval)
             clearInterval(interval)
             Scripte.studentReceive(data)
             Scripte.utilReceive(data)
         })
+
+
+        // JMessage.JIM.onMsgReceive(function (data) {
+        //     clearInterval(interval)
+        //     Scripte.studentReceive(data)
+        //     Scripte.utilReceive(data)
+        // })
        
         
     },
@@ -137,6 +178,34 @@ Page({
         //         JMessage.sendSinglePic(GP.data.otherName, tempFilePaths )
         //     }
         // })
+
+
+
+    // 发送我的图片
+    clickPPTImage(e) {
+        var url = e.detail
+        console.log(url)
+        GP.switchGallery()
+        GP.setData({
+            // tabIndex: 0,
+            bgImageUrl: url,
+        })
+        Scripte.sendPPT(url)
+    },
+
+    // 发送临时图片
+    clickTempImage(e) {
+        var url = e.detail
+        console.log(url)
+        GP.switchGallery()
+        GP.setData({
+            // tabIndex: 0,
+            bgImageUrl: url,
+        })
+        // Scripte.sendPPT(url)
+        if (GP.data.otherName)
+            JMessage.sendSinglePic(GP.data.otherName, url)
+    },
 
     // 发送截图
     snapshot(e) {
@@ -159,12 +228,21 @@ Page({
         if (GP.data.otherName)  
             JMessage.sendSinglePic(GP.data.otherName, url)
     },
+    addImage(e) {
+        var url_list = e.detail
+        var _list = APP.globalData.tempList
+        for (var i = 0; i < url_list.length; i++)
+            _list.unshift({ url: url_list[i] })
+        APP.globalData.tempList = _list
+        GP.setData({ pptList: _list })
+    },
+
 
     //点击背景图，打开菜单
     stageClose() {
         wx.showModal({
-            title: '退出房间',
-            content: "退出后通话将断开",
+            title: '离开教室，通话将断开',
+            // content: "退出后通话将断开",
             success: function (res) {
                 if (res.confirm) {
                     if (GP.data.otherName != null) {
@@ -242,32 +320,7 @@ Page({
         GP.setData({ showGallery: !GP.data.showGallery})
     },
 
-    addImage(){
-        wx.chooseImage({
-            count: 1, //
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function (res) {
-                var tempFilePaths = res.tempFilePaths[0]; //获取成功，读取文件路径
-
-                GP.setData({
-                    tabIndex: 0,
-                    bgImageUrl: tempFilePaths,
-                })
-                APP.globalData.JMessage.sendSinglePic({
-                    'target_username': '<target_username>',
-                    'target_nickname': '<target_nickname>',
-                    'appkey': '<appkey>',
-                    'image': tempFilePaths //设置图片参数
-                }).onSuccess(function (data, msg) {
-                    //TODO
-                    
-                }).onFail(function (data) {
-                    //TODO
-                })
-            }
-        })
-    },
+   
 
     //点击tab菜单
     clickTab(e){
@@ -302,12 +355,13 @@ Page({
     getTeamTag(){
         API.Request({
             url: API.PPT_TEAM_GET_TAG,
-            data: { team_id: GP.data.teamID },
+            data: { team_id:2 },
             success: function (res) {
                 GP.renderTag(res)
             },
         })
     },
+
     renderTag(res){
         var tag_list = res.data.tag_list
         var tagNameList = []
@@ -342,19 +396,6 @@ Page({
 
 
 
-
-
-    // 发送ppt
-    clickPPTImage(e){
-        var url = e.detail
-        console.log(url)
-        GP.switchGallery()
-        GP.setData({
-            // tabIndex: 0,
-            bgImageUrl:url,
-        })
-        Scripte.sendPPT(url)
-    },
 
     //绘画完毕
     drawComplete(e) {
@@ -435,14 +476,15 @@ Page({
         }
         // teacher_name = live_pvp_user_19 & is_student=true
         var newToken = "1"
-        var path = "/pages/room/room?is_student=true&teacher_name=" + GP.data.selfName + "&token=" + newToken + "&host_session=" + wx.getStorageSync(KEY.SESSION)["session"] //原始分享路径
+        // var path = "/pages/room/room?is_student=true&teacher_name=" + GP.data.selfName + "&token=" + newToken + "&host_session=" + wx.getStorageSync(KEY.SESSION)["session"] //原始分享路径
+        var path = "/pages/room/room?is_student=true&teacher_name=" + GP.data.liveConfig.teacherName + "&token=" + newToken  //原始分享路径
         GP.setData({
             token: newToken
         })
         console.log(path)
         return {
-            title: "有个问题需要您的帮助",
-            // imageUrl: GP.data.stage.stage_cover,
+            title: "准备上课啦，赶紧进入小教室",
+            imageUrl: "../../images/share_url3.jpg",
             path: path,
         }
     },

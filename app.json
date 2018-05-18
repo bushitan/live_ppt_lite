@@ -1,11 +1,11 @@
 {
     "pages":[
         "pages/main/main",
+        "pages/sub_file/file",
         "pages/room/room",
         "pages/self/self",
 
         "pages/sub_more/more",
-        "pages/sub_file/file",
         "pages/sub_issue/issue",
         "pages/article/article",
         "pages/sub_train/train",
@@ -24,7 +24,7 @@
     "window":{
         "navigationBarBackgroundColor": "#2ebe60",
         "backgroundTextStyle":"light",
-        "navigationBarTitleText": "TeamHelper",
+        "navigationBarTitleText": "企业沟通助手",
         "navigationBarTextStyle":"white"
     }
 }

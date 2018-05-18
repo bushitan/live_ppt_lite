@@ -97,3 +97,9 @@
 button::after{
     display: none
 }
+
+
+.prepare{
+    position: fixed;
+    top: -500px;
+}

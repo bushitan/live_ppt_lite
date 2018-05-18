@@ -19,7 +19,7 @@ Component({
 
     showAdd: {
         type: Boolean,
-        value: false,
+        value: true,
     },
   },
 
@@ -60,7 +60,16 @@ Component({
 
     //增加图片
     clickAdd(e) {
-        this.triggerEvent('add');
+        var GP = this
+        wx.chooseImage({
+            count: 9, //
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var tempFilePaths = res.tempFilePaths[0]; //获取成功，读取文件路径
+                GP.triggerEvent('add', res.tempFilePaths);
+            }
+        })
     },
   }
 })

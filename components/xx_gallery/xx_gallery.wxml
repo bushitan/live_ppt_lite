@@ -1,72 +1,21 @@
 
-<wxs module="foo">
-    function matrix(list){
-        var matrix = []
-        for(var i=0;i<list.length;i=i+3){
-            var temp = []
-            temp.push(list[i])
-            if( list[i+1] != undefined)
-                temp.push(list[i+1])
-            if( list[i+2] != undefined)
-                temp.push(list[i+2])
-            matrix.push(temp)
-        }
-        return matrix
-    }
-    module.exports = {
-        matrix : matrix,
-    }
-</wxs>
-<block wx:if="{{list.length==0}}">
-    <slot></slot>
-</block>
-<block wx:else>
-    <block wx:for="{{foo.matrix(list)}}" wx:key="index_i" wx:for-item="i">
+<view class='xx_flex'>
+    <view class='node' hidden='{{!showAdd}}'>
+        <image catchtap='clickAdd' class='xx_add__image ' src='../../images/ic_action_add.png' mode='aspectFit'></image>
+    </view>
+    <block wx:for="{{list}}" wx:key="index">
         <view class='node'>
-            <block wx:for="{{i}}" wx:key="index_j" wx:for-item="j">
-                <image 
-                    bindtap='clickEmoji'
-                    bindlongpress="long"
-                    data-image_url="{{j.url}}"
-                    src='{{j.url}}' 
-                    mode='aspectFit' 
-                ></image>
-    <!-- {{i.length}} -->
-                <!-- <view hidden='{{index_j==2}}'></view> -->
-            </block>
-            <view class='space' hidden='{{i.length==1?false:true}}'></view>
-            <view class='space' hidden='{{i.length==1?false:true}}'></view>
-            <view class='space' hidden='{{i.length==2?false:true}}'></view>
+            <image 
+                bindtap='clickEmoji'
+                bindlongpress="long"
+                data-image_url="{{item.url}}"
+                src='{{item.url}}' 
+                mode='aspectFit' 
+            ></image>
         </view>
     </block>
-</block>
-
-
-
-
-
-
-
-
-<!-- <block wx:for="{{list}}" wx:key="index">
-    <view class='xx_gride xx_m_t15'>
-        <image 
-            bindtap='clickEmoji'
-            bindlongpress="long"
-            data-image_url="{{item.url}}"
-            class='xx_gride__image' 
-            src='{{item.url}}' 
-            mode='aspectFit'  
-        ></image>
-        <view class='btn'> 
-        </view>
-    </view>
-</block> -->
-
-
-
-<!-- <view class='xx_add xx_m_t15 xx_bg_gray' hidden="{{!showAdd}}">
-    <image catchtap='clickAdd' class='xx_add__image ' src='../../images/ic_action_add.png' mode='aspectFit'></image>
-</view> -->
-
-        <!-- <button size='mini' catchtap='clickBtn' data-index="{{index}}" >选择 </button> -->
+    
+    <view class='temp'>    </view>
+    <view class='temp'>    </view>
+    <view class='temp'>    </view>
+</view>

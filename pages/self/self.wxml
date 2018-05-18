@@ -2,7 +2,7 @@
 
 <view class='my page__p_a_15 page_bg_white'>
     <view class='header page_size_10 page__line_gray'>
-        <view>临时文件：</view>
+        <view>临时图片：</view>
         <view class='page_font_green ' catchtap='addTempImage'>添加</view>
     </view>
     <view style='height:10px;'></view>
@@ -12,7 +12,7 @@
         tagList="{{tagNameList}}" 
         bind:choiceTag="choiceTag"
     >
-        <view class='none_content' >暂无临时文件，请添加（或视频求助截图）</view>
+        <view class='none_content' >暂无临时图片，请添加（或视频求助截图）</view>
     </cover-horizon>  
      
 </view>
@@ -21,7 +21,7 @@
 
 <view class='my page__p_a_15 page_bg_white'>
     <view class='header page_size_10 page__line_gray'>
-        <view>我的文件：</view>
+        <view>我的图片：</view>
         <!-- <view class='page_font_green '>添加</view> -->
     </view>
     <view class='tag'>
@@ -33,12 +33,13 @@
         ></xx-tag>
     </view>
     <view class='gallery'>
+        <view  class='none_content'  hidden='{{myList != 0}}'>暂无图片，在临时图片中选择标签上传</view>
         <xx-gallery 
             list="{{myList}}" 
             bind:click="clickImage"
-            bind:long="menuImage"  
-        >
-            <view  class='none_content'>暂无文件，在临时文件中选择标签上传</view>
+            bind:long="menuImage" 
+            showAdd="{{false}}" 
+        > 
         </xx-gallery> 
     </view>
 </view>

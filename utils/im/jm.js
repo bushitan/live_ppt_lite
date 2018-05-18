@@ -1,4 +1,4 @@
-var JMessage = require('jmessage-wxapplet-sdk-1.4.0.min.js')
+// var JMessage = require('jmessage-wxapplet-sdk-1.4.0.min.js')
 var RANDOM = require('random.js')
 var MD5 = require('md5.js')
 var appKey = "12101be04a3f9c65a1cd24b3"

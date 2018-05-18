@@ -5,13 +5,18 @@
 </view>
  <view class='live' wx:if="{{isTeacher}}">
     <view >
-        <xx-live-player 
-            wx:if="{{isConnect}}"
-            src="{{liveConfig.studentPlayer}}" 
-            width="300rpx" 
-            height="300rpx">
-        </xx-live-player> 
-        <view wx:else class='mask ' >
+    <!-- wx:if="{{isConnect}}" -->
+    <!-- src="{{liveConfig.studentPlayer}}"  -->
+        <view class='{{ isStudentOnline==false?"prepare":"" }}'>
+            <xx-live-player 
+                bind:onStart="studentOnline"
+                src="{{liveConfig.studentPlayer}}" 
+                width="300rpx" 
+                height="300rpx">
+            </xx-live-player> 
+        </view>
+        <!-- wx:else -->
+        <view  class='mask {{ isStudentOnline==false?"":"prepare" }}' >
             <button open-type="share" class='mask '>
                 <image src='../../images/share.png'></image>
                 邀请好友
@@ -90,8 +95,9 @@
             <view class='gallery'>
                 <xx-gallery 
                     list="{{pptList}}" 
-                    bind:click="clickPPTImage"
+                    bind:click="clickTempImage"
                     bind:long="menuImage"
+                    bind:add="addImage"
                 >
                     <view  class='none_content'>截图将保存在这里</view>
                 </xx-gallery> 
@@ -112,48 +118,44 @@
             </view>
             <view style='height:5px'></view>
             <view class='gallery'>
+                <view  class='none_content' hidden='{{pptList != 0}}'>暂无文件，在 首页->我的图片 上传</view>
                 <xx-gallery 
                     list="{{pptList}}" 
                     bind:click="clickPPTImage"
-                    bind:long="menuImage"  
+                    bind:long="menuImage" 
+                    showAdd="{{false}}" 
                 >
-                    <view  class='none_content'>暂无文件，在 首页->我的文件 上传</view>
                 </xx-gallery> 
             </view>
         </view>
         
-        <view hidden='{{tabIndex!=2}}'>
-            <view  wx:if="{{teamID}}">
-                <view style='height:5px'></view>
-                <view class='tag' >
-                    <xx-tag 
-                        list="{{tagNameList}}" 
-                        initindex="{{tagIndex}}"
-                        catch:add="addTag"
-                        bind:click="clickTag"
-                        bind:long="menuTag"
-                        showAdd="{{false}}"
-                    ></xx-tag>
-                </view>
-                <view style='height:5px'></view>
-                <view class='gallery'>
-                    <xx-gallery 
-                        list="{{pptList}}" 
-                        bind:click="clickPPTImage"
-                        bind:long="menuImage"  
-                    >
-                        <view  class='none_content'>暂无文件，在 首页->我的文件 上传</view>
-                    </xx-gallery> 
-                </view>
+        <view hidden='{{tabIndex!=2}}'>           
+            <view style='height:5px'></view>
+            <view class='tag' >
+                <xx-tag 
+                    list="{{tagNameList}}" 
+                    initindex="{{tagIndex}}"
+                    catch:add="addTag"
+                    bind:click="clickTag"
+                    bind:long="menuTag"
+                    showAdd="{{false}}"
+                ></xx-tag>
             </view>
-            <view wx:else class='none_content'>
-                <view style='height:5px'></view>
-                还未加入团队
-            </view>
+            <view style='height:5px'></view>
+            <view class='gallery'>
+                <xx-gallery 
+                    list="{{pptList}}" 
+                    bind:click="clickPPTImage"
+                    bind:long="menuImage"  
+                    showAdd="{{false}}"
+                >
+                    <view  class='none_content'>暂无文件，在 首页->我的文件 上传</view>
+                </xx-gallery> 
+            </view>            
         </view>
         
 
-    <view style='height:48px'></view>
+     <!-- <view style='height:30px'></view>  -->
     <view class='to_canvas'  catchtap='switchGallery'>
         <view class='font '>返回画板</view>
     </view>

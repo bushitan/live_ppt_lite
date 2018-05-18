@@ -85,7 +85,7 @@ module.exports = new (function () {
     }
     function utilInit( callback){
         var user_info = wx.getStorageSync(KEY.USER_INFO)
-        var selfName = "live_pvp_user_" + user_info.user_id
+        var selfName = "live_ppt_user_" + user_info.user_id
         console.log(selfName)
         var passWord = "123"
         GP.setData({
@@ -206,38 +206,50 @@ module.exports = new (function () {
      */
     // 4.1 老师接收事件
     function getCheck(student_name, token){
+        GP.setData({
+            otherName: student_name,
+            studentName: student_name,
+            token: null, //token过期，别 的就不能进了
+            isOnline: true,
+            isStart: true,
+            isConnect: true,
+            // liveConfig: liveConfig,
+        })
+        sendTeacherOnline()
 
-        //失败，返回 expire
-        if ( GP.data.token == undefined){
-            var s_say = { 
-                text: "expire", 
-                student_name: student_name
-            } 
-            JMessage.sendSingleCustom(student_name, s_say) //学生打招呼
-            return
-        }
 
-        if (GP.data.token == token) {
-            GP.setData({
-                otherName: student_name,
-                studentName: student_name,
-                token:null, //token过期，别 的就不能进了
-                isOnline:true,
-                isStart: true,
-                isConnect: true,
-                // liveConfig: liveConfig,
-            })
-            sendTeacherOnline()
-            // this.sendStage()
-        }
-        else{ //分享过期
-            var s_say = {
-                text: "expire",
-                student_name: student_name
-            }
-            JMessage.sendSingleCustom(student_name, s_say) //学生打招呼
-            return
-        }
+
+        // //失败，返回 expire
+        // if ( GP.data.token == undefined){
+        //     var s_say = { 
+        //         text: "expire", 
+        //         student_name: student_name
+        //     } 
+        //     JMessage.sendSingleCustom(student_name, s_say) //学生打招呼
+        //     return
+        // }
+
+        // if (GP.data.token == token) {
+        //     GP.setData({
+        //         otherName: student_name,
+        //         studentName: student_name,
+        //         token:null, //token过期，别 的就不能进了
+        //         isOnline:true,
+        //         isStart: true,
+        //         isConnect: true,
+        //         // liveConfig: liveConfig,
+        //     })
+        //     sendTeacherOnline()
+        //     // this.sendStage()
+        // }
+        // else{ //分享过期
+        //     var s_say = {
+        //         text: "expire",
+        //         student_name: student_name
+        //     }
+        //     JMessage.sendSingleCustom(student_name, s_say) //学生打招呼
+        //     return
+        // }
 
     }
 
@@ -318,19 +330,19 @@ module.exports = new (function () {
     }
 
     function getPPT(url) {
-        wx.showToast({
-            title: '更换PPT成功',
-            icon: "success",
-        })
+        // wx.showToast({
+        //     title: '更换PPT成功',
+        //     icon: "success",
+        // })
         GP.setData({
             bgImageUrl: url,
         })
     }
     function getDraw(path) {
 
-        wx.showToast({
-            title: 'drwa成功',
-        })
+        // wx.showToast({
+        //     title: 'drwa成功',
+        // })
         GP.setData({
             drawLine: path
         })
@@ -338,7 +350,7 @@ module.exports = new (function () {
     function getClear(path) {
 
         wx.showToast({
-            title: 'clear成功',
+            title: '对方清除屏幕',
         })
         GP.setData({
             drawLine: path

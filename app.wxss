@@ -28,18 +28,11 @@ page{
     color: #8d8d8d; 
 }
 
-.page_font_green{
-    color: #2ebe60;
-}
-.page_bg_green{
-    background-color: #2ebe60;
-}
-.page_font_white{
-    color: #fff;
-}
-.page_bg_white{
-    background-color: #fff;
-}
+.page__font_gray{   color: #888; }
+.page_font_green{    color: #2ebe60;}
+.page_bg_green{    background-color: #2ebe60;}
+.page_font_white{    color: #fff;}
+.page_bg_white{    background-color: #fff;}
 
 
 .page_size_9{

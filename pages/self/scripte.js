@@ -32,6 +32,7 @@ module.exports = new (function() {
             icon:"success"
         })
         console.log(res)
+        GP.getTag()
         // var data = JSON.parse(res.data);
         // var tag_id = data.image_dict.tag_id
         // var url = data.image_dict.url
